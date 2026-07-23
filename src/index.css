@@ -1,10 +1,9 @@
 @import "@fontsource-variable/inter";
 @import "@fontsource-variable/fraunces/opsz.css";
 @import "@fontsource-variable/fraunces/opsz-italic.css";
-@import "@fontsource-variable/libre-franklin";
-@import "@fontsource/cormorant-garamond/300.css";
-@import "@fontsource/cormorant-garamond/400.css";
-@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource-variable/playfair-display";
+@import "@fontsource-variable/playfair-display/wght-italic.css";
+@import "@fontsource-variable/dm-sans";
 @import "@fontsource-variable/space-grotesk";
 @import "@fontsource/ibm-plex-mono/400.css";
 @import "@fontsource/ibm-plex-mono/500.css";
@@ -23,17 +22,18 @@
   --font-serif: "Fraunces Variable", Georgia, "Times New Roman", serif;
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 
-  /* Havel & Grau — Beispiel-Kundenmarke (bewusst anderer Stil) */
-  --color-hg-paper: #f2eee6;
-  --color-hg-panel: #e8e2d5;
-  --color-hg-ink: #23201a;
-  --color-hg-muted: #6f6a5f;
-  --color-hg-line: #d8d2c4;
-  --color-hg-olive: #3f5236;
-  --color-hg-olive-soft: #5a7050;
-  --color-hg-clay: #b0623c;
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-grotesk: "Libre Franklin Variable", ui-sans-serif, system-ui, sans-serif;
+  /* Havel & Grau — Beispiel-Kundenmarke #1 (Kontrast: Navy · Creme · Terrakotta) */
+  --color-hg-cream: #f3f0e9;
+  --color-hg-shell: #e7e2d8;
+  --color-hg-navy: #101f3c;
+  --color-hg-navy-deep: #0a1428;
+  --color-hg-ink: #1c2438;
+  --color-hg-muted: #6b7285;
+  --color-hg-line: #d5cfc2;
+  --color-hg-clay: #c1573a;
+  --color-hg-clay-soft: #dd8a6f;
+  --font-display: "Playfair Display Variable", Georgia, serif;
+  --font-grotesk: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
 
   /* MERIDIAN — Beispiel-Kundenmarke #2 (Architektur/Blaupause, technisch & hell) */
   --color-mer-paper: #f1f0ec;

@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { Magnetic } from './Magnetic'
-import { PROPERTIES } from '../example/HavelGrauSite'
 import { VillaIllo, MonogramHG } from '../example/illustrations'
 
 const reveal = {
@@ -18,84 +17,91 @@ const reveal = {
 // als klarer Kontrast zu Plan B Studios, damit erkennbar ist: eine andere Marke.
 function HavelGrauPreview() {
   return (
-    <div className="select-none bg-hg-paper font-grotesk text-hg-ink">
-      <div className="flex items-center justify-between border-b border-hg-line px-10 py-5">
-        <div className="flex items-center gap-2.5">
-          <MonogramHG className="h-6 w-6 text-hg-olive" />
-          <span className="text-[12px] font-medium uppercase tracking-[0.24em] text-hg-ink">
-            Havel &amp; Grau
-          </span>
-        </div>
-        <div className="flex items-center gap-6">
-          {['Objekte', 'Philosophie', 'Kontakt'].map((l) => (
-            <span key={l} className="text-[10px] font-medium uppercase tracking-[0.14em] text-hg-muted">
-              {l}
-            </span>
-          ))}
-          <span className="border border-hg-olive px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-hg-olive">
-            Beratung
-          </span>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-2 items-center gap-10 px-10 py-12">
-        <div>
-          <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.3em] text-hg-olive">
-            Immobilien · Potsdam · seit 1998
-          </p>
-          <p className="font-display text-6xl font-light leading-[0.98] text-hg-ink">
-            Zuhause mit
-            <br />
-            <span className="italic text-hg-olive">Charakter.</span>
-          </p>
-          <p className="mt-6 max-w-xs text-[13px] leading-relaxed text-hg-muted">
-            Ausgewählte Objekte an der Havel — ehrlich beraten, sorgfältig vermittelt.
-          </p>
-          <div className="mt-7 flex items-center gap-3">
-            <span className="bg-hg-olive px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.14em] text-hg-paper">
-              Objekte ansehen
-            </span>
-            <span className="px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.14em] text-hg-ink">
+    <div className="select-none bg-hg-cream font-grotesk text-hg-ink">
+      {/* Dunkler Kopfbereich */}
+      <div className="bg-hg-navy px-10 pb-14 pt-6 text-hg-cream">
+        <div className="flex items-center justify-between border-b border-hg-cream/15 pb-4">
+          <div className="flex items-center gap-2.5">
+            <MonogramHG className="h-6 w-6 text-hg-clay-soft" />
+            <span className="font-display text-[15px] font-medium">Havel &amp; Grau</span>
+          </div>
+          <div className="flex items-center gap-6">
+            {['Objekte', 'Haltung', 'Kontakt'].map((l) => (
+              <span key={l} className="text-[10px] tracking-[0.06em] text-hg-cream/70">
+                {l}
+              </span>
+            ))}
+            <span className="bg-hg-clay px-3 py-1.5 text-[10px] font-medium text-hg-cream">
               Beratung
             </span>
           </div>
         </div>
-        <div className="flex aspect-[4/5] items-center justify-center bg-hg-olive">
-          <VillaIllo className="h-[70%] w-[70%] text-hg-paper" />
+
+        <p className="mt-10 text-[10px] uppercase tracking-[0.3em] text-hg-clay-soft">
+          Immobilien in Potsdam · seit 1998
+        </p>
+        <p className="mt-5 font-display text-6xl font-medium leading-[0.92] tracking-[-0.02em]">
+          Häuser mit
+          <br />
+          <span className="italic text-hg-clay-soft">Vorgeschichte.</span>
+        </p>
+        <div className="mt-8 flex items-end justify-between gap-8">
+          <p className="max-w-xs text-[13px] leading-relaxed text-hg-cream/70">
+            Wir vermitteln keine Quadratmeter, sondern Orte, die schon einmal
+            jemandem etwas bedeutet haben.
+          </p>
+          <VillaIllo className="h-auto w-[150px] shrink-0 text-hg-cream/45" />
+        </div>
+        <span className="mt-8 inline-block bg-hg-clay px-6 py-3 text-[11px] font-medium text-hg-cream">
+          Objekte ansehen
+        </span>
+      </div>
+
+      {/* Kennzahlen */}
+      <div className="grid grid-cols-4 gap-6 border-b border-hg-line px-10 py-8">
+        {[
+          ['27', 'Jahre an der Havel'],
+          ['120+', 'vermittelte Objekte'],
+          ['14', 'Objekte im Angebot'],
+          ['1:1', 'persönliche Betreuung'],
+        ].map(([v, l]) => (
+          <div key={l}>
+            <p className="font-display text-3xl font-medium leading-none text-hg-navy">{v}</p>
+            <p className="mt-1.5 text-[9px] uppercase tracking-[0.16em] text-hg-muted">{l}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Objekt-Tafel */}
+      <div className="px-10 py-12">
+        <p className="mb-8 font-display text-3xl font-medium text-hg-navy">Das Verzeichnis</p>
+        <div className="grid grid-cols-2 border border-hg-line bg-hg-cream">
+          <div className="relative flex items-center justify-center bg-hg-shell p-8">
+            <span className="absolute left-4 top-4 font-display text-[12px] text-hg-muted">01 / 14</span>
+            <VillaIllo className="h-auto w-[72%] text-hg-navy" />
+          </div>
+          <div className="flex flex-col justify-center gap-3 p-8">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-hg-clay">Potsdam · Babelsberg</p>
+            <p className="font-display text-2xl font-medium leading-tight text-hg-navy">
+              Stadtvilla Babelsberg
+            </p>
+            <p className="text-[12px] leading-relaxed text-hg-muted">
+              Gründerzeit, aufwendig saniert, Blick über den Park.
+            </p>
+            <div className="mt-1 flex items-baseline gap-5 border-t border-hg-line pt-3 text-[12px]">
+              <span>6 Zimmer</span>
+              <span>245 m²</span>
+              <span className="font-display text-[17px] font-medium text-hg-navy">1.480.000 €</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="border-t border-hg-line px-10 py-12">
-        <div className="mb-8 flex items-end justify-between">
-          <p className="font-display text-3xl font-light text-hg-ink">Ausgewählte Objekte</p>
-          <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-hg-olive">
-            Alle 14 →
-          </span>
-        </div>
-        <div className="grid grid-cols-3 gap-8">
-          {PROPERTIES.map((p) => {
-            const { Illo } = p
-            return (
-              <div key={p.name}>
-                <div className="mb-4 flex aspect-[4/3] items-center justify-center bg-hg-panel">
-                  <Illo className="h-[74%] w-[74%] text-hg-olive" />
-                </div>
-                <div className="flex items-baseline justify-between gap-2">
-                  <p className="font-display text-lg font-medium leading-tight text-hg-ink">{p.name}</p>
-                  <span className="shrink-0 text-[12px] font-medium text-hg-olive">{p.price}</span>
-                </div>
-                <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-hg-muted">
-                  {p.rooms} · {p.area}
-                </p>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-
-      <div className="bg-hg-olive px-10 py-16 text-center text-hg-paper">
-        <p className="mx-auto max-w-lg font-display text-2xl font-light italic leading-relaxed">
-          „Ein Zuhause erkennt man in dem Moment, in dem man eintritt."
+      {/* Haltung */}
+      <div className="bg-hg-clay px-10 py-14 text-hg-cream">
+        <p className="max-w-lg font-display text-2xl font-medium leading-[1.2]">
+          Ein Haus verkauft sich nicht über den Preis. Sondern über die Geschichte,
+          <span className="italic"> die es weitererzählt.</span>
         </p>
       </div>
     </div>
