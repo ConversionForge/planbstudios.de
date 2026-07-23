@@ -1,0 +1,218 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/fraunces/opsz.css";
+@import "@fontsource-variable/fraunces/opsz-italic.css";
+@import "@fontsource-variable/libre-franklin";
+@import "@fontsource/cormorant-garamond/300.css";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "tailwindcss";
+
+@theme {
+  --color-night: #0a0a0b;
+  --color-night-soft: #0c0c0d;
+  --color-night-raised: #121213;
+  --color-night-line: #222223;
+  --color-cream: #f3eee5;
+  --color-cream-soft: #cfc9bd;
+  --color-stone: #8c8985;
+  --color-gold: #b8894a;
+  --color-gold-bright: #d3a76f;
+  --font-serif: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Havel & Grau — Beispiel-Kundenmarke (bewusst anderer Stil) */
+  --color-hg-paper: #f2eee6;
+  --color-hg-panel: #e8e2d5;
+  --color-hg-ink: #23201a;
+  --color-hg-muted: #6f6a5f;
+  --color-hg-line: #d8d2c4;
+  --color-hg-olive: #3f5236;
+  --color-hg-olive-soft: #5a7050;
+  --color-hg-clay: #b0623c;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-grotesk: "Libre Franklin Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* MERIDIAN — Beispiel-Kundenmarke #2 (Architektur/Blaupause, technisch & hell) */
+  --color-mer-paper: #f1f0ec;
+  --color-mer-panel: #e7e6e0;
+  --color-mer-ink: #14171c;
+  --color-mer-muted: #6a6f75;
+  --color-mer-line: #d6d5cd;
+  --color-mer-tide: #0d5c63;
+  --color-mer-deep: #0b3a40;
+  --font-tech: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
+}
+
+body {
+  background-color: var(--color-night);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.font-serif {
+  font-variation-settings: "opsz" 144;
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-night);
+}
+
+@media (pointer: fine) {
+  .custom-cursor,
+  .custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+.grain-layer {
+  position: absolute;
+  inset: -16%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.05;
+  animation: grain-shift 1.4s steps(7) infinite;
+  will-change: transform;
+}
+
+@keyframes grain-shift {
+  0% { transform: translate3d(0, 0, 0); }
+  15% { transform: translate3d(-4%, 3%, 0); }
+  30% { transform: translate3d(3%, -5%, 0); }
+  45% { transform: translate3d(-5%, -2%, 0); }
+  60% { transform: translate3d(5%, 4%, 0); }
+  75% { transform: translate3d(-2%, 6%, 0); }
+  90% { transform: translate3d(4%, -3%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+/* MERIDIAN — Konturschrift + Laufband */
+.mer-outline {
+  -webkit-text-stroke: 1.5px var(--color-mer-ink);
+  color: transparent;
+}
+.mer-outline-paper {
+  -webkit-text-stroke: 1.5px rgba(241, 240, 236, 0.85);
+  color: transparent;
+}
+.mer-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: mer-marquee 30s linear infinite;
+  will-change: transform;
+}
+@keyframes mer-marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain-layer,
+  .aurora-blob,
+  .mer-marquee-track {
+    animation: none;
+  }
+}
+
+.legal-prose {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--color-stone);
+}
+.legal-prose h2 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 144;
+  font-weight: 300;
+  font-size: 1.6rem;
+  color: var(--color-cream);
+}
+.legal-prose h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-cream-soft);
+}
+.legal-prose p {
+  margin-bottom: 1rem;
+}
+.legal-prose a {
+  color: var(--color-gold-bright);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.legal-prose ul {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+.legal-prose li {
+  margin-bottom: 0.4rem;
+}
+.legal-prose .placeholder {
+  color: var(--color-gold-bright);
+  background: rgba(184, 137, 74, 0.1);
+  padding: 0 0.35em;
+  border-radius: 2px;
+  font-style: normal;
+}
+.legal-prose .legal-note {
+  margin: 2rem 0;
+  border-left: 2px solid var(--color-gold);
+  background: rgba(184, 137, 74, 0.06);
+  padding: 1rem 1.25rem;
+  font-size: 13.5px;
+  color: var(--color-cream-soft);
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(55px);
+  will-change: transform;
+}
+@keyframes aurora-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(7vw, 5vh, 0) scale(1.25); }
+}
+@keyframes aurora-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.15); }
+  50% { transform: translate3d(-6vw, -4vh, 0) scale(0.9); }
+}
+
+.tour-kenburns img {
+  animation: kenburns 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes kenburns {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.06) translate3d(1.2%, -1%, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tour-kenburns img {
+    animation: none;
+  }
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}

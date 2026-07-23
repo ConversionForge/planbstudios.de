@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Beispielprojekte sind Demonstrationen und sollen nicht als eigenständige
+# Seiten in den Suchergebnissen erscheinen.
+Disallow: /beispiel
+Disallow: /meridian
+Disallow: /rundgang
+
+Sitemap: https://planbstudios.de/sitemap.xml
