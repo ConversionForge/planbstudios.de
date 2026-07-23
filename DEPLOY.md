@@ -5,14 +5,17 @@ gehostet; die Domain kommt von IONOS (nur Adresse, kein Hosting).
 
 ## 1. Repository hochladen
 
-Das Git-Repository ist bereits angelegt, der erste Commit ist gemacht
-(Branch `main`). Lege auf github.com ein **leeres** Repository an (ohne README,
-ohne .gitignore) und führe dann im Ordner `website/` aus:
+Das Git-Repository ist bereits angelegt und mit GitHub verbunden
+(Branch `main`, Remote `origin`). Hochladen im Ordner `website/`:
 
 ```bash
-git remote add origin https://github.com/DEIN-USERNAME/DEIN-REPO.git
 git push -u origin main
 ```
+
+Der Remote zeigt auf `https://github.com/conversionforge/planbstudios.de.git`.
+Prüfen lässt sich das mit `git remote -v`; ändern — falls nötig — mit
+`git remote set-url origin <neue-adresse>` (**nicht** `git remote add`, das
+schlägt bei vorhandenem Remote fehl und behält die alte Adresse).
 
 ## 2. GitHub Pages aktivieren
 
