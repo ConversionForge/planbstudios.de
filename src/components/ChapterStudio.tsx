@@ -13,18 +13,18 @@ const reveal = {
 const PRINCIPLES = [
   {
     n: '01',
-    title: 'Substanz vor Effekt',
-    text: 'Jede Animation, jede Zeile hat einen Grund. Was nicht trägt, fliegt raus — bis nur das Wesentliche bleibt.',
+    title: 'Einzeln gebaut.',
+    text: 'Kein Template, keine Vorlage — jede Seite entsteht von Grund auf aus Ihrer Marke, Ihrem Objekt, Ihrer Zielgruppe. So unverwechselbar wie das, was Sie verkaufen. Die Konkurrenz klickt zusammen; Sie fallen auf.',
   },
   {
     n: '02',
-    title: 'Technik als Handwerk',
-    text: 'Sauberer Code ist kein Selbstzweck. Er ist die Voraussetzung dafür, dass sich eine Seite schnell, ruhig und selbstverständlich anfühlt.',
+    title: 'Alles aus einer Hand.',
+    text: 'Website und 3D-Rundgang von derselben Person. Sie sprechen mit dem, der es baut — vom ersten Entwurf bis zur fertigen Seite. Keine Schnittstellen, keine Wartezeit, keine Ausreden.',
   },
   {
     n: '03',
-    title: 'Ein Ansprechpartner',
-    text: 'Vom ersten Konzept bis zum Livegang: eine Person, die versteht, worum es geht — kein Weiterreichen, keine Reibungsverluste.',
+    title: 'Technik, die verkauft.',
+    text: 'Ladezeit unter einer Sekunde, flüssige 60 Bilder pro Sekunde, tadellos am Handy. Denn die schönste Seite bringt nichts, wenn der Interessent vorher abspringt.',
   },
 ]
 
@@ -64,14 +64,16 @@ export function ChapterStudio() {
               <em className="italic text-gold-bright">Plan B</em>?
             </h2>
             <p className="mt-8 max-w-md text-base leading-relaxed text-stone md:text-lg">
-              Weil der erste Plan meistens nach etwas aussieht, das es schon gibt.
-              Plan B Studios entsteht dort, wo Standard aufhört — an der Schnittstelle
-              aus Gestaltung, Technik und Raum.
+              In der Immobilienbranche entscheidet der erste Klick über den Preis.
+              Trotzdem sehen die meisten Makler- und Bauträger-Seiten aus wie tausend
+              andere — ein Objekt für 1,5&nbsp;Millionen, präsentiert wie ein
+              Möbelhaus-Prospekt.
             </p>
             <p className="mt-6 max-w-md text-base leading-relaxed text-stone md:text-lg">
-              Wir verbinden zwei Disziplinen, die selten aus einer Hand kommen:
-              Websites, die eine Marke tragen, und 3D-Rundgänge, die Immobilien
-              begehbar machen. Beides gebaut, nicht zusammengeklickt.
+              Plan B Studios ist eines der wenigen Studios, das beides selbst baut:
+              Websites, die eine Marke tragen, und begehbare 3D-Rundgänge, die
+              Objekte verkaufen, bevor der erste Besichtigungstermin steht. Kein
+              Weiterreichen, kein Baukasten, kein Kompromiss.
             </p>
           </motion.div>
 

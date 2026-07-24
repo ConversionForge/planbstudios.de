@@ -24,12 +24,6 @@ export function Impressum() {
         <a href="mailto:planbstudios.de@gmail.com">planbstudios.de@gmail.com</a>
       </p>
 
-      <h2>Umsatzsteuer</h2>
-      <p>
-        Gemäß § 19 UStG (Kleinunternehmerregelung) wird keine Umsatzsteuer
-        berechnet und daher auch keine Umsatzsteuer-Identifikationsnummer geführt.
-      </p>
-
       <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
       <p>
         Bilal Gnielka

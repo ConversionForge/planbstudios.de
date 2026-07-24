@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigationType } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Impressum } from './pages/Impressum'
 import { Datenschutz } from './pages/Datenschutz'
@@ -8,19 +8,49 @@ import { MeridianSite } from './example/MeridianSite'
 import { PropertyTour } from './tour/PropertyTour'
 import { NotFound } from './pages/NotFound'
 import { PageCurtain } from './components/PageCurtain'
+import { scrollPositions } from './lib/scroll'
 
-function ScrollToTop() {
-  const { pathname } = useLocation()
+function ScrollManager() {
+  const location = useLocation()
+  const navType = useNavigationType()
+
+  // Scroll-Wiederherstellung selbst übernehmen (nicht der Browser).
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+  }, [])
+
+  useEffect(() => {
+    // Die Startseite regelt ihre Scroll-Position (Lenis) selbst.
+    if (location.pathname === '/') return
+
+    const key = location.key
+    const timers: number[] = []
+
+    if (navType === 'POP' && scrollPositions.has(key)) {
+      const y = scrollPositions.get(key) ?? 0
+      timers.push(window.setTimeout(() => window.scrollTo(0, y), 0))
+    } else if (!location.hash) {
+      window.scrollTo(0, 0)
+    }
+
+    // Unterseiten feuern native Scroll-Events → Position laufend sichern.
+    const onScroll = () => scrollPositions.set(key, window.scrollY)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      timers.forEach(clearTimeout)
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [location, navType])
+
   return null
 }
 
 function App() {
   return (
     <>
-      <ScrollToTop />
+      <ScrollManager />
       <PageCurtain />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -6,7 +6,6 @@ const POSTER = `${import.meta.env.BASE_URL}rundgang/living-1.jpg`
 
 export function WalkthroughVideo() {
   const ref = useRef<HTMLVideoElement>(null)
-  const [muted, setMuted] = useState(true)
   const [paused, setPaused] = useState(false)
 
   // Nur abspielen, wenn im Sichtbereich (schont Akku/Leistung)
@@ -30,18 +29,12 @@ export function WalkthroughVideo() {
     if (v.paused) v.play().catch(() => {})
     else v.pause()
   }
-  const toggleMute = () => {
-    const v = ref.current
-    if (!v) return
-    v.muted = !v.muted
-    setMuted(v.muted)
-    if (!v.muted) v.play().catch(() => {})
-  }
   const goFullscreen = () => ref.current?.requestFullscreen?.()
 
   return (
     <figure className="m-0">
       <Tilt max={4} className="group relative aspect-video w-full overflow-hidden rounded-xl border border-night-line bg-night-raised">
+        {/* Stummer Kino-Loop — das Quellvideo hat keine nutzbare Tonspur. */}
         <video
           ref={ref}
           src={VIDEO_SRC}
@@ -78,25 +71,8 @@ export function WalkthroughVideo() {
           </button>
         )}
 
-        {/* Steuerung unten rechts */}
-        <div className="absolute bottom-4 right-4 flex items-center gap-2 opacity-80 transition-opacity duration-300 group-hover:opacity-100">
-          <button
-            onClick={toggleMute}
-            aria-label={muted ? 'Ton einschalten' : 'Ton ausschalten'}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-night-line bg-night/50 text-cream-soft backdrop-blur-sm transition-colors duration-300 hover:border-gold hover:text-gold"
-          >
-            {muted ? (
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M11 5 6 9H3v6h3l5 4z" />
-                <path d="M16 9l5 5m0-5l-5 5" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M11 5 6 9H3v6h3l5 4z" />
-                <path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8 8 0 0 1 0 12" />
-              </svg>
-            )}
-          </button>
+        {/* Vollbild */}
+        <div className="absolute bottom-4 right-4 opacity-80 transition-opacity duration-300 group-hover:opacity-100">
           <button
             onClick={goFullscreen}
             aria-label="Vollbild"

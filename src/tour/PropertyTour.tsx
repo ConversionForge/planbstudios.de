@@ -1,12 +1,20 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'motion/react'
 import { TOUR } from './tourData'
 import { CubeMark } from '../components/Logo'
 
 export function PropertyTour() {
+  const navigate = useNavigate()
+  const location = useLocation()
   const [room, setRoom] = useState(0)
   const [shot, setShot] = useState(0)
+
+  // Schließen = zurück zur vorigen Stelle (Referenzen/Vorschau), nicht nach oben.
+  const close = useCallback(() => {
+    if (location.key !== 'default') navigate(-1)
+    else navigate('/')
+  }, [navigate, location.key])
 
   const rooms = TOUR.rooms
   const current = rooms[room]
@@ -140,15 +148,15 @@ export function PropertyTour() {
             <span className="text-stone"> · {TOUR.location}</span>
           </h1>
         </div>
-        <Link
-          to="/"
+        <button
+          onClick={close}
           aria-label="Rundgang schließen"
           className="flex h-11 w-11 items-center justify-center rounded-full border border-night-line bg-night/40 text-cream-soft backdrop-blur-sm transition-colors duration-300 hover:border-gold hover:text-gold"
         >
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none">
             <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
-        </Link>
+        </button>
       </div>
 
       {/* Seitliche Navigation */}

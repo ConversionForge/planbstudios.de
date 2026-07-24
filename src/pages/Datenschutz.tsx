@@ -3,14 +3,6 @@ import { LegalLayout } from './LegalLayout'
 export function Datenschutz() {
   return (
     <LegalLayout title="Datenschutz" updated="Juli 2026">
-      <div className="legal-note">
-        Diese Datenschutzerklärung ist an die DSGVO angelehnt und auf die aktuelle,
-        formular- und trackingfreie Website zugeschnitten. Lassen Sie den Text vor
-        der Veröffentlichung datenschutzrechtlich prüfen — insbesondere, sobald
-        Kontaktformulare, Analyse-Tools oder externe Einbettungen Dritter (z.&nbsp;B.
-        Karten oder eingebettete 3D-Rundgänge) hinzukommen.
-      </div>
-
       <h2>1. Verantwortlicher</h2>
       <p>
         Verantwortlich für die Datenverarbeitung auf dieser Website ist:
@@ -70,13 +62,6 @@ export function Datenschutz() {
         </a>
         .
       </p>
-      <div className="legal-note">
-        Rechtlicher Hinweis: Für GitHub Pages stellt GitHub außerhalb von GitHub
-        Enterprise keinen gesonderten Auftragsverarbeitungsvertrag (Art.&nbsp;28
-        DSGVO) bereit, und es findet eine Datenübermittlung in die USA statt.
-        Bitte diesen Punkt vor der Veröffentlichung datenschutzrechtlich prüfen —
-        ein Hosting innerhalb der EU wäre die konservativere Alternative.
-      </div>
 
       <h2>4. Kontaktaufnahme per E-Mail</h2>
       <p>
