@@ -8,6 +8,7 @@ import { ChapterWebdesign } from '../components/ChapterWebdesign'
 import { Chapter3D } from '../components/Chapter3D'
 import { ChapterReferenzen } from '../components/ChapterReferenzen'
 import { ChapterStudio } from '../components/ChapterStudio'
+import { FAQ } from '../components/FAQ'
 import { ChapterKontakt } from '../components/ChapterKontakt'
 import { Footer } from '../components/Footer'
 import { Cursor } from '../components/Cursor'
@@ -73,6 +74,7 @@ export function Home() {
         <Chapter3D />
         <ChapterReferenzen />
         <ChapterStudio />
+        <FAQ />
         <ChapterKontakt />
       </main>
       <Footer />
