@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { BackToStudio } from './BackToStudio'
 import { motion, useInView, useScroll, useTransform } from 'motion/react'
 import { VillaIllo, LoftIllo, GartenhausIllo, MonogramHG } from './illustrations'
 import { Magnetic } from '../components/Magnetic'
@@ -129,12 +129,7 @@ function Ribbon() {
         <span className="inline-block h-1.5 w-1.5 bg-gold" />
         Beispielprojekt — erstellt von Plan B Studios
       </span>
-      <Link
-        to="/#webdesign"
-        className="font-medium text-gold underline-offset-4 transition-colors hover:text-gold-bright hover:underline"
-      >
-        ← Zurück zu Plan B Studios
-      </Link>
+      <BackToStudio className="font-medium text-gold underline-offset-4 transition-colors hover:text-gold-bright hover:underline" />
     </div>
   )
 }

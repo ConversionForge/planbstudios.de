@@ -2,7 +2,13 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { Magnetic } from './Magnetic'
-import { VillaIllo, MonogramHG } from '../example/illustrations'
+import { MeridianMark, ElevationDrawing } from '../example/meridianBlueprint'
+
+const GRID_BG = {
+  backgroundImage:
+    'linear-gradient(to right, rgba(20,23,28,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(20,23,28,0.05) 1px, transparent 1px)',
+  backgroundSize: '54px 54px',
+}
 
 const reveal = {
   hidden: { opacity: 0, y: 36 },
@@ -13,95 +19,92 @@ const reveal = {
   },
 }
 
-// Kompakte, echte Vorschau der Kundenmarke "Havel & Grau" — bewusst hell/warm
-// als klarer Kontrast zu Plan B Studios, damit erkennbar ist: eine andere Marke.
-function HavelGrauPreview() {
+// Kompakte, echte Vorschau der Kundenmarke "MERIDIAN" — Blaupausen-Ästhetik als
+// klarer Kontrast zu Plan B Studios, damit erkennbar ist: eine andere Marke.
+function MeridianPreview() {
   return (
-    <div className="select-none bg-hg-cream font-grotesk text-hg-ink">
-      {/* Dunkler Kopfbereich */}
-      <div className="bg-hg-navy px-10 pb-14 pt-6 text-hg-cream">
-        <div className="flex items-center justify-between border-b border-hg-cream/15 pb-4">
-          <div className="flex items-center gap-2.5">
-            <MonogramHG className="h-6 w-6 text-hg-clay-soft" />
-            <span className="font-display text-[15px] font-medium">Havel &amp; Grau</span>
-          </div>
-          <div className="flex items-center gap-6">
-            {['Objekte', 'Haltung', 'Kontakt'].map((l) => (
-              <span key={l} className="text-[10px] tracking-[0.06em] text-hg-cream/70">
-                {l}
-              </span>
-            ))}
-            <span className="bg-hg-clay px-3 py-1.5 text-[10px] font-medium text-hg-cream">
-              Beratung
+    <div className="select-none bg-mer-paper font-tech text-mer-ink" style={GRID_BG}>
+      {/* Nav */}
+      <div className="flex items-center justify-between border-b border-mer-ink/15 px-10 py-4">
+        <div className="flex items-center gap-2.5">
+          <MeridianMark className="h-5 w-5 text-mer-ink" />
+          <span className="font-tech text-[15px] font-bold tracking-[0.18em]">MERIDIAN</span>
+        </div>
+        <div className="flex items-center gap-6">
+          {['Quartier', 'Architektur', 'Wohnungen', 'Lage'].map((l) => (
+            <span key={l} className="font-data text-[10px] uppercase tracking-[0.16em] text-mer-muted">
+              {l}
             </span>
-          </div>
+          ))}
+          <span className="bg-mer-ink px-4 py-2 font-data text-[10px] uppercase tracking-[0.16em] text-mer-paper">
+            Anfragen
+          </span>
         </div>
+      </div>
 
-        <p className="mt-10 text-[10px] uppercase tracking-[0.3em] text-hg-clay-soft">
-          Immobilien in Potsdam · seit 1998
-        </p>
-        <p className="mt-5 font-display text-6xl font-medium leading-[0.92] tracking-[-0.02em]">
-          Häuser mit
-          <br />
-          <span className="italic text-hg-clay-soft">Vorgeschichte.</span>
-        </p>
-        <div className="mt-8 flex items-end justify-between gap-8">
-          <p className="max-w-xs text-[13px] leading-relaxed text-hg-cream/70">
-            Wir vermitteln keine Quadratmeter, sondern Orte, die schon einmal
-            jemandem etwas bedeutet haben.
-          </p>
-          <VillaIllo className="h-auto w-[150px] shrink-0 text-hg-cream/45" />
+      {/* Hero */}
+      <div className="px-10 pt-10">
+        <div className="flex items-baseline justify-between border-b border-mer-ink/20 pb-3 font-data text-[10px] tracking-[0.22em] text-mer-muted">
+          <span>N° 01 — NEUBAUPROJEKT</span>
+          <span>53°52′N · 10°41′E</span>
         </div>
-        <span className="mt-8 inline-block bg-hg-clay px-6 py-3 text-[11px] font-medium text-hg-cream">
-          Objekte ansehen
-        </span>
+        <h1 className="mt-8 font-tech text-7xl font-bold uppercase leading-[0.9] tracking-[-0.02em]">
+          Wohnen
+          <br />
+          <span className="mer-outline">am Wasser</span>
+        </h1>
+        <div className="mt-6 flex items-end justify-between gap-6 pb-6">
+          <p className="max-w-xs text-[13px] leading-relaxed text-mer-muted">
+            42 Wohnungen in vier Baukörpern, direkt am Kai der Trave.
+          </p>
+          <span className="font-data text-[11px] tracking-[0.16em] text-mer-tide">
+            WOHNUNGEN ANSEHEN ↓
+          </span>
+        </div>
+        <ElevationDrawing className="mx-auto h-auto w-[82%]" />
+      </div>
+
+      {/* Laufband */}
+      <div className="mt-6 flex items-center gap-8 overflow-hidden border-y border-mer-ink/20 px-10 py-3 font-data text-[11px] uppercase tracking-[0.24em] text-mer-ink">
+        {['42 Wohnungen', 'Bezug 2026', 'An der Trave', 'Provisionsfrei', 'KfW 40'].map((m) => (
+          <span key={m} className="flex items-center gap-8 whitespace-nowrap">
+            <span className="inline-block h-1.5 w-1.5 bg-mer-tide" />
+            {m}
+          </span>
+        ))}
       </div>
 
       {/* Kennzahlen */}
-      <div className="grid grid-cols-4 gap-6 border-b border-hg-line px-10 py-8">
+      <div className="grid grid-cols-4 gap-4 px-10 py-10">
         {[
-          ['27', 'Jahre an der Havel'],
-          ['120+', 'vermittelte Objekte'],
-          ['14', 'Objekte im Angebot'],
-          ['1:1', 'persönliche Betreuung'],
+          ['42', 'Wohnungen'],
+          ['4', 'Baukörper'],
+          ['38–142', 'm² Wohnfläche'],
+          ['2026', 'Bezugsfertig'],
         ].map(([v, l]) => (
           <div key={l}>
-            <p className="font-display text-3xl font-medium leading-none text-hg-navy">{v}</p>
-            <p className="mt-1.5 text-[9px] uppercase tracking-[0.16em] text-hg-muted">{l}</p>
+            <p className="font-tech text-3xl font-bold tracking-[-0.02em] text-mer-ink">{v}</p>
+            <p className="mt-1 font-data text-[9px] uppercase tracking-[0.18em] text-mer-muted">{l}</p>
           </div>
         ))}
       </div>
 
-      {/* Objekt-Tafel */}
-      <div className="px-10 py-12">
-        <p className="mb-8 font-display text-3xl font-medium text-hg-navy">Das Verzeichnis</p>
-        <div className="grid grid-cols-2 border border-hg-line bg-hg-cream">
-          <div className="relative flex items-center justify-center bg-hg-shell p-8">
-            <span className="absolute left-4 top-4 font-display text-[12px] text-hg-muted">01 / 14</span>
-            <VillaIllo className="h-auto w-[72%] text-hg-navy" />
-          </div>
-          <div className="flex flex-col justify-center gap-3 p-8">
-            <p className="text-[10px] uppercase tracking-[0.22em] text-hg-clay">Potsdam · Babelsberg</p>
-            <p className="font-display text-2xl font-medium leading-tight text-hg-navy">
-              Stadtvilla Babelsberg
-            </p>
-            <p className="text-[12px] leading-relaxed text-hg-muted">
-              Gründerzeit, aufwendig saniert, Blick über den Park.
-            </p>
-            <div className="mt-1 flex items-baseline gap-5 border-t border-hg-line pt-3 text-[12px]">
-              <span>6 Zimmer</span>
-              <span>245 m²</span>
-              <span className="font-display text-[17px] font-medium text-hg-navy">1.480.000 €</span>
-            </div>
-          </div>
+      {/* Wohnungs-Zeile */}
+      <div className="border-t border-mer-ink/15 px-10 py-10">
+        <p className="mb-6 font-tech text-3xl font-bold uppercase tracking-[-0.01em]">Vier Typen.</p>
+        <div className="grid grid-cols-[3rem_1.4fr_1fr_1fr_8rem] items-baseline gap-4 border-b border-mer-ink/15 py-5">
+          <span className="font-data text-[12px] tracking-[0.2em] text-mer-tide">01</span>
+          <span className="font-tech text-xl font-bold uppercase">Atelier</span>
+          <span className="text-[13px] text-mer-muted">1–2 Zimmer</span>
+          <span className="text-[13px] text-mer-muted">ab 38 m²</span>
+          <span className="text-[14px] font-medium">ab 329.000 €</span>
         </div>
       </div>
 
-      {/* Haltung */}
-      <div className="bg-hg-clay px-10 py-14 text-hg-cream">
-        <p className="max-w-lg font-display text-2xl font-medium leading-[1.2]">
-          Ein Haus verkauft sich nicht über den Preis. Sondern über die Geschichte,
-          <span className="italic"> die es weitererzählt.</span>
+      {/* Lage */}
+      <div className="bg-mer-deep px-10 py-14 text-mer-paper">
+        <p className="font-tech text-2xl font-bold uppercase leading-[1.1]">
+          Am Kai. <span className="mer-outline-paper">Nicht irgendwo.</span>
         </p>
       </div>
     </div>
@@ -155,7 +158,7 @@ export function ChapterWebdesign() {
                 style={{ opacity: glowOpacity }}
                 className="pointer-events-none absolute -inset-x-16 -bottom-10 top-1/2 rounded-[50%] bg-gold/[0.05] blur-3xl"
               />
-              <div className="relative overflow-hidden rounded-xl border border-night-line bg-hg-paper shadow-[0_40px_120px_-20px_rgba(0,0,0,0.8)]">
+              <div className="relative overflow-hidden rounded-xl border border-night-line bg-mer-paper shadow-[0_40px_120px_-20px_rgba(0,0,0,0.8)]">
                 <div className="flex h-11 items-center gap-4 border-b border-night-line bg-[#101011] px-5">
                   <div className="flex gap-1.5">
                     <div className="h-2.5 w-2.5 rounded-full bg-stone/25" />
@@ -167,15 +170,15 @@ export function ChapterWebdesign() {
                       <rect x="2.5" y="5" width="7" height="5" rx="1" stroke="currentColor" />
                       <path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" />
                     </svg>
-                    <span className="text-[11px] tracking-[0.05em] text-stone">havel-grau.example</span>
+                    <span className="text-[11px] tracking-[0.05em] text-stone">meridian.example</span>
                   </div>
                   <div className="w-12" />
                 </div>
                 <div className="relative h-[min(64vh,600px)] overflow-hidden">
                   <motion.div style={{ y: pageY }} className="will-change-transform">
-                    <HavelGrauPreview />
+                    <MeridianPreview />
                   </motion.div>
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-hg-paper to-transparent" />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-mer-paper to-transparent" />
                 </div>
               </div>
             </motion.div>
@@ -189,7 +192,7 @@ export function ChapterWebdesign() {
               </p>
               <Magnetic>
                 <Link
-                  to="/beispiel"
+                  to="/meridian"
                   className="group flex items-center gap-3 border border-gold/40 bg-night/40 px-7 py-3.5 text-[14px] font-medium tracking-[0.04em] text-cream transition-all duration-300 hover:border-gold hover:bg-gold hover:text-night"
                 >
                   Beispiel-Website öffnen

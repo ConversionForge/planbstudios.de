@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { CubeMark } from './Logo'
 import { Magnetic } from './Magnetic'
-import { MeridianMark, ElevationDrawing } from '../example/meridianBlueprint'
+import { MonogramHG, VillaIllo } from '../example/illustrations'
 
 const LOFT_IMG = `${import.meta.env.BASE_URL}rundgang/living-1.jpg`
 
@@ -13,17 +13,17 @@ interface Case {
   kind: string
   title: string
   text: string
-  media: 'meridian' | 'loft'
+  media: 'havelgrau' | 'loft'
 }
 
 const CASES: Case[] = [
   {
-    to: '/meridian',
-    tag: 'Webdesign · Neubau',
+    to: '/beispiel',
+    tag: 'Webdesign · Immobilien',
     kind: 'Konzeptstudie',
-    title: 'MERIDIAN',
-    text: 'Ein Wohnquartier als technisches Manifest — Blaupausen-Ästhetik, Schweizer Typografie und Zeichnungen, die sich beim Scrollen selbst zeichnen.',
-    media: 'meridian',
+    title: 'Havel & Grau',
+    text: 'Ein kuratiertes Boutique-Immobilienhaus — tiefes Navy, Playfair-Serife, Terrakotta. Objekte erscheinen als gestapelte Katalog-Tafeln, die beim Scrollen übereinandergleiten.',
+    media: 'havelgrau',
   },
   {
     to: '/rundgang',
@@ -35,37 +35,26 @@ const CASES: Case[] = [
   },
 ]
 
-function MeridianMini() {
+function HavelGrauMini() {
   return (
-    <div
-      className="flex h-full flex-col bg-mer-paper text-mer-ink"
-      style={{
-        backgroundImage:
-          'linear-gradient(to right, rgba(20,23,28,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(20,23,28,0.05) 1px, transparent 1px)',
-        backgroundSize: '44px 44px',
-      }}
-    >
-      <div className="flex items-center justify-between border-b border-mer-ink/15 px-5 py-2.5">
+    <div className="flex h-full flex-col bg-hg-navy text-hg-cream">
+      <div className="flex items-center justify-between border-b border-hg-cream/15 px-5 py-2.5">
         <div className="flex items-center gap-2">
-          <MeridianMark className="h-4 w-4 text-mer-ink" />
-          <span className="font-tech text-[11px] font-bold tracking-[0.18em]">MERIDIAN</span>
+          <MonogramHG className="h-4 w-4 text-hg-clay-soft" />
+          <span className="font-display text-[12px] font-medium">Havel &amp; Grau</span>
         </div>
-        <span className="hidden font-data text-[8px] tracking-[0.14em] text-mer-muted sm:block">
-          53°52′N · 10°41′E
-        </span>
+        <span className="bg-hg-clay px-3 py-1 text-[9px] font-medium text-hg-cream">Beratung</span>
       </div>
-      <div className="grid flex-1 grid-cols-[1fr_1.1fr] items-center gap-4 px-5 py-3">
-        <div>
-          <p className="font-data text-[8px] tracking-[0.2em] text-mer-tide">
-            N° 01 — NEUBAU · LÜBECK
-          </p>
-          <p className="mt-2 font-tech text-2xl font-bold uppercase leading-[0.92] tracking-[-0.02em] md:text-3xl">
-            Wohnen
-            <br />
-            <span className="mer-outline">am Wasser</span>
-          </p>
-        </div>
-        <ElevationDrawing animate={false} className="h-auto w-full" />
+      <div className="flex flex-1 flex-col justify-center px-6 py-4">
+        <p className="text-[8px] uppercase tracking-[0.26em] text-hg-clay-soft">
+          Immobilien in Potsdam · seit 1998
+        </p>
+        <p className="mt-2 font-display text-3xl font-medium leading-[0.9] tracking-[-0.02em] md:text-4xl">
+          Häuser mit
+          <br />
+          <span className="italic text-hg-clay-soft">Vorgeschichte.</span>
+        </p>
+        <VillaIllo className="mt-4 h-auto w-[130px] text-hg-cream/40" />
       </div>
     </div>
   )
@@ -95,7 +84,7 @@ function CaseCard({ to, tag, kind, title, text, media }: Case) {
             </span>
           </>
         ) : (
-          <MeridianMini />
+          <HavelGrauMini />
         )}
       </div>
 
