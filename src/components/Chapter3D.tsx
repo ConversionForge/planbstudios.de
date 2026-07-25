@@ -64,9 +64,9 @@ export function Chapter3D() {
   const roomOpacity = useTransform(scrollYProgress, [0.14, 0.3], [0, 1])
   const lookY = useTransform(scrollYProgress, [0.72, 1], [0, -10])
 
-  const hotspotOpacity = useTransform(scrollYProgress, [0.58, 0.7], [0, 1])
-  const textOpacity = useTransform(scrollYProgress, [0.78, 0.92], [0, 1])
-  const textY = useTransform(scrollYProgress, [0.78, 0.92], [50, 0])
+  const hotspotOpacity = useTransform(scrollYProgress, [0.52, 0.62], [0, 1])
+  const textOpacity = useTransform(scrollYProgress, [0.62, 0.74], [0, 1])
+  const textY = useTransform(scrollYProgress, [0.62, 0.74], [50, 0])
 
   return (
     <section id="rundgaenge" className="relative">

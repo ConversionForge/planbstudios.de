@@ -29,7 +29,30 @@ export function WalkthroughVideo() {
     if (v.paused) v.play().catch(() => {})
     else v.pause()
   }
-  const goFullscreen = () => ref.current?.requestFullscreen?.()
+  const goFullscreen = () => {
+    const v = ref.current
+    if (!v) return
+    const el = v as HTMLVideoElement & {
+      webkitRequestFullscreen?: () => void
+      webkitEnterFullscreen?: () => void
+      msRequestFullscreen?: () => void
+    }
+    const doc = document as Document & {
+      webkitFullscreenElement?: Element
+      webkitExitFullscreen?: () => void
+    }
+    // Bereits im Vollbild? -> verlassen
+    if (document.fullscreenElement || doc.webkitFullscreenElement) {
+      if (document.exitFullscreen) document.exitFullscreen().catch(() => {})
+      else doc.webkitExitFullscreen?.()
+      return
+    }
+    if (el.requestFullscreen) el.requestFullscreen().catch(() => {})
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen()
+    else if (el.webkitEnterFullscreen)
+      el.webkitEnterFullscreen() // iOS Safari (nur auf dem <video> selbst)
+    else if (el.msRequestFullscreen) el.msRequestFullscreen()
+  }
 
   return (
     <figure className="m-0">

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { LogoLockup } from './Logo'
 import { Magnetic } from './Magnetic'
+import { lenisRef } from '../lib/scroll'
 
 const LINKS = [
   { label: 'Webdesign', href: '#webdesign' },
@@ -16,6 +17,28 @@ export function Nav() {
   const [open, setOpen] = useState(false)
 
   useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 48))
+
+  // Sanftes Scrollen zu einer Sektion über Lenis (mit Versatz für die fixe
+  // Navigation), statt eines ruckartigen nativen Anker-Sprungs.
+  //
+  // stopPropagation ist wichtig: Lenis hängt seinen eigenen Anker-Klick-Listener
+  // auf window (ohne defaultPrevented-Prüfung). Ohne stopPropagation würde Lenis
+  // den Klick ein zweites Mal – ohne Offset – abfangen und unser Scrollen
+  // überschreiben. Die Dauer wächst mit der Distanz, damit weite Sprünge sanft
+  // gleiten statt in ~1 s vorbeizurauschen.
+  const goTo = (e: React.MouseEvent, href: string) => {
+    const el = document.getElementById(href.slice(1))
+    setOpen(false)
+    document.body.style.overflow = ''
+    if (el && lenisRef.current) {
+      e.preventDefault()
+      e.stopPropagation()
+      const targetY = el.getBoundingClientRect().top + window.scrollY - 80
+      const distance = Math.abs(targetY - window.scrollY)
+      const duration = Math.min(2.4, Math.max(1.1, distance / 5200))
+      lenisRef.current.scrollTo(targetY, { duration })
+    }
+  }
 
   // Scrollsperre, solange das Menü offen ist
   useEffect(() => {
@@ -52,6 +75,7 @@ export function Nav() {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => goTo(e, link.href)}
                 className="group relative py-2 text-[13px] font-medium tracking-[0.08em] text-cream-soft transition-colors duration-300 hover:text-cream"
               >
                 {link.label}
@@ -64,6 +88,7 @@ export function Nav() {
             <Magnetic>
               <a
                 href="#kontakt"
+                onClick={(e) => goTo(e, '#kontakt')}
                 className="block border border-gold/40 px-5 py-2.5 text-[13px] font-medium tracking-[0.06em] text-cream transition-all duration-300 hover:border-gold hover:bg-gold hover:text-night"
               >
                 Projekt anfragen
@@ -107,7 +132,7 @@ export function Nav() {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => goTo(e, link.href)}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.08 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
@@ -120,7 +145,7 @@ export function Nav() {
 
             <motion.a
               href="#kontakt"
-              onClick={() => setOpen(false)}
+              onClick={(e) => goTo(e, '#kontakt')}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}

@@ -37,23 +37,26 @@ export function Home() {
       rafId = requestAnimationFrame(loop)
     })
 
-    // Scroll-Position laufend über Lenis' eigenes Event sichern — das überlebt
-    // das Aushängen der Seite (window.scrollY wäre dann schon 0).
-    lenis.on('scroll', () => scrollPositions.set(key, Math.round(lenis.scroll)))
+    // Scroll-Position laufend sichern. lenis.on('scroll') deckt das Mausrad ab;
+    // der native Listener deckt Touch-Scrollen (Handy) ab.
+    const save = () => scrollPositions.set(key, Math.round(window.scrollY))
+    lenis.on('scroll', save)
+    window.addEventListener('scroll', save, { passive: true })
 
-    // Position direkt bei der Initialisierung setzen — so springt Lenis nicht in
-    // eine falsche Ausgangsposition zurück.
-    if (hash) {
-      const el = document.getElementById(hash.slice(1))
-      if (el) lenis.scrollTo(el, { offset: 0, immediate: true })
-    } else if (restore) {
+    // Reihenfolge wichtig: Beim Zurück (POP) hat die gemerkte Position Vorrang
+    // vor einem Anker (#…), der noch in der URL steht.
+    if (restore) {
       lenis.scrollTo(savedY, { immediate: true, force: true })
+    } else if (hash) {
+      const el = document.getElementById(hash.slice(1))
+      lenis.scrollTo(el ?? 0, { offset: 0, immediate: true })
     } else {
       lenis.scrollTo(0, { immediate: true, force: true })
     }
 
     return () => {
       cancelAnimationFrame(rafId)
+      window.removeEventListener('scroll', save)
       lenis.destroy()
       lenisRef.current = null
     }
