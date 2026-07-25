@@ -7,6 +7,7 @@ const POSTER = `${import.meta.env.BASE_URL}rundgang/living-1.jpg`
 export function WalkthroughVideo() {
   const ref = useRef<HTMLVideoElement>(null)
   const [paused, setPaused] = useState(false)
+  const [isFs, setIsFs] = useState(false)
 
   // Nur abspielen, wenn im Sichtbereich (schont Akku/Leistung)
   useEffect(() => {
@@ -21,6 +22,23 @@ export function WalkthroughVideo() {
     )
     io.observe(v)
     return () => io.disconnect()
+  }, [])
+
+  // Im Vollbild native Controls einblenden: Der Site-Cursor ist per CSS
+  // ausgeblendet und liegt nicht in der Vollbild-Ebene — mit Controls zeigt der
+  // Browser Cursor und einen Beenden-Button, sobald man die Maus bewegt.
+  useEffect(() => {
+    const doc = document as Document & { webkitFullscreenElement?: Element }
+    const onChange = () => {
+      const fsEl = document.fullscreenElement || doc.webkitFullscreenElement
+      setIsFs(fsEl === ref.current)
+    }
+    document.addEventListener('fullscreenchange', onChange)
+    document.addEventListener('webkitfullscreenchange', onChange)
+    return () => {
+      document.removeEventListener('fullscreenchange', onChange)
+      document.removeEventListener('webkitfullscreenchange', onChange)
+    }
   }, [])
 
   const togglePlay = () => {
@@ -67,6 +85,7 @@ export function WalkthroughVideo() {
           playsInline
           autoPlay
           preload="metadata"
+          controls={isFs}
           onClick={togglePlay}
           onPlay={() => setPaused(false)}
           onPause={() => setPaused(true)}

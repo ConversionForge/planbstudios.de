@@ -35,8 +35,12 @@ export function Nav() {
       e.stopPropagation()
       const targetY = el.getBoundingClientRect().top + window.scrollY - 80
       const distance = Math.abs(targetY - window.scrollY)
-      const duration = Math.min(2.4, Math.max(1.1, distance / 5200))
-      lenisRef.current.scrollTo(targetY, { duration })
+      // Ruhiges Gleiten: sanfter easeInOut (weicher Start UND weiches Ende, kein
+      // Herausschießen) und eine Dauer, die mit der Distanz wächst.
+      const duration = Math.min(2.6, Math.max(1.4, distance / 4200))
+      const easeInOutCubic = (t: number) =>
+        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+      lenisRef.current.scrollTo(targetY, { duration, easing: easeInOutCubic })
     }
   }
 

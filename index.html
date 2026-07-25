@@ -39,6 +39,11 @@
     <meta name="twitter:image" content="https://planbstudios.de/og-image.png" />
 
     <style>html { background-color: #0a0a0b; }</style>
+    <!-- Scroll-Wiederherstellung so früh wie möglich der App übergeben, damit der
+         Browser beim Neuladen NICHT selbst zur letzten Position springt. -->
+    <script>
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual' } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

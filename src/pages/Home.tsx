@@ -43,10 +43,32 @@ export function Home() {
     lenis.on('scroll', save)
     window.addEventListener('scroll', save, { passive: true })
 
+    const timers: number[] = []
+
+    // Sobald der Nutzer selbst scrollt, kein erzwungenes Nachsetzen mehr.
+    let interrupted = false
+    const interrupt = () => {
+      interrupted = true
+    }
+    window.addEventListener('wheel', interrupt, { passive: true, once: true })
+    window.addEventListener('touchstart', interrupt, { passive: true, once: true })
+    window.addEventListener('keydown', interrupt, { once: true })
+
     // Reihenfolge wichtig: Beim Zurück (POP) hat die gemerkte Position Vorrang
     // vor einem Anker (#…), der noch in der URL steht.
     if (restore) {
-      lenis.scrollTo(savedY, { immediate: true, force: true })
+      // Beim Neu-Mount kennt Lenis die volle Seitenhöhe evtl. noch nicht
+      // (Fonts/Layout). Dann würde scrollTo(savedY) zu weit oben festklemmen.
+      // Darum resize() + mehrfaches Nachsetzen, bis das Layout steht.
+      const applyRestore = () => {
+        if (interrupted) return
+        lenis.resize()
+        lenis.scrollTo(savedY, { immediate: true, force: true })
+      }
+      applyRestore()
+      timers.push(window.setTimeout(applyRestore, 60))
+      timers.push(window.setTimeout(applyRestore, 180))
+      timers.push(window.setTimeout(applyRestore, 400))
     } else if (hash) {
       const el = document.getElementById(hash.slice(1))
       lenis.scrollTo(el ?? 0, { offset: 0, immediate: true })
@@ -56,7 +78,11 @@ export function Home() {
 
     return () => {
       cancelAnimationFrame(rafId)
+      timers.forEach(clearTimeout)
       window.removeEventListener('scroll', save)
+      window.removeEventListener('wheel', interrupt)
+      window.removeEventListener('touchstart', interrupt)
+      window.removeEventListener('keydown', interrupt)
       lenis.destroy()
       lenisRef.current = null
     }

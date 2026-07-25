@@ -71,6 +71,15 @@ body {
   }
 }
 
+/* Im Vollbild (z. B. Cinematic Walkthrough) den echten Cursor wieder zeigen,
+   sonst findet man den Beenden-Button nicht. */
+:fullscreen,
+:fullscreen *,
+:-webkit-full-screen,
+:-webkit-full-screen * {
+  cursor: auto !important;
+}
+
 .grain-layer {
   position: absolute;
   inset: -16%;
