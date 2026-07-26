@@ -55,7 +55,8 @@ export function ChapterKontakt() {
           className="mt-10 max-w-xl text-base leading-relaxed text-stone md:text-lg"
         >
           Eine neue Website, ein 3D-Rundgang oder beides — erzählen Sie uns von
-          Ihrem Vorhaben. Wir melden uns innerhalb von 24&nbsp;Stunden.
+          Ihrem Vorhaben. Wir melden uns in der Regel innerhalb von
+          24&nbsp;Stunden (werktags).
         </motion.p>
 
         <motion.div

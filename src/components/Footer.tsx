@@ -50,7 +50,7 @@ export function Footer() {
             </div>
             <div className="flex flex-col gap-3">
               <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">Studio</span>
-              <SectionLink id="referenzen">Referenzen</SectionLink>
+              <SectionLink id="referenzen">Arbeiten</SectionLink>
               <SectionLink id="studio">Über uns</SectionLink>
             </div>
             <div className="flex flex-col gap-3">

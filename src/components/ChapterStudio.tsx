@@ -24,7 +24,7 @@ const PRINCIPLES = [
   {
     n: '03',
     title: 'Technik, die verkauft.',
-    text: 'Ladezeit unter einer Sekunde, flüssige 60 Bilder pro Sekunde, tadellos am Handy. Denn die schönste Seite bringt nichts, wenn der Interessent vorher abspringt.',
+    text: 'Auf üblichen Verbindungen Ladezeiten unter einer Sekunde, flüssige Darstellung, tadellos am Handy. Denn die schönste Seite bringt nichts, wenn der Interessent vorher abspringt.',
   },
 ]
 
@@ -70,10 +70,10 @@ export function ChapterStudio() {
               Möbelhaus-Prospekt.
             </p>
             <p className="mt-6 max-w-md text-base leading-relaxed text-stone md:text-lg">
-              Plan B Studios ist eines der wenigen Studios, das beides selbst baut:
-              Websites, die eine Marke tragen, und begehbare 3D-Rundgänge, die
-              Objekte verkaufen, bevor der erste Besichtigungstermin steht. Kein
-              Weiterreichen, kein Baukasten, kein Kompromiss.
+              Bei Plan B Studios kommt beides aus einer Hand: Websites, die eine
+              Marke tragen, und begehbare 3D-Rundgänge, die Objekte verkaufen,
+              bevor der erste Besichtigungstermin steht. Kein Weiterreichen, kein
+              Baukasten, kein Kompromiss.
             </p>
           </motion.div>
 

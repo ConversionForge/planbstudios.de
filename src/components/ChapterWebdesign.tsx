@@ -223,7 +223,7 @@ export function ChapterWebdesign() {
             {
               n: '02',
               title: 'Präzise gebaut',
-              text: 'Sauberer Code, flüssige 60 fps, Ladezeiten unter einer Sekunde. Technik, die man spürt, ohne sie zu sehen.',
+              text: 'Sauberer Code, flüssige Darstellung, in der Regel Ladezeiten unter einer Sekunde. Technik, die man spürt, ohne sie zu sehen.',
             },
             {
               n: '03',

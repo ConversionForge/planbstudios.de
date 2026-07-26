@@ -6,7 +6,7 @@ import { Magnetic } from './Magnetic'
 const LINKS = [
   { label: 'Webdesign', href: '#webdesign' },
   { label: '3D-Rundgänge', href: '#rundgaenge' },
-  { label: 'Referenzen', href: '#referenzen' },
+  { label: 'Arbeiten', href: '#referenzen' },
   { label: 'Studio', href: '#studio' },
 ]
 

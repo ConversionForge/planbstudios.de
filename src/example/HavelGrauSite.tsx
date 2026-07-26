@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { BackToStudio } from './BackToStudio'
+import { LegalLinks } from '../components/LegalLinks'
 import { useInPageAnchors } from './useInPageAnchors'
 import { motion, useInView, useScroll, useTransform } from 'motion/react'
 import { VillaIllo, LoftIllo, GartenhausIllo, MonogramHG } from './illustrations'
@@ -476,9 +477,10 @@ export function HavelGrauSite() {
         <div className="mx-auto mt-10 max-w-6xl px-6 lg:px-8">
           <p className="border-t border-hg-cream/10 pt-6 font-sans text-[11px] leading-relaxed text-hg-cream/40">
             Fiktives Beispielprojekt zu Demonstrationszwecken — gestaltet und
-            entwickelt von Plan B Studios. Diese Website ist nicht öffentlich
-            erreichbar; „Havel &amp; Grau" ist ein erfundenes Unternehmen.
+            entwickelt von Plan B Studios. „Havel &amp; Grau" ist ein erfundenes
+            Unternehmen.
           </p>
+          <LegalLinks className="mt-3 block font-sans text-[11px] text-hg-cream/40" />
         </div>
       </footer>
     </div>

@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'motion/react'
 import { TOUR } from './tourData'
 import { CubeMark } from '../components/Logo'
+import { LegalLinks } from '../components/LegalLinks'
 
 export function PropertyTour() {
   const navigate = useNavigate()
@@ -147,6 +148,7 @@ export function PropertyTour() {
             {TOUR.title}
             <span className="text-stone"> · {TOUR.location}</span>
           </h1>
+          <LegalLinks className="mt-2 block text-[11px] text-stone/70" />
         </div>
         <button
           onClick={close}

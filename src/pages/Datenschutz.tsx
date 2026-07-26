@@ -21,10 +21,11 @@ export function Datenschutz() {
       <p>
         Der Schutz Ihrer persönlichen Daten ist uns wichtig. Diese Website ist
         bewusst datensparsam gestaltet: Sie enthält keine Kontaktformulare, kein
-        Analyse-Tracking und setzt keine Cookies zu Marketingzwecken. Alle Inhalte
-        — auch Bilder und Videos — werden vom eigenen Server geladen, es sind keine
+        Analyse-Tracking und setzt keine Cookies. Alle Inhalte — auch Schriften,
+        Bilder und Videos — werden vom eigenen Server geladen; in die Website selbst
+        sind, abgesehen vom Hosting bei GitHub&nbsp;Pages (Ziffer&nbsp;3), keine
         Dienste Dritter eingebunden. Eine Kontaktaufnahme erfolgt ausschließlich
-        über die angegebene E-Mail-Adresse.
+        über die angegebene E-Mail-Adresse (Ziffer&nbsp;4).
       </p>
 
       <h2>3. Hosting: GitHub Pages</h2>
@@ -46,6 +47,12 @@ export function Datenschutz() {
         Auslieferung der Website. Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1
         lit.&nbsp;f DSGVO (berechtigtes Interesse an einem funktionierenden
         Internetauftritt).
+      </p>
+      <p>
+        Auf die Server-Logfiles und deren Speicherdauer haben wir keinen Zugriff;
+        Umfang, Dauer und Löschung dieser Zugriffsdaten legt GitHub als Betreiber
+        der Infrastruktur fest. Mit GitHub besteht ein Auftragsverarbeitungs­verhältnis
+        nach Art.&nbsp;28 DSGVO (GitHub&nbsp;Data&nbsp;Protection&nbsp;Agreement).
       </p>
       <p>
         Dabei können Daten an Server von GitHub in den USA übertragen werden.
@@ -72,6 +79,16 @@ export function Datenschutz() {
         die Zweckerreichung nicht mehr erforderlich sind und keine gesetzlichen
         Aufbewahrungsfristen entgegenstehen.
       </p>
+      <p>
+        Unser E-Mail-Postfach (planbstudios.de@gmail.com) wird über den Dienst
+        Gmail von Google betrieben (Google&nbsp;Ireland&nbsp;Limited, Gordon House,
+        Barrow Street, Dublin&nbsp;4, Irland). Bei der Verarbeitung Ihrer E-Mail
+        können Daten an Google&nbsp;LLC in die USA übermittelt werden. Google ist
+        unter dem EU-U.S. Data Privacy Framework zertifiziert; ergänzend werden die
+        Standardvertragsklauseln der EU-Kommission herangezogen. Empfänger Ihrer per
+        E-Mail übermittelten Daten ist damit auch Google als Betreiber des
+        Postfachs.
+      </p>
 
       <h2>5. Schriftarten</h2>
       <p>
@@ -79,7 +96,28 @@ export function Datenschutz() {
         dabei keine Daten an Dritte (etwa Google Fonts) übertragen.
       </p>
 
-      <h2>6. Ihre Rechte</h2>
+      <h2>6. Lokale Speicherung im Browser</h2>
+      <p>
+        Die Website speichert im Sitzungsspeicher (sessionStorage) Ihres Browsers
+        zwei rein funktionale, sitzungsbezogene Angaben: einen Hinweis, ob die
+        Einstiegs­animation in dieser Sitzung bereits gezeigt wurde, sowie die
+        zuletzt besuchte Scroll-Position, damit die Navigation flüssig bleibt. Diese
+        Angaben enthalten keinen Personenbezug, dienen nicht der Analyse oder
+        Nachverfolgung und werden beim Schließen des Browser-Tabs automatisch
+        gelöscht. Da es sich um für den Betrieb der Seite unbedingt erforderliche
+        Speicherung handelt, ist hierfür nach § 25 Abs.&nbsp;2 TDDDG keine
+        Einwilligung erforderlich.
+      </p>
+
+      <h2>7. Keine automatisierte Entscheidungsfindung</h2>
+      <p>
+        Es findet keine automatisierte Entscheidungsfindung einschließlich Profiling
+        im Sinne des Art.&nbsp;22 DSGVO statt. Aufgrund der geringen Größe des
+        Unternehmens besteht keine Pflicht zur Bestellung eines
+        Datenschutzbeauftragten (§ 38 BDSG).
+      </p>
+
+      <h2>8. Ihre Rechte</h2>
       <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf:</p>
       <ul>
         <li>Auskunft über Ihre gespeicherten Daten (Art.&nbsp;15 DSGVO)</li>
@@ -96,7 +134,7 @@ export function Datenschutz() {
         24103 Kiel.
       </p>
 
-      <h2>7. Aktualität</h2>
+      <h2>9. Aktualität</h2>
       <p>
         Diese Datenschutzerklärung ist aktuell gültig und hat den Stand Juli 2026.
         Durch die Weiterentwicklung der Website oder geänderte gesetzliche Vorgaben

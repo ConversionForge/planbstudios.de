@@ -132,7 +132,7 @@ export function ChapterReferenzen() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="mx-auto w-full max-w-7xl px-6 lg:px-10"
           >
-            <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">03 — REFERENZEN</p>
+            <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">03 — ARBEITEN</p>
             <h2 className="max-w-3xl font-serif text-[clamp(2.2rem,5vw,4.5rem)] font-light leading-[1.05] text-cream">
               Arbeiten, die für sich
               <br />

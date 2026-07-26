@@ -5,6 +5,7 @@ import { CubeMark } from '../components/Logo'
 import { Cursor } from '../components/Cursor'
 import { GrainOverlay } from '../components/GrainOverlay'
 import { Magnetic } from '../components/Magnetic'
+import { LegalLinks } from '../components/LegalLinks'
 
 export function NotFound() {
   useEffect(() => {
@@ -15,7 +16,7 @@ export function NotFound() {
   }, [])
 
   return (
-    <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-night px-6 text-center text-cream">
+    <div className="relative flex min-h-[100dvh] flex-col items-center justify-center bg-night px-6 text-center text-cream">
       <Cursor />
       <GrainOverlay />
 
@@ -49,6 +50,8 @@ export function NotFound() {
           </Link>
         </Magnetic>
       </motion.div>
+
+      <LegalLinks className="absolute inset-x-0 bottom-8 text-[12px] text-stone" />
     </div>
   )
 }

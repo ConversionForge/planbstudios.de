@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { BackToStudio } from './BackToStudio'
+import { LegalLinks } from '../components/LegalLinks'
 import { useInPageAnchors } from './useInPageAnchors'
 import { motion, useInView, useScroll, useTransform } from 'motion/react'
 import { MeridianMark, ElevationDrawing, FloorPlan, WaveLines } from './meridianBlueprint'
@@ -436,7 +437,7 @@ export function MeridianSite() {
           </Reveal>
           <Reveal delay={0.35}>
             <p className="mt-6 font-data text-[10px] uppercase tracking-[0.24em] text-mer-muted">
-              Verkaufsstart Q3 2026 — Antwort innerhalb von 24 h
+              Verkaufsstart Q3 2026 — Antwort in der Regel innerhalb von 24 h
             </p>
           </Reveal>
         </div>
@@ -458,10 +459,10 @@ export function MeridianSite() {
           </div>
           <p className="mt-6 font-sans leading-relaxed">
             Fiktives Beispielprojekt zu Demonstrationszwecken — gestaltet und
-            entwickelt von Plan B Studios. Diese Website ist nicht öffentlich
-            erreichbar; „MERIDIAN" ist ein erfundenes Bauvorhaben. Preise und
-            Angaben sind Platzhalter.
+            entwickelt von Plan B Studios. „MERIDIAN" ist ein erfundenes
+            Bauvorhaben. Preise und Angaben sind Platzhalter.
           </p>
+          <LegalLinks className="mt-3 block font-sans text-[11px]" />
         </div>
       </footer>
     </div>
