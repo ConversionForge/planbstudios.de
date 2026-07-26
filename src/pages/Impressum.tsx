@@ -31,6 +31,12 @@ export function Impressum() {
         Anschrift wie oben
       </p>
 
+      <h2>Umsatzsteuer</h2>
+      <p>
+        Als Kleinunternehmer im Sinne des § 19 UStG wird keine Umsatzsteuer
+        ausgewiesen.
+      </p>
+
       <h2>Streitschlichtung</h2>
       <p>
         Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor
