@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { BackToStudio } from './BackToStudio'
+import { useInPageAnchors } from './useInPageAnchors'
 import { motion, useInView, useScroll, useTransform } from 'motion/react'
 import { MeridianMark, ElevationDrawing, FloorPlan, WaveLines } from './meridianBlueprint'
 import { Magnetic } from '../components/Magnetic'
@@ -232,6 +233,10 @@ function Architektur() {
 }
 
 export function MeridianSite() {
+  // Interne #-Anker abfangen (kein Hash/History-Eintrag → Zurück-Restore auf der
+  // Startseite bleibt heil). Versatz für sticky Band (41px) + Kopfzeile.
+  useInPageAnchors(100)
+
   useEffect(() => {
     document.title = 'MERIDIAN — Wohnquartier an der Trave (Beispielprojekt)'
     return () => {
