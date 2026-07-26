@@ -30,12 +30,38 @@ export function Home() {
     const restore = navType === 'POP' && scrollPositions.has(key)
     const hash = location.hash
 
-    const lenis = new Lenis({ duration: 1.15, smoothWheel: true, anchors: true })
+    // anchors: false → Lenis fasst Anker-Klicks NICHT an. Wir übernehmen das
+    // selbst (siehe onAnchorClick), damit die URL keinen #-Hash bekommt. Sonst
+    // würde ein Reload zum alten Anker springen statt nach oben.
+    const lenis = new Lenis({ duration: 1.15, smoothWheel: true, anchors: false })
     lenisRef.current = lenis
     let rafId = requestAnimationFrame(function loop(time) {
       lenis.raf(time)
       rafId = requestAnimationFrame(loop)
     })
+
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+
+    // Zentrales, ruhiges Scrollen für ALLE In-Page-Anker (Nav, Footer, CTAs).
+    // preventDefault verhindert den nativen Sprung UND die Hash-Verschmutzung.
+    const onAnchorClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey) return
+      const a = (e.target as HTMLElement | null)?.closest?.(
+        'a[href^="#"]',
+      ) as HTMLAnchorElement | null
+      if (!a) return
+      const href = a.getAttribute('href') || ''
+      if (href.length < 2) return
+      const el = document.getElementById(href.slice(1))
+      if (!el) return
+      e.preventDefault()
+      const targetY = el.getBoundingClientRect().top + window.scrollY - 80
+      const distance = Math.abs(targetY - window.scrollY)
+      const duration = Math.min(2.6, Math.max(1.4, distance / 4200))
+      lenis.scrollTo(targetY, { duration, easing: easeInOutCubic })
+    }
+    document.addEventListener('click', onAnchorClick)
 
     // Scroll-Position laufend sichern. lenis.on('scroll') deckt das Mausrad ab;
     // der native Listener deckt Touch-Scrollen (Handy) ab.
@@ -45,14 +71,23 @@ export function Home() {
 
     const timers: number[] = []
 
-    // Sobald der Nutzer selbst scrollt, kein erzwungenes Nachsetzen mehr.
+    // Erst bei ECHTER Scroll-Bewegung nicht mehr nachsetzen — ein bloßer Tap
+    // (touchstart) darf die Wiederherstellung auf dem Handy nicht abbrechen.
     let interrupted = false
     const interrupt = () => {
       interrupted = true
     }
-    window.addEventListener('wheel', interrupt, { passive: true, once: true })
-    window.addEventListener('touchstart', interrupt, { passive: true, once: true })
-    window.addEventListener('keydown', interrupt, { once: true })
+    const onKeyInterrupt = (e: KeyboardEvent) => {
+      if (
+        ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(
+          e.key,
+        )
+      )
+        interrupted = true
+    }
+    window.addEventListener('wheel', interrupt, { passive: true })
+    window.addEventListener('touchmove', interrupt, { passive: true })
+    window.addEventListener('keydown', onKeyInterrupt)
 
     // Reihenfolge wichtig: Beim Zurück (POP) hat die gemerkte Position Vorrang
     // vor einem Anker (#…), der noch in der URL steht.
@@ -69,9 +104,12 @@ export function Home() {
       timers.push(window.setTimeout(applyRestore, 60))
       timers.push(window.setTimeout(applyRestore, 180))
       timers.push(window.setTimeout(applyRestore, 400))
+      timers.push(window.setTimeout(applyRestore, 700))
     } else if (hash) {
       const el = document.getElementById(hash.slice(1))
-      lenis.scrollTo(el ?? 0, { offset: 0, immediate: true })
+      lenis.scrollTo(el ? el.getBoundingClientRect().top + window.scrollY - 80 : 0, {
+        immediate: true,
+      })
     } else {
       lenis.scrollTo(0, { immediate: true, force: true })
     }
@@ -79,10 +117,11 @@ export function Home() {
     return () => {
       cancelAnimationFrame(rafId)
       timers.forEach(clearTimeout)
+      document.removeEventListener('click', onAnchorClick)
       window.removeEventListener('scroll', save)
       window.removeEventListener('wheel', interrupt)
-      window.removeEventListener('touchstart', interrupt)
-      window.removeEventListener('keydown', interrupt)
+      window.removeEventListener('touchmove', interrupt)
+      window.removeEventListener('keydown', onKeyInterrupt)
       lenis.destroy()
       lenisRef.current = null
     }
