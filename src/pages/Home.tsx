@@ -114,6 +114,13 @@ export function Home() {
       lenis.scrollTo(0, { immediate: true, force: true })
     }
 
+    // Einen (evtl. veralteten) #-Anker aus der URL entfernen, nachdem er einmal
+    // ausgewertet wurde. Sonst springt ein späteres Neuladen wieder dorthin —
+    // z. B. wenn noch ein alter Link mit #webdesign in der Adresszeile steht.
+    if (location.hash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search)
+    }
+
     return () => {
       cancelAnimationFrame(rafId)
       timers.forEach(clearTimeout)
