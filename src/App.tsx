@@ -8,7 +8,7 @@ import { MeridianSite } from './example/MeridianSite'
 import { PropertyTour } from './tour/PropertyTour'
 import { NotFound } from './pages/NotFound'
 import { PageCurtain } from './components/PageCurtain'
-import { scrollPositions } from './lib/scroll'
+import { saveScroll, readScroll } from './lib/scroll'
 
 function ScrollManager() {
   const location = useLocation()
@@ -26,17 +26,20 @@ function ScrollManager() {
     if (location.pathname === '/') return
 
     const key = location.key
+    const saved = navType === 'POP' ? readScroll(key, location.pathname) : null
     const timers: number[] = []
 
-    if (navType === 'POP' && scrollPositions.has(key)) {
-      const y = scrollPositions.get(key) ?? 0
-      timers.push(window.setTimeout(() => window.scrollTo(0, y), 0))
+    if (saved !== null) {
+      // Mehrfach nachsetzen, bis Layout/Bilder stehen.
+      window.scrollTo(0, saved)
+      timers.push(window.setTimeout(() => window.scrollTo(0, saved), 60))
+      timers.push(window.setTimeout(() => window.scrollTo(0, saved), 220))
     } else if (!location.hash) {
       window.scrollTo(0, 0)
     }
 
     // Unterseiten feuern native Scroll-Events → Position laufend sichern.
-    const onScroll = () => scrollPositions.set(key, window.scrollY)
+    const onScroll = () => saveScroll(key, location.pathname, Math.round(window.scrollY))
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
       timers.forEach(clearTimeout)
