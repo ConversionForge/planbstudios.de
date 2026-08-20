@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'motion/react'
 import { CubeMark } from './Logo'
 import { Magnetic } from './Magnetic'
 import { MonogramHG, VillaIllo } from '../example/illustrations'
+import { useT } from '../i18n'
 
 const LOFT_IMG = `${import.meta.env.BASE_URL}rundgang/living-1.jpg`
 
@@ -16,23 +17,10 @@ interface Case {
   media: 'havelgrau' | 'loft'
 }
 
-const CASES: Case[] = [
-  {
-    to: '/beispiel',
-    tag: 'Webdesign · Immobilien',
-    kind: 'Konzeptstudie',
-    title: 'Havel & Grau',
-    text: 'Ein kuratiertes Boutique-Immobilienhaus — tiefes Navy, Playfair-Serife, Terrakotta. Objekte erscheinen als gestapelte Katalog-Tafeln, die beim Scrollen übereinandergleiten.',
-    media: 'havelgrau',
-  },
-  {
-    to: '/rundgang',
-    tag: '3D-Rundgang · Objektfilm',
-    kind: 'Objekt-Demo',
-    title: 'Design-Loft Hamburg',
-    text: 'Aus reinen Objektfotos ein cinematischer Walkthrough und ein begehbarer Rundgang durch sieben Räume — ein Loft in Bewegung.',
-    media: 'loft',
-  },
+// Struktur (Ziel + Bildart) bleibt fest, die Texte kommen aus dem Wörterbuch.
+const CASE_STRUCT = [
+  { to: '/beispiel', media: 'havelgrau' as const },
+  { to: '/rundgang', media: 'loft' as const },
 ]
 
 function HavelGrauMini() {
@@ -61,10 +49,11 @@ function HavelGrauMini() {
 }
 
 function CaseCard({ to, tag, kind, title, text, media }: Case) {
+  const t = useT()
   return (
     <Link
       to={to}
-      data-cursor="Ansehen"
+      data-cursor={t.arbeiten.cursorLabel}
       className="group relative flex h-[64vh] min-h-[460px] w-[62vw] shrink-0 flex-col overflow-hidden rounded-xl border border-night-line bg-night-raised transition-all duration-500 hover:-translate-y-1 hover:border-gold/40"
     >
       <div className="relative h-[54%] overflow-hidden border-b border-night-line">
@@ -80,7 +69,7 @@ function CaseCard({ to, tag, kind, title, text, media }: Case) {
               <svg viewBox="0 0 24 24" className="h-3 w-3" fill="currentColor">
                 <path d="M8 5v14l11-7z" />
               </svg>
-              Objektfilm
+              {t.arbeiten.filmLabel}
             </span>
           </>
         ) : (
@@ -102,7 +91,7 @@ function CaseCard({ to, tag, kind, title, text, media }: Case) {
           <p className="mt-4 max-w-md text-[15px] leading-relaxed text-stone">{text}</p>
         </div>
         <span className="mt-6 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.16em] text-gold">
-          Projekt ansehen
+          {t.arbeiten.cardCta}
           <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none">
             <path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -113,6 +102,8 @@ function CaseCard({ to, tag, kind, title, text, media }: Case) {
 }
 
 export function ChapterReferenzen() {
+  const t = useT()
+  const CASES: Case[] = t.arbeiten.cases.map((c, i) => ({ ...c, ...CASE_STRUCT[i] }))
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -132,11 +123,12 @@ export function ChapterReferenzen() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="mx-auto w-full max-w-7xl px-6 lg:px-10"
           >
-            <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">03 — ARBEITEN</p>
+            <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">{t.arbeiten.eyebrow}</p>
             <h2 className="max-w-3xl font-serif text-[clamp(2.2rem,5vw,4.5rem)] font-light leading-[1.05] text-cream">
-              Arbeiten, die für sich
+              {t.arbeiten.title1}
               <br />
-              <em className="italic text-gold-bright">sprechen</em>.
+              <em className="italic text-gold-bright">{t.arbeiten.titleEm}</em>
+              {t.arbeiten.title2}
             </h2>
           </motion.div>
 
@@ -150,16 +142,16 @@ export function ChapterReferenzen() {
             <div className="flex h-[64vh] min-h-[460px] w-[62vw] shrink-0 flex-col items-center justify-center gap-8 rounded-xl border border-dashed border-night-line bg-transparent p-8 text-center">
               <CubeMark className="h-12 w-12 text-gold/50" strokeWidth={1} />
               <p className="max-w-sm font-serif text-[clamp(1.6rem,2.8vw,2.4rem)] font-light leading-snug text-cream-soft">
-                Ihr Projekt könnte
+                {t.arbeiten.emptyTitle1}
                 <br />
-                hier stehen.
+                {t.arbeiten.emptyTitle2}
               </p>
               <Magnetic>
                 <a
                   href="#kontakt"
                   className="block border border-gold/40 px-7 py-3 text-[13px] font-medium tracking-[0.06em] text-cream transition-all duration-300 hover:border-gold hover:bg-gold hover:text-night"
                 >
-                  Das erste sein
+                  {t.arbeiten.emptyCta}
                 </a>
               </Magnetic>
             </div>

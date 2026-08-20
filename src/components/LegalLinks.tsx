@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useT } from '../i18n'
 
 /**
  * Impressum- und Datenschutz-Links zu Plan B Studios. Wird überall dort
@@ -7,14 +8,15 @@ import { Link } from 'react-router-dom'
  * erreichbar ist.
  */
 export function LegalLinks({ className = '' }: { className?: string }) {
+  const t = useT()
   return (
     <span className={className}>
       <Link to="/impressum" className="underline-offset-4 hover:underline">
-        Impressum
+        {t.common.imprint}
       </Link>
       <span aria-hidden> · </span>
       <Link to="/datenschutz" className="underline-offset-4 hover:underline">
-        Datenschutz
+        {t.common.privacy}
       </Link>
     </span>
   )

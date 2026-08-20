@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { Magnetic } from './Magnetic'
+import { useT } from '../i18n'
 import { MeridianMark, ElevationDrawing } from '../example/meridianBlueprint'
 
 const GRID_BG = {
@@ -112,6 +113,7 @@ function MeridianPreview() {
 }
 
 export function ChapterWebdesign() {
+  const t = useT()
   const sceneRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: sceneRef,
@@ -133,16 +135,14 @@ export function ChapterWebdesign() {
           whileInView="show"
           viewport={{ once: true, margin: '-120px' }}
         >
-          <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">01 — WEBDESIGN</p>
+          <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">{t.webdesign.eyebrow}</p>
           <h2 className="max-w-3xl font-serif text-[clamp(2.6rem,6vw,5.5rem)] font-light leading-[1.05] tracking-[-0.01em] text-cream">
-            Websites mit
+            {t.webdesign.title1}
             <br />
-            <em className="italic text-gold-bright">Haltung.</em>
+            <em className="italic text-gold-bright">{t.webdesign.titleEm}</em>
           </h2>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-stone md:text-lg">
-            Kein Baukasten, keine Vorlage. Jede Seite entsteht aus Marke, Zielgruppe
-            und Inhalt — und wird so lange verdichtet, bis nichts Überflüssiges
-            mehr übrig ist.
+            {t.webdesign.lead}
           </p>
         </motion.div>
       </div>
@@ -188,14 +188,14 @@ export function ChapterWebdesign() {
               className="mt-8 flex flex-col items-center gap-4 text-center"
             >
               <p className="text-[13px] leading-relaxed text-stone">
-                Ein Beispielprojekt aus dem Studio — vollständig gebaut, hier begehbar.
+                {t.webdesign.demoNote}
               </p>
               <Magnetic>
                 <Link
                   to="/meridian"
                   className="group flex items-center gap-3 border border-gold/40 bg-night/40 px-7 py-3.5 text-[14px] font-medium tracking-[0.04em] text-cream transition-all duration-300 hover:border-gold hover:bg-gold hover:text-night"
                 >
-                  Beispiel-Website öffnen
+                  {t.webdesign.demoCta}
                   <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1">
                     <path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -214,23 +214,7 @@ export function ChapterWebdesign() {
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}
           className="grid gap-14 md:grid-cols-3 md:gap-10"
         >
-          {[
-            {
-              n: '01',
-              title: 'Maßgeschneidert',
-              text: 'Konzept, Gestaltung und Text aus einer Hand — entworfen für genau eine Marke: Ihre.',
-            },
-            {
-              n: '02',
-              title: 'Präzise gebaut',
-              text: 'Sauberer Code, flüssige Darstellung, in der Regel Ladezeiten unter einer Sekunde. Technik, die man spürt, ohne sie zu sehen.',
-            },
-            {
-              n: '03',
-              title: 'Auf Wirkung ausgelegt',
-              text: 'Dramaturgie statt Datenblatt: Jede Seite führt Besucher dorthin, wo Entscheidungen fallen.',
-            },
-          ].map((p) => (
+          {t.webdesign.principles.map((p) => (
             <motion.div key={p.n} variants={reveal} className="border-t border-night-line pt-8">
               <p className="mb-5 font-mono text-[12px] tracking-[0.2em] text-gold">{p.n}</p>
               <h3 className="mb-4 font-serif text-2xl font-light text-cream">{p.title}</h3>

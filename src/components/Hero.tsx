@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { CubeMark } from './Logo'
 import { Magnetic } from './Magnetic'
+import { useT } from '../i18n'
 
 const container = {
   hidden: {},
@@ -19,6 +20,7 @@ const item = {
 }
 
 export function Hero({ introDone }: { introDone: boolean }) {
+  const t = useT()
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -75,24 +77,25 @@ export function Hero({ introDone }: { introDone: boolean }) {
             variants={item}
             className="mb-7 text-[11px] font-medium uppercase tracking-[0.45em] text-stone"
           >
-            Webdesign&ensp;·&ensp;3D-Rundgänge&ensp;·&ensp;Immobilien
+            {t.hero.eyebrow}
           </motion.p>
 
           <motion.h1
             variants={item}
             className="font-serif text-[clamp(2.9rem,8vw,8rem)] font-light leading-[1.02] tracking-[-0.015em] text-cream"
           >
-            Digitale Räume.
+            {t.hero.title1}
             <br />
-            Mit <em className="italic text-gold-bright">Plan</em> gebaut.
+            {t.hero.title2a}
+            <em className="italic text-gold-bright">{t.hero.title2em}</em>
+            {t.hero.title2b}
           </motion.h1>
 
           <motion.p
             variants={item}
             className="mt-8 max-w-xl text-base leading-relaxed text-stone md:text-lg"
           >
-            Plan B Studios entwirft Websites und begehbare 3D-Rundgänge für
-            Immobilien&nbsp;— maßgeschneidert, präzise und gebaut für den ersten Eindruck.
+            {t.hero.lead}
           </motion.p>
 
           <motion.div variants={item} className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
@@ -101,7 +104,7 @@ export function Hero({ introDone }: { introDone: boolean }) {
                 href="#kontakt"
                 className="block bg-gold px-8 py-3.5 text-[14px] font-medium tracking-[0.04em] text-night transition-colors duration-300 hover:bg-gold-bright"
               >
-                Projekt anfragen
+                {t.hero.ctaPrimary}
               </a>
             </Magnetic>
             <Magnetic strength={0.15}>
@@ -109,7 +112,7 @@ export function Hero({ introDone }: { introDone: boolean }) {
                 href="#webdesign"
                 className="block px-8 py-3.5 text-[14px] font-medium tracking-[0.04em] text-cream-soft transition-colors duration-300 hover:text-cream"
               >
-                Leistungen entdecken
+                {t.hero.ctaSecondary}
               </a>
             </Magnetic>
           </motion.div>
@@ -120,7 +123,7 @@ export function Hero({ introDone }: { introDone: boolean }) {
           className="absolute bottom-8 hidden flex-col items-center gap-3 [@media(min-height:760px)_and_(min-width:768px)]:flex"
         >
           <span className="text-[10px] font-medium uppercase tracking-[0.35em] text-stone">
-            Scrollen
+            {t.hero.scroll}
           </span>
           <div className="relative h-14 w-px overflow-hidden bg-night-line">
             <motion.div

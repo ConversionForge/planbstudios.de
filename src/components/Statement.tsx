@@ -1,13 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, type MotionValue } from 'motion/react'
-
-const WORDS: { t: string; gold?: boolean }[] = [
-  { t: 'Die' }, { t: 'meisten' }, { t: 'Websites' }, { t: 'sehen' }, { t: 'aus' },
-  { t: 'wie' }, { t: 'Websites.' }, { t: 'Wir' }, { t: 'bauen' }, { t: 'digitale' },
-  { t: 'Orte', gold: true }, { t: '—' }, { t: 'Räume,' }, { t: 'die' }, { t: 'man' },
-  { t: 'betritt', gold: true }, { t: 'und' }, { t: 'nicht' }, { t: 'mehr' },
-  { t: 'vergisst.' },
-]
+import { useT } from '../i18n'
 
 function Word({
   children,
@@ -32,6 +25,7 @@ function Word({
 }
 
 export function Statement() {
+  const WORDS = useT().statement
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,

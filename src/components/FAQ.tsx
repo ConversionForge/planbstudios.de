@@ -1,28 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-
-const FAQS = [
-  {
-    q: 'Was kostet eine Website bei Plan B Studios?',
-    a: 'Jedes Projekt kalkulieren wir einzeln — abhängig von Umfang, Objektzahl und gewünschten Funktionen. Sie bekommen vorab einen Festpreis, keine Überraschungen und keine versteckten Folgekosten.',
-  },
-  {
-    q: 'Wie lange dauert ein Projekt?',
-    a: 'Eine hochwertige Immobilien-Website ist in der Regel in drei bis fünf Wochen live. Ein 3D-Rundgang ist je nach Objekt oft in wenigen Tagen fertig. Enge Termine sagen wir Ihnen offen, bevor wir starten.',
-  },
-  {
-    q: 'Bekomme ich Website und 3D-Rundgang wirklich aus einer Hand?',
-    a: 'Ja. Beides von derselben Person, ein Ansprechpartner, eine Rechnung. Kein Weiterreichen zwischen Agentur und Fotograf — und dadurch kein Abstimmungschaos.',
-  },
-  {
-    q: 'Was, wenn ich noch keine Texte oder Fotos habe?',
-    a: 'Kein Problem. Wir beraten bei Text und Bild, ordnen vorhandenes Material und übernehmen auf Wunsch die komplette Umsetzung — bis die Seite steht.',
-  },
-  {
-    q: 'Kann ich meine Objekte später selbst pflegen?',
-    a: 'Auf Wunsch bauen wir eine einfache Pflege-Oberfläche ein, mit der Sie Objekte selbst einstellen und ändern können — ohne Technikkenntnisse.',
-  },
-]
+import { useT } from '../i18n'
 
 function Item({ q, a, open, onToggle }: { q: string; a: string; open: boolean; onToggle: () => void }) {
   return (
@@ -66,6 +44,8 @@ function Item({ q, a, open, onToggle }: { q: string; a: string; open: boolean; o
 }
 
 export function FAQ() {
+  const t = useT()
+  const FAQS = t.faq.items
   const [open, setOpen] = useState<number | null>(0)
 
   return (
@@ -77,15 +57,15 @@ export function FAQ() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">FAQ</p>
+          <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">{t.faq.eyebrow}</p>
           <h2 className="font-serif text-[clamp(2.2rem,5vw,4rem)] font-light leading-[1.05] text-cream">
-            Bevor Sie
+            {t.faq.title1}
             <br />
-            <em className="italic text-gold-bright">fragen</em>.
+            <em className="italic text-gold-bright">{t.faq.titleEm}</em>
+            {t.faq.title2}
           </h2>
           <p className="mt-8 max-w-xs text-[15px] leading-relaxed text-stone">
-            Die Fragen, die uns am häufigsten erreichen — offen beantwortet. Steht
-            Ihre nicht dabei? Schreiben Sie uns.
+            {t.faq.lead}
           </p>
         </motion.div>
 

@@ -4,8 +4,10 @@ import { AnimatePresence, motion } from 'motion/react'
 import { TOUR } from './tourData'
 import { CubeMark } from '../components/Logo'
 import { LegalLinks } from '../components/LegalLinks'
+import { useT } from '../i18n'
 
 export function PropertyTour() {
+  const t = useT()
   const navigate = useNavigate()
   const location = useLocation()
   const [room, setRoom] = useState(0)
@@ -82,14 +84,14 @@ export function PropertyTour() {
   useEffect(() => {
     document.title = `${TOUR.title} — 3D-Rundgang · Plan B Studios`
     return () => {
-      document.title = 'Plan B Studios — Webdesign & 3D-Rundgänge'
+      document.title = t.siteTitle
     }
-  }, [])
+  }, [t])
 
   const forwardLabel = isLast
     ? null
     : shot < current.images.length - 1
-      ? 'Nächste Ansicht'
+      ? t.tour.nextView
       : rooms[room + 1].name
 
   return (
@@ -142,7 +144,7 @@ export function PropertyTour() {
         <div>
           <div className="mb-1 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.3em] text-gold">
             <span className="h-1.5 w-1.5 bg-gold" />
-            Beispiel-Rundgang
+            {t.tour.eyebrow}
           </div>
           <h1 className="font-serif text-2xl font-light text-cream md:text-3xl">
             {TOUR.title}
@@ -152,7 +154,7 @@ export function PropertyTour() {
         </div>
         <button
           onClick={close}
-          aria-label="Rundgang schließen"
+          aria-label={t.tour.close}
           className="flex h-11 w-11 items-center justify-center rounded-full border border-night-line bg-night/40 text-cream-soft backdrop-blur-sm transition-colors duration-300 hover:border-gold hover:text-gold"
         >
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none">
@@ -165,7 +167,7 @@ export function PropertyTour() {
       {!isFirst && (
         <button
           onClick={prev}
-          aria-label="Zurück"
+          aria-label={t.tour.prev}
           className="group absolute left-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-night-line bg-night/40 text-cream-soft backdrop-blur-sm transition-all duration-300 hover:border-gold hover:text-gold lg:left-8"
         >
           <svg viewBox="0 0 24 24" className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-0.5" fill="none">
@@ -176,7 +178,7 @@ export function PropertyTour() {
       {!isLast && (
         <button
           onClick={next}
-          aria-label="Weiter"
+          aria-label={t.tour.next}
           className="group absolute right-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-night-line bg-night/40 text-cream-soft backdrop-blur-sm transition-all duration-300 hover:border-gold hover:text-gold lg:right-8"
         >
           <svg viewBox="0 0 24 24" className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none">
@@ -190,7 +192,7 @@ export function PropertyTour() {
         <div className="flex items-end justify-between gap-6">
           <div className="max-w-lg">
             <p className="mb-2 font-mono text-[11px] tracking-[0.25em] text-gold">
-              RAUM {room + 1} / {rooms.length} · {current.subtitle.toUpperCase()}
+              {t.tour.room} {room + 1} / {rooms.length} · {current.subtitle.toUpperCase()}
             </p>
             <AnimatePresence mode="wait">
               <motion.p
@@ -211,7 +213,7 @@ export function PropertyTour() {
                 <button
                   key={i}
                   onClick={() => setShot(i)}
-                  aria-label={`Ansicht ${i + 1}`}
+                  aria-label={`${t.tour.view} ${i + 1}`}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     i === shot ? 'w-7 bg-gold' : 'w-1.5 bg-cream/30 hover:bg-cream/60'
                   }`}
@@ -228,7 +230,7 @@ export function PropertyTour() {
             >
               <span className="flex flex-col items-start leading-tight">
                 <span className="text-[10px] uppercase tracking-[0.2em] text-gold transition-colors group-hover:text-night">
-                  Weiter
+                  {t.tour.nextLabel}
                 </span>
                 <span className="text-[14px] font-medium">{forwardLabel}</span>
               </span>

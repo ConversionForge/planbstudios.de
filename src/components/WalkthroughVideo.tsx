@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { Tilt } from './Tilt'
+import { useT } from '../i18n'
 
 const VIDEO_SRC = `${import.meta.env.BASE_URL}rundgang/loft-walkthrough.mp4`
 const POSTER = `${import.meta.env.BASE_URL}rundgang/living-1.jpg`
 
 export function WalkthroughVideo() {
+  const t = useT()
   const ref = useRef<HTMLVideoElement>(null)
   const [paused, setPaused] = useState(false)
   const [isFs, setIsFs] = useState(false)
@@ -95,14 +97,14 @@ export function WalkthroughVideo() {
         {/* Label oben links */}
         <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2 rounded-full bg-night/45 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.25em] text-cream backdrop-blur-sm">
           <span className="h-1.5 w-1.5 bg-gold" />
-          Cinematic Walkthrough
+          {t.rundgaenge.videoLabel}
         </div>
 
         {/* Play-Overlay, wenn pausiert */}
         {paused && (
           <button
             onClick={togglePlay}
-            aria-label="Abspielen"
+            aria-label={t.rundgaenge.videoPlay}
             className="absolute inset-0 flex items-center justify-center bg-night/30"
           >
             <span className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/60 bg-night/50 backdrop-blur-sm transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-night md:h-20 md:w-20">
@@ -117,7 +119,7 @@ export function WalkthroughVideo() {
         <div className="absolute bottom-4 right-4 opacity-80 transition-opacity duration-300 group-hover:opacity-100">
           <button
             onClick={goFullscreen}
-            aria-label="Vollbild"
+            aria-label={t.rundgaenge.videoFullscreen}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-night-line bg-night/50 text-cream-soft backdrop-blur-sm transition-colors duration-300 hover:border-gold hover:text-gold"
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -128,8 +130,7 @@ export function WalkthroughVideo() {
       </Tilt>
 
       <figcaption className="mt-4 text-[13px] text-stone">
-        Cinematischer Rundgang durch ein Design-Loft in Hamburg — als Bewegtbild aus
-        den Objektaufnahmen komponiert.
+        {t.rundgaenge.videoCaption}
       </figcaption>
     </figure>
   )

@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
+import { useT } from '../i18n'
 
 const reveal = {
   hidden: { opacity: 0, y: 36 },
@@ -10,25 +11,9 @@ const reveal = {
   },
 }
 
-const PRINCIPLES = [
-  {
-    n: '01',
-    title: 'Einzeln gebaut.',
-    text: 'Kein Template, keine Vorlage — jede Seite entsteht von Grund auf aus Ihrer Marke, Ihrem Objekt, Ihrer Zielgruppe. So unverwechselbar wie das, was Sie verkaufen. Die Konkurrenz klickt zusammen; Sie fallen auf.',
-  },
-  {
-    n: '02',
-    title: 'Alles aus einer Hand.',
-    text: 'Website und 3D-Rundgang von derselben Person. Sie sprechen mit dem, der es baut — vom ersten Entwurf bis zur fertigen Seite. Keine Schnittstellen, keine Wartezeit, keine Ausreden.',
-  },
-  {
-    n: '03',
-    title: 'Technik, die verkauft.',
-    text: 'Auf üblichen Verbindungen Ladezeiten unter einer Sekunde, flüssige Darstellung, tadellos am Handy. Denn die schönste Seite bringt nichts, wenn der Interessent vorher abspringt.',
-  },
-]
-
 export function ChapterStudio() {
+  const t = useT()
+  const PRINCIPLES = t.studio.principles
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -57,23 +42,18 @@ export function ChapterStudio() {
             viewport={{ once: true, margin: '-100px' }}
             className="md:col-span-5"
           >
-            <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">04 — STUDIO</p>
+            <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">{t.studio.eyebrow}</p>
             <h2 className="font-serif text-[clamp(2.4rem,5vw,4.2rem)] font-light leading-[1.05] text-cream">
-              Warum
+              {t.studio.title1}
               <br />
-              <em className="italic text-gold-bright">Plan B</em>?
+              <em className="italic text-gold-bright">{t.studio.titleEm}</em>
+              {t.studio.title2}
             </h2>
             <p className="mt-8 max-w-md text-base leading-relaxed text-stone md:text-lg">
-              In der Immobilienbranche entscheidet der erste Klick über den Preis.
-              Trotzdem sehen die meisten Makler- und Bauträger-Seiten aus wie tausend
-              andere — ein Objekt für 1,5&nbsp;Millionen, präsentiert wie ein
-              Möbelhaus-Prospekt.
+              {t.studio.lead1}
             </p>
             <p className="mt-6 max-w-md text-base leading-relaxed text-stone md:text-lg">
-              Bei Plan B Studios kommt beides aus einer Hand: Websites, die eine
-              Marke tragen, und begehbare 3D-Rundgänge, die Objekte verkaufen,
-              bevor der erste Besichtigungstermin steht. Kein Weiterreichen, kein
-              Baukasten, kein Kompromiss.
+              {t.studio.lead2}
             </p>
           </motion.div>
 

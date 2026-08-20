@@ -2,8 +2,10 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { CubeMark } from './Logo'
 import { Magnetic } from './Magnetic'
+import { useT } from '../i18n'
 
 export function ChapterKontakt() {
+  const t = useT()
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -32,7 +34,7 @@ export function ChapterKontakt() {
           transition={{ duration: 0.8 }}
           className="mb-8 font-mono text-[12px] tracking-[0.3em] text-gold"
         >
-          05 — KONTAKT
+          {t.kontakt.eyebrow}
         </motion.p>
 
         <motion.h2
@@ -42,9 +44,11 @@ export function ChapterKontakt() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="font-serif text-[clamp(2.6rem,7vw,6rem)] font-light leading-[1.04] tracking-[-0.015em] text-cream"
         >
-          Lassen Sie uns
+          {t.kontakt.title1}
           <br />
-          etwas <em className="italic text-gold-bright">bauen</em>.
+          {t.kontakt.title2a}
+          <em className="italic text-gold-bright">{t.kontakt.titleEm}</em>
+          {t.kontakt.title2b}
         </motion.h2>
 
         <motion.p
@@ -54,9 +58,7 @@ export function ChapterKontakt() {
           transition={{ duration: 0.9, delay: 0.1 }}
           className="mt-10 max-w-xl text-base leading-relaxed text-stone md:text-lg"
         >
-          Eine neue Website, ein 3D-Rundgang oder beides — erzählen Sie uns von
-          Ihrem Vorhaben. Wir melden uns in der Regel innerhalb von
-          24&nbsp;Stunden (werktags).
+          {t.kontakt.lead}
         </motion.p>
 
         <motion.div
@@ -87,7 +89,7 @@ export function ChapterKontakt() {
           className="mt-8 flex flex-col items-center gap-2 text-[14px] text-stone"
         >
           <span>
-            Oder rufen Sie an:{' '}
+            {t.kontakt.callPrefix}
             <a
               href="tel:+491788489408"
               className="text-cream-soft underline-offset-4 transition-colors duration-300 hover:text-gold hover:underline"
@@ -96,7 +98,7 @@ export function ChapterKontakt() {
             </a>
           </span>
           <span className="text-[11px] uppercase tracking-[0.35em] text-stone/70">
-            Studio · Lübeck
+            {t.kontakt.studio}
           </span>
         </motion.div>
       </div>

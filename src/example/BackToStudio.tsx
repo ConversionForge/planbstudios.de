@@ -1,8 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useT } from '../i18n'
 
 // Führt zurück zur exakten Stelle, von der die Beispielseite geöffnet wurde
 // (mit wiederhergestellter Scroll-Position) — nicht zu einem festen Anker.
 export function BackToStudio({ className }: { className?: string }) {
+  const t = useT()
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -13,7 +15,8 @@ export function BackToStudio({ className }: { className?: string }) {
 
   return (
     <button onClick={back} className={className}>
-      ← Zurück zu Plan B Studios
+      {'\u2190 '}
+      {t.common.backToStudio}
     </button>
   )
 }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { CubeMark } from './Logo'
 import { WalkthroughVideo } from './WalkthroughVideo'
+import { useT } from '../i18n'
 
 const TOUR_COVER = `${import.meta.env.BASE_URL}rundgang/living-1.jpg`
 
@@ -50,6 +51,7 @@ const reveal = {
 }
 
 export function Chapter3D() {
+  const t = useT()
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -130,12 +132,12 @@ export function Chapter3D() {
             />
 
             <Hotspot
-              label="360° · Wohnbereich"
+              label={t.rundgaenge.hotspot1}
               style={{ left: '24%', top: '48%', transform: `translateZ(${-DEPTH * 0.55}px)` }}
               opacity={hotspotOpacity}
             />
             <Hotspot
-              label="Rundgang starten"
+              label={t.rundgaenge.hotspot2}
               style={{ left: '58%', top: '62%', transform: `translateZ(${-DEPTH * 0.35}px)` }}
               opacity={hotspotOpacity}
             />
@@ -153,10 +155,10 @@ export function Chapter3D() {
             className="absolute inset-x-0 top-[16%] flex flex-col items-center gap-5 px-6 text-center"
           >
             <p className="font-mono text-[12px] tracking-[0.3em] text-gold">
-              02 — 3D-RUNDGÄNGE
+              {t.rundgaenge.eyebrow}
             </p>
             <p className="font-serif text-[clamp(1.8rem,3.5vw,2.8rem)] font-light italic text-cream">
-              Treten Sie ein.
+              {t.rundgaenge.enter}
             </p>
           </motion.div>
 
@@ -173,14 +175,13 @@ export function Chapter3D() {
             />
             <div className="relative mx-auto max-w-7xl">
               <h2 className="max-w-2xl font-serif text-[clamp(2.4rem,5.5vw,4.8rem)] font-light leading-[1.05] text-cream">
-                Räume, die man
+                {t.rundgaenge.title1}
                 <br />
-                <em className="italic text-gold-bright">betreten</em> kann.
+                <em className="italic text-gold-bright">{t.rundgaenge.titleEm}</em>
+                {t.rundgaenge.title2}
               </h2>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-cream-soft md:text-lg">
-                Begehbare 3D-Rundgänge machen aus Exposés Besichtigungen — rund um
-                die Uhr, von jedem Ort der Welt. Interessenten kommen nicht mehr zum
-                ersten Termin. Sie kommen zur Entscheidung.
+                {t.rundgaenge.lead}
               </p>
             </div>
           </motion.div>
@@ -196,14 +197,15 @@ export function Chapter3D() {
         >
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="mb-4 font-mono text-[12px] tracking-[0.3em] text-gold">LIVE-DEMO</p>
+              <p className="mb-4 font-mono text-[12px] tracking-[0.3em] text-gold">{t.rundgaenge.demoEyebrow}</p>
               <h3 className="max-w-2xl font-serif text-[clamp(1.9rem,4vw,3.2rem)] font-light leading-tight text-cream">
-                Ein Rundgang wie im <em className="italic text-gold-bright">Kino</em>.
+                {t.rundgaenge.demoTitle1}
+                <em className="italic text-gold-bright">{t.rundgaenge.demoTitleEm}</em>
+                {t.rundgaenge.demoTitle2}
               </h3>
             </div>
             <p className="max-w-sm text-[15px] leading-relaxed text-stone">
-              Aus statischen Fotos wird ein Film, der durch die Räume gleitet — ein
-              Objekt in fünfzehn Sekunden erlebbar, nicht nur betrachtet.
+              {t.rundgaenge.demoText}
             </p>
           </div>
 
@@ -220,10 +222,10 @@ export function Chapter3D() {
             />
             <span className="flex-1">
               <span className="block text-[14px] font-medium text-cream transition-colors duration-300 group-hover:text-gold-bright">
-                Alternativ: geführter Bilder-Rundgang
+                {t.rundgaenge.tourLinkTitle}
               </span>
               <span className="block text-[13px] text-stone">
-                Ein Design-Loft in Hamburg — cinematisch aus Fotos, ohne 3D-Scan.
+                {t.rundgaenge.tourLinkText}
               </span>
             </span>
             <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-stone transition-all duration-300 group-hover:translate-x-1 group-hover:text-gold" fill="none">
@@ -241,11 +243,13 @@ export function Chapter3D() {
           viewport={{ once: true, margin: '-120px' }}
           className="mb-20"
         >
-          <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">FÜR WEN</p>
+          <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">{t.rundgaenge.forWhoEyebrow}</p>
           <h3 className="max-w-2xl font-serif text-[clamp(2rem,4vw,3.4rem)] font-light leading-tight text-cream">
-            Gebaut für Menschen,
+            {t.rundgaenge.forWhoTitle1}
             <br />
-            die <em className="italic text-gold-bright">Räume</em> verkaufen.
+            {t.rundgaenge.forWhoTitle2a}
+            <em className="italic text-gold-bright">{t.rundgaenge.forWhoTitleEm}</em>
+            {t.rundgaenge.forWhoTitle2b}
           </h3>
         </motion.div>
 
@@ -256,20 +260,7 @@ export function Chapter3D() {
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}
           className="grid gap-14 md:grid-cols-3 md:gap-10"
         >
-          {[
-            {
-              title: 'Makler',
-              text: 'Interessenten laufen durch die Immobilie, bevor der erste Termin stattfindet. Zur Besichtigung kommen nur noch die, die wirklich wollen.',
-            },
-            {
-              title: 'Hausverwaltungen',
-              text: 'Der digitale Zwilling jeder Einheit: Dokumentation, Übergaben und Vermietung — jederzeit abrufbar, ohne Schlüsselübergabe.',
-            },
-            {
-              title: 'Bauträger',
-              text: 'Verkaufen, was noch nicht steht: begehbare Visualisierungen ab Grundriss — lange bevor das Fundament gegossen ist.',
-            },
-          ].map((p) => (
+          {t.rundgaenge.audience.map((p) => (
             <motion.div key={p.title} variants={reveal} className="border-t border-night-line pt-8">
               <h4 className="mb-4 font-serif text-2xl font-light text-cream">{p.title}</h4>
               <p className="text-[15px] leading-relaxed text-stone">{p.text}</p>

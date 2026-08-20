@@ -6,14 +6,16 @@ import { Cursor } from '../components/Cursor'
 import { GrainOverlay } from '../components/GrainOverlay'
 import { Magnetic } from '../components/Magnetic'
 import { LegalLinks } from '../components/LegalLinks'
+import { useT } from '../i18n'
 
 export function NotFound() {
+  const t = useT()
   useEffect(() => {
-    document.title = 'Seite nicht gefunden — Plan B Studios'
+    document.title = t.notFound.docTitle
     return () => {
-      document.title = 'Plan B Studios — Webdesign & 3D-Rundgänge'
+      document.title = t.siteTitle
     }
-  }, [])
+  }, [t])
 
   return (
     <div className="relative flex min-h-[100dvh] flex-col items-center justify-center bg-night px-6 text-center text-cream">
@@ -28,17 +30,17 @@ export function NotFound() {
       >
         <CubeMark animated className="h-16 w-16 text-gold" strokeWidth={1.2} />
 
-        <p className="mt-10 font-mono text-[12px] tracking-[0.3em] text-gold">FEHLER 404</p>
+        <p className="mt-10 font-mono text-[12px] tracking-[0.3em] text-gold">{t.notFound.eyebrow}</p>
 
         <h1 className="mt-5 font-serif text-[clamp(2.4rem,7vw,5rem)] font-light leading-[1.05] text-cream">
-          Dieser Raum
+          {t.notFound.title1}
           <br />
-          <em className="italic text-gold-bright">existiert nicht</em>.
+          <em className="italic text-gold-bright">{t.notFound.titleEm}</em>
+          {t.notFound.title2}
         </h1>
 
         <p className="mt-7 max-w-md text-base leading-relaxed text-stone">
-          Die aufgerufene Seite gibt es nicht — vielleicht wurde sie verschoben oder
-          die Adresse hat sich vertippt.
+          {t.notFound.lead}
         </p>
 
         <Magnetic>
@@ -46,7 +48,7 @@ export function NotFound() {
             to="/"
             className="mt-10 block bg-gold px-8 py-3.5 text-[14px] font-medium tracking-[0.04em] text-night transition-colors duration-300 hover:bg-gold-bright"
           >
-            Zurück zur Startseite
+            {t.notFound.cta}
           </Link>
         </Magnetic>
       </motion.div>

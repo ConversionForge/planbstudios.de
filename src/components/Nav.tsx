@@ -2,18 +2,46 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { LogoLockup } from './Logo'
 import { Magnetic } from './Magnetic'
+import { useLang } from '../i18n'
 
-const LINKS = [
-  { label: 'Webdesign', href: '#webdesign' },
-  { label: '3D-Rundgänge', href: '#rundgaenge' },
-  { label: 'Arbeiten', href: '#referenzen' },
-  { label: 'Studio', href: '#studio' },
-]
+/** Kompakter Sprachumschalter DE | EN */
+function LangSwitch({ className = '' }: { className?: string }) {
+  const { lang, setLang, t } = useLang()
+  return (
+    <div
+      className={`flex items-center gap-1.5 text-[12px] font-medium tracking-[0.08em] ${className}`}
+      aria-label={t.nav.switchTo}
+    >
+      <button
+        onClick={() => setLang('de')}
+        aria-pressed={lang === 'de'}
+        className={`transition-colors duration-300 ${
+          lang === 'de' ? 'text-gold' : 'text-stone hover:text-cream-soft'
+        }`}
+      >
+        DE
+      </button>
+      <span aria-hidden className="text-night-line">
+        |
+      </span>
+      <button
+        onClick={() => setLang('en')}
+        aria-pressed={lang === 'en'}
+        className={`transition-colors duration-300 ${
+          lang === 'en' ? 'text-gold' : 'text-stone hover:text-cream-soft'
+        }`}
+      >
+        EN
+      </button>
+    </div>
+  )
+}
 
 export function Nav() {
   const { scrollY } = useScroll()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const t = useLang().t
 
   useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 48))
 
@@ -58,7 +86,7 @@ export function Nav() {
           <LogoLockup />
 
           <nav className="hidden items-center gap-9 md:flex">
-            {LINKS.map((link) => (
+            {t.nav.links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -71,14 +99,15 @@ export function Nav() {
             ))}
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden items-center gap-6 md:flex">
+            <LangSwitch />
             <Magnetic>
               <a
                 href="#kontakt"
                 onClick={goTo}
                 className="block border border-gold/40 px-5 py-2.5 text-[13px] font-medium tracking-[0.06em] text-cream transition-all duration-300 hover:border-gold hover:bg-gold hover:text-night"
               >
-                Projekt anfragen
+                {t.nav.cta}
               </a>
             </Magnetic>
           </div>
@@ -86,7 +115,7 @@ export function Nav() {
           {/* Menü-Schalter (mobil) */}
           <button
             onClick={() => setOpen((o) => !o)}
-            aria-label={open ? 'Menü schließen' : 'Menü öffnen'}
+            aria-label={open ? t.nav.menuClose : t.nav.menuOpen}
             aria-expanded={open}
             className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
           >
@@ -115,7 +144,7 @@ export function Nav() {
             className="fixed inset-0 z-40 flex flex-col justify-center bg-night px-8 md:hidden"
           >
             <nav className="flex flex-col gap-2">
-              {LINKS.map((link, i) => (
+              {t.nav.links.map((link, i) => (
                 <motion.a
                   key={link.href}
                   href={link.href}
@@ -138,7 +167,7 @@ export function Nav() {
               transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="mt-10 block bg-gold px-8 py-4 text-center text-[15px] font-medium tracking-[0.04em] text-night"
             >
-              Projekt anfragen
+              {t.nav.cta}
             </motion.a>
 
             <motion.div
@@ -153,6 +182,7 @@ export function Nav() {
               <a href="tel:+491788489408" className="hover:text-gold">
                 0178 8489408
               </a>
+              <LangSwitch className="mt-5 text-[13px]" />
             </motion.div>
           </motion.div>
         )}

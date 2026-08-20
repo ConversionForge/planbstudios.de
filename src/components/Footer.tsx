@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { CubeMark } from './Logo'
+import { useT } from '../i18n'
 
 const YEAR = new Date().getFullYear()
 
@@ -23,6 +24,7 @@ function SectionLink({ id, children }: { id: string; children: string }) {
 }
 
 export function Footer() {
+  const t = useT()
   return (
     <footer className="relative border-t border-night-line bg-night-soft">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
@@ -38,34 +40,34 @@ export function Footer() {
               </span>
             </div>
             <p className="max-w-xs text-[14px] leading-relaxed text-stone">
-              Webdesign und 3D-Rundgänge für Immobilien. Gebaut, nicht zusammengeklickt.
+              {t.footer.tagline}
             </p>
           </div>
 
           <div className="grid grid-cols-2 gap-x-16 gap-y-8 sm:grid-cols-3">
             <div className="flex flex-col gap-3">
-              <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">Leistungen</span>
-              <SectionLink id="webdesign">Webdesign</SectionLink>
-              <SectionLink id="rundgaenge">3D-Rundgänge</SectionLink>
+              <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">{t.footer.colServices}</span>
+              <SectionLink id="webdesign">{t.footer.linkWebdesign}</SectionLink>
+              <SectionLink id="rundgaenge">{t.footer.linkRundgaenge}</SectionLink>
             </div>
             <div className="flex flex-col gap-3">
-              <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">Studio</span>
-              <SectionLink id="referenzen">Arbeiten</SectionLink>
-              <SectionLink id="studio">Über uns</SectionLink>
+              <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">{t.footer.colStudio}</span>
+              <SectionLink id="referenzen">{t.footer.linkArbeiten}</SectionLink>
+              <SectionLink id="studio">{t.footer.linkAbout}</SectionLink>
             </div>
             <div className="flex flex-col gap-3">
-              <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">Kontakt</span>
-              <a href="mailto:planbstudios.de@gmail.com" className="text-[14px] text-cream-soft transition-colors hover:text-gold">E-Mail</a>
-              <SectionLink id="kontakt">Anfragen</SectionLink>
+              <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">{t.footer.colContact}</span>
+              <a href="mailto:planbstudios.de@gmail.com" className="text-[14px] text-cream-soft transition-colors hover:text-gold">{t.footer.linkEmail}</a>
+              <SectionLink id="kontakt">{t.footer.linkRequest}</SectionLink>
             </div>
           </div>
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-night-line pt-8 text-[13px] text-stone sm:flex-row sm:items-center sm:justify-between">
-          <span>© {YEAR} Plan B Studios. Alle Rechte vorbehalten.</span>
+          <span>© {YEAR} Plan B Studios. {t.footer.rights}</span>
           <div className="flex gap-8">
-            <Link to="/impressum" className="transition-colors hover:text-cream-soft">Impressum</Link>
-            <Link to="/datenschutz" className="transition-colors hover:text-cream-soft">Datenschutz</Link>
+            <Link to="/impressum" className="transition-colors hover:text-cream-soft">{t.common.imprint}</Link>
+            <Link to="/datenschutz" className="transition-colors hover:text-cream-soft">{t.common.privacy}</Link>
           </div>
         </div>
       </div>
