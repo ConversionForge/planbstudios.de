@@ -22,11 +22,12 @@
     // beispiel, meridian, rundgang) liegen ohnehin als echte HTML-Dateien vor,
     // die postbuild.mjs vorrendert, und ein 200 auf nicht existierende Adressen
     // wuerde Suchmaschinen Seiten melden, die es nicht gibt.
-    "not_found_handling": "404-page",
+    "not_found_handling": "404-page"
 
-    // Bindung fuer einen spaeteren Worker-Skript-Einstieg. Wird gebraucht,
-    // sobald der Formular-Endpunkt dazukommt oder falls die Sicherheits-Header
-    // ueber ein Skript gesetzt werden muessen.
-    "binding": "ASSETS"
+    // Hier stand versuchsweise "binding": "ASSETS". Das laesst Cloudflare in
+    // einem reinen Assets-Worker nicht zu ("Cannot use assets with a binding
+    // in an assets-only Worker") — eine Bindung setzt ein Worker-Skript unter
+    // "main" voraus. Beides kommt zusammen zurueck, sobald der
+    // Formular-Endpunkt gebaut wird.
   }
 }
