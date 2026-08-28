@@ -1,10 +1,12 @@
-# Sicherheits-Header. Wird von Cloudflare Pages gelesen (Datei muss im
-# Ausgabeverzeichnis liegen, deshalb public/). GitHub Pages ignoriert die
-# Datei, dort bleibt sie wirkungslos.
+# Sicherheits-Header fuer Cloudflare (Datei muss im Ausgabeverzeichnis
+# liegen, deshalb public/). Nachgewiesen wirksam auch im Worker-Betrieb mit
+# statischen Assets, nicht nur bei klassischen Pages-Projekten.
 #
-# Eine Content-Security-Policy fehlt hier bewusst noch: Sie kann eine Seite
-# stillschweigend zerlegen und wird erst nach der Umschaltung ergaenzt, wenn
-# sie im Browser geprueft werden kann.
+# Die Content-Security-Policy steht bewusst NICHT hier, sondern wird von
+# scripts/postbuild.mjs bei jedem Build angehaengt. Grund: Sie enthaelt den
+# Hash des Inline-Skripts aus index.html. Fest eingetragen wuerde der Hash
+# veralten, sobald jemand das Skript aendert, und die Seite wuerde still
+# kaputtgehen.
 
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains

@@ -9,6 +9,7 @@
 // 4. Eine 404.html als Auffangnetz (liefert bewusst Status 404).
 import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { createHash } from 'node:crypto'
 import { pathToFileURL } from 'node:url'
 
 const shellPath = 'dist/index.html'
@@ -102,3 +103,52 @@ copyFileSync(shellPath, 'dist/404.html')
 console.log(
   `[postbuild] ${Object.keys(ROUTES).length} Routen erzeugt (HTTP 200), davon ${prerendered} vorgerendert, + 404.html als Fallback.`,
 )
+
+// ---------------------------------------------------------------------------
+// Content-Security-Policy
+//
+// Die Seite enthaelt ein Inline-Skript (setzt history.scrollRestoration, damit
+// ein Neuladen nicht zur alten Position springt) und einen Inline-Style. Eine
+// CSP mit "script-src 'self'" wuerde das Skript blockieren und den Fehler
+// zurueckbringen. Statt 'unsafe-inline' zu erlauben, was die ganze Richtlinie
+// entwerten wuerde, wird der Hash des Skripts hier bei JEDEM Build neu
+// berechnet. So kann er nicht veralten, wenn jemand das Skript aendert.
+//
+// style-src braucht 'unsafe-inline', weil motion/react Animationen ueber
+// style-Attribute setzt. Das laesst sich nicht per Hash abbilden.
+//
+// Kommt spaeter Plausible dazu, muessen dessen Domain in script-src und
+// connect-src ergaenzt werden.
+const inlineScripts = [...shell.matchAll(/<script(?![^>]*\ssrc=)[^>]*>([\s\S]*?)<\/script>/gi)]
+  .map((m) => m[1])
+  .filter((code) => code.trim().length > 0)
+
+const scriptHashes = inlineScripts.map(
+  (code) => `'sha256-${createHash('sha256').update(code, 'utf8').digest('base64')}'`,
+)
+
+const csp = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-ancestors 'self'",
+  "img-src 'self' data:",
+  "font-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  `script-src 'self' ${scriptHashes.join(' ')}`.trim(),
+  "connect-src 'self'",
+  "media-src 'self'",
+  "form-action 'self'",
+  'upgrade-insecure-requests',
+].join('; ')
+
+const headersPath = 'dist/_headers'
+if (existsSync(headersPath)) {
+  const existing = readFileSync(headersPath, 'utf8').replace(/\s*$/, '')
+  writeFileSync(headersPath, `${existing}\n  Content-Security-Policy: ${csp}\n`)
+  console.log(
+    `[postbuild] CSP gesetzt (${scriptHashes.length} Inline-Skript-Hash${scriptHashes.length === 1 ? '' : 'es'}).`,
+  )
+} else {
+  console.warn('[postbuild] dist/_headers fehlt — CSP nicht gesetzt.')
+}
