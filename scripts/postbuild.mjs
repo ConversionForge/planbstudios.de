@@ -44,36 +44,43 @@ const ROUTES = {
     desc: 'Datenschutzerklärung von Plan B Studios.',
     prerender: true,
   },
+  'makler/mehr-eigentuemeranfragen': {
+    title: 'Mehr Eigentümeranfragen — Plan B Studios',
+    desc: 'Eigentümer suchen online nach dem Wert ihrer Immobilie, lange bevor sie einen Makler anrufen. Situationsseiten, Bewertungsstrecke, Follow-up und Messung — aus einer Hand.',
+    prerender: true,
+  },
   beispiel: { title: 'Havel & Grau — Beispielprojekt von Plan B Studios', prerender: false },
   meridian: { title: 'MERIDIAN — Beispielprojekt von Plan B Studios', prerender: false },
   rundgang: { title: 'Design-Loft — 3D-Rundgang von Plan B Studios', prerender: false },
 }
 
+function esc(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')
+}
+
+// Ersetzt ein Meta-Tag und meldet, wenn nichts passiert ist. Wichtig, weil die
+// Tags in index.html ueber MEHRERE Zeilen gehen: Ein einzeiliges Suchmuster
+// findet sie nicht und scheitert dabei lautlos — genau das ist vorher
+// passiert, die Beschreibung blieb auf allen Unterseiten die der Startseite.
+function swap(html, pattern, ersatz, label, route) {
+  const neu2 = html.replace(pattern, ersatz)
+  if (neu2 === html) {
+    console.warn(`[postbuild] WARNUNG: ${label} in /${route} nicht ersetzt`)
+  }
+  return neu2
+}
+
 function withMeta(html, route, cfg) {
   const url = `${BASE}/${route}/`
-  html = html.replace(/<title>[^<]*<\/title>/, `<title>${cfg.title}</title>`)
-  html = html.replace(/<link rel="canonical"[^>]*>/, `<link rel="canonical" href="${url}">`)
-  html = html.replace(
-    /<meta property="og:url"[^>]*>/,
-    `<meta property="og:url" content="${url}">`,
-  )
-  html = html.replace(
-    /<meta property="og:title"[^>]*>/,
-    `<meta property="og:title" content="${cfg.title}">`,
-  )
-  html = html.replace(
-    /<meta name="twitter:title"[^>]*>/,
-    `<meta name="twitter:title" content="${cfg.title}">`,
-  )
+  html = swap(html, /<title>[\s\S]*?<\/title>/i, `<title>${esc(cfg.title)}</title>`, 'title', route)
+  html = swap(html, /<link\s+rel="canonical"[\s\S]*?>/i, `<link rel="canonical" href="${url}" />`, 'canonical', route)
+  html = swap(html, /<meta\s+property="og:url"[\s\S]*?>/i, `<meta property="og:url" content="${url}" />`, 'og:url', route)
+  html = swap(html, /<meta\s+property="og:title"[\s\S]*?>/i, `<meta property="og:title" content="${esc(cfg.title)}" />`, 'og:title', route)
+  html = swap(html, /<meta\s+name="twitter:title"[\s\S]*?>/i, `<meta name="twitter:title" content="${esc(cfg.title)}" />`, 'twitter:title', route)
   if (cfg.desc) {
-    html = html.replace(
-      /<meta name="description"[^>]*>/,
-      `<meta name="description" content="${cfg.desc}">`,
-    )
-    html = html.replace(
-      /<meta property="og:description"[^>]*>/,
-      `<meta property="og:description" content="${cfg.desc}">`,
-    )
+    html = swap(html, /<meta\s+name="description"[\s\S]*?>/i, `<meta name="description" content="${esc(cfg.desc)}" />`, 'description', route)
+    html = swap(html, /<meta\s+property="og:description"[\s\S]*?>/i, `<meta property="og:description" content="${esc(cfg.desc)}" />`, 'og:description', route)
+    html = swap(html, /<meta\s+name="twitter:description"[\s\S]*?>/i, `<meta name="twitter:description" content="${esc(cfg.desc)}" />`, 'twitter:description', route)
   }
   return html
 }

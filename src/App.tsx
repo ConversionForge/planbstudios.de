@@ -7,6 +7,7 @@ import { HavelGrauSite } from './example/HavelGrauSite'
 import { MeridianSite } from './example/MeridianSite'
 import { PropertyTour } from './tour/PropertyTour'
 import { NotFound } from './pages/NotFound'
+import { MaklerSituation } from './pages/MaklerSituation'
 import { PageCurtain } from './components/PageCurtain'
 import { saveScroll, readScroll } from './lib/scroll'
 
@@ -62,6 +63,7 @@ function App() {
         <Route path="/beispiel" element={<HavelGrauSite />} />
         <Route path="/meridian" element={<MeridianSite />} />
         <Route path="/rundgang" element={<PropertyTour />} />
+        <Route path="/makler/mehr-eigentuemeranfragen" element={<MaklerSituation />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
