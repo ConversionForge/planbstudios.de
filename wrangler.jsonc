@@ -1,0 +1,32 @@
+{
+  // Cloudflare legt bei neu verbundenen Repositories einen Worker mit
+  // statischen Assets an (kein klassisches Pages-Projekt). Ohne diese Datei
+  // weiss der Worker nicht, welches Verzeichnis er ausliefern soll: Der Build
+  // ist gruen, das Deployment aktiv, und trotzdem antwortet jede Adresse mit
+  // 404. Genau das war der Fehler.
+
+  // Muss zum bestehenden Worker passen, sonst entsteht ein zweiter.
+  "name": "planbstudios-de",
+  "compatibility_date": "2025-01-01",
+
+  "assets": {
+    // Ausgabeverzeichnis von "npm run build".
+    "directory": "./dist",
+
+    // "404-page" bedient unbekannte Pfade mit dist/404.html UND liefert dabei
+    // den echten Status 404. Das entspricht genau dem bisherigen Verhalten auf
+    // GitHub Pages.
+    //
+    // Bewusst NICHT "single-page-application": Das wuerde fuer jeden Pfad
+    // Status 200 zurueckgeben. Bekannte Routen (impressum, datenschutz,
+    // beispiel, meridian, rundgang) liegen ohnehin als echte HTML-Dateien vor,
+    // die postbuild.mjs vorrendert, und ein 200 auf nicht existierende Adressen
+    // wuerde Suchmaschinen Seiten melden, die es nicht gibt.
+    "not_found_handling": "404-page",
+
+    // Bindung fuer einen spaeteren Worker-Skript-Einstieg. Wird gebraucht,
+    // sobald der Formular-Endpunkt dazukommt oder falls die Sicherheits-Header
+    // ueber ein Skript gesetzt werden muessen.
+    "binding": "ASSETS"
+  }
+}
