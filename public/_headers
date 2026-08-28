@@ -1,0 +1,15 @@
+# Sicherheits-Header. Wird von Cloudflare Pages gelesen (Datei muss im
+# Ausgabeverzeichnis liegen, deshalb public/). GitHub Pages ignoriert die
+# Datei, dort bleibt sie wirkungslos.
+#
+# Eine Content-Security-Policy fehlt hier bewusst noch: Sie kann eine Seite
+# stillschweigend zerlegen und wird erst nach der Umschaltung ergaenzt, wenn
+# sie im Browser geprueft werden kann.
+
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
