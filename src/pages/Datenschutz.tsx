@@ -23,17 +23,19 @@ export function Datenschutz() {
         bewusst datensparsam gestaltet: Sie enthält keine Kontaktformulare, kein
         Analyse-Tracking und setzt keine Cookies. Alle Inhalte — auch Schriften,
         Bilder und Videos — werden vom eigenen Server geladen; in die Website selbst
-        sind, abgesehen vom Hosting bei GitHub&nbsp;Pages (Ziffer&nbsp;3), keine
+        sind, abgesehen vom Hosting bei Cloudflare (Ziffer&nbsp;3), keine
         Dienste Dritter eingebunden. Eine Kontaktaufnahme erfolgt ausschließlich
         über die angegebene E-Mail-Adresse (Ziffer&nbsp;4).
       </p>
 
-      <h2>3. Hosting: GitHub Pages</h2>
+      <h2>3. Hosting: Cloudflare</h2>
       <p>
-        Diese Website wird bei GitHub Pages gehostet, einem Dienst der GitHub,
-        Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim
-        Aufruf der Seiten werden technisch notwendige Zugriffsdaten verarbeitet,
-        die Ihr Browser automatisch übermittelt (Server-Logfiles):
+        Diese Website wird über Cloudflare Workers ausgeliefert, einen Dienst der
+        Cloudflare,&nbsp;Inc., 101 Townsend Street, San Francisco, CA&nbsp;94107,
+        USA. Cloudflare stellt zugleich die DNS-Verwaltung der Domain bereit und
+        liegt damit technisch vor der Website: Jeder Aufruf läuft über die Server
+        von Cloudflare. Dabei werden technisch notwendige Zugriffsdaten
+        verarbeitet, die Ihr Browser automatisch übermittelt:
       </p>
       <ul>
         <li>IP-Adresse des zugreifenden Geräts</li>
@@ -44,28 +46,27 @@ export function Datenschutz() {
       </ul>
       <p>
         Diese Verarbeitung dient der sicheren, stabilen und effizienten
-        Auslieferung der Website. Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1
-        lit.&nbsp;f DSGVO (berechtigtes Interesse an einem funktionierenden
-        Internetauftritt).
+        Auslieferung der Website sowie der Abwehr von Angriffen. Rechtsgrundlage
+        ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an
+        einem funktionierenden und geschützten Internetauftritt).
       </p>
       <p>
-        Auf die Server-Logfiles und deren Speicherdauer haben wir keinen Zugriff;
-        Umfang, Dauer und Löschung dieser Zugriffsdaten legt GitHub als Betreiber
-        der Infrastruktur fest. Mit GitHub besteht ein Auftragsverarbeitungs­verhältnis
-        nach Art.&nbsp;28 DSGVO (GitHub&nbsp;Data&nbsp;Protection&nbsp;Agreement).
+        Auf diese Zugriffsdaten und deren Speicherdauer haben wir keinen Zugriff;
+        Umfang, Dauer und Löschung legt Cloudflare als Betreiber der Infrastruktur
+        fest. Mit Cloudflare besteht ein Auftragsverarbeitungsverhältnis nach
+        Art.&nbsp;28 DSGVO.
       </p>
       <p>
-        Dabei können Daten an Server von GitHub in den USA übertragen werden.
-        GitHub bzw. die Muttergesellschaft Microsoft ist unter dem
-        EU-U.S. Data Privacy Framework zertifiziert; ergänzend werden die
-        Standardvertragsklauseln der EU-Kommission herangezogen. Einzelheiten in
-        der{' '}
+        Dabei können Daten an Server von Cloudflare in den USA übertragen werden.
+        Cloudflare ist unter dem EU-U.S. Data Privacy Framework zertifiziert;
+        ergänzend werden die Standardvertragsklauseln der EU-Kommission
+        herangezogen. Einzelheiten in der{' '}
         <a
-          href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
+          href="https://www.cloudflare.com/de-de/privacypolicy/"
           target="_blank"
           rel="noreferrer"
         >
-          Datenschutzerklärung von GitHub
+          Datenschutzerklärung von Cloudflare
         </a>
         .
       </p>

@@ -1,8 +1,16 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
+  # STILLGELEGT am 29.08.2026. Die Seite laeuft seitdem ueber Cloudflare
+  # Workers, das Deployment nach GitHub Pages ist damit ueberfluessig und
+  # wuerde nur bei jedem Push unnoetig bauen.
+  #
+  # Der Workflow bleibt bewusst erhalten und laesst sich in der
+  # Actions-Oberflaeche von Hand starten ("Run workflow"). Er ist die
+  # Rueckfallebene, falls die Seite kurzfristig wieder ueber GitHub Pages
+  # laufen soll. Dafuer muss zusaetzlich public/CNAME wieder angelegt
+  # werden (Inhalt: planbstudios.de) und das DNS gemaess
+  # DNS-RUECKFALLEBENE.md zurueckgestellt werden.
   workflow_dispatch:
 
 permissions:

@@ -1,6 +1,6 @@
 # DNS-Rückfallebene
 
-Stand **28.07.2026**, aufgenommen unmittelbar vor dem Nameserver-Wechsel von
+Stand **29.08.2026**, aufgenommen unmittelbar vor dem Nameserver-Wechsel von
 IONOS zu Cloudflare. Zweck: Wenn nach dem Umzug etwas nicht stimmt, lässt sich
 der alte Zustand hiermit exakt wiederherstellen, ohne raten zu müssen.
 
@@ -68,6 +68,17 @@ muss aktualisiert werden.
 4. Kontrolle: `nslookup -type=A planbstudios.de 8.8.8.8` muss die vier
    185.199.x.153-Adressen liefern.
 
-Voraussetzung dafür ist, dass das GitHub-Pages-Deployment noch existiert. Der
-zugehörige Actions-Workflow wird deshalb erst stillgelegt, wenn der Umzug
-nachweislich stabil läuft, nicht vorher.
+5. `public/CNAME` mit dem Inhalt `planbstudios.de` wieder anlegen,
+   sonst nimmt GitHub Pages die eigene Domain nicht an.
+6. Den Actions-Workflow in der Actions-Oberfläche von Hand starten
+   ("Run workflow"), damit GitHub Pages wieder eine aktuelle Fassung hat.
+
+## Stand seit dem Umzug (29.08.2026)
+
+Die Domain wird über **Cloudflare Workers** ausgeliefert, Apex und www sind
+dort als Custom Domains eingetragen. Nachgewiesen über `Server: cloudflare`,
+den `CF-RAY`-Header und die ausgelieferten Sicherheits-Header.
+
+Der Actions-Workflow ist stillgelegt, läuft also nicht mehr bei jedem Push,
+lässt sich aber weiterhin von Hand starten. `public/CNAME` wurde entfernt.
+Beides ist über die Schritte 5 und 6 oben umkehrbar.
