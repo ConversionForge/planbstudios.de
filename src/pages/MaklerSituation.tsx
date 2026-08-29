@@ -45,7 +45,7 @@ const BAUSTEINE = [
   {
     n: '04',
     title: 'Messung',
-    text: 'An welcher Stelle Menschen aussteigen. Cookiefrei und ohne Einwilligungsbanner, damit auch die Abbrüche sichtbar bleiben und nicht nur diejenigen gezählt werden, die vorher zugestimmt haben.',
+    text: 'An welcher Stelle Menschen aussteigen. Cookiefrei aufgesetzt, damit auch Abbrüche sichtbar bleiben und nicht nur diejenigen gezählt werden, die vorher zugestimmt haben.',
   },
 ]
 

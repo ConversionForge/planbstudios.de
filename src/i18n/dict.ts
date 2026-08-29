@@ -37,7 +37,7 @@ export const de = {
   },
   statement: [
     { t: 'Die' }, { t: 'meisten' }, { t: 'Websites' }, { t: 'sehen' }, { t: 'aus' },
-    { t: 'wie' }, { t: 'Websites.' }, { t: 'Wir' }, { t: 'bauen' }, { t: 'digitale' },
+    { t: 'wie' }, { t: 'Websites.' }, { t: 'Ich' }, { t: 'baue' }, { t: 'digitale' },
     { t: 'Orte', gold: true }, { t: '—' }, { t: 'Räume,' }, { t: 'die' }, { t: 'man' },
     { t: 'betritt', gold: true }, { t: 'und' }, { t: 'nicht' }, { t: 'mehr' },
     { t: 'vergisst.' },
@@ -163,15 +163,15 @@ export const de = {
     title1: 'Bevor Sie',
     titleEm: 'fragen',
     title2: '.',
-    lead: 'Die Fragen, die uns am häufigsten erreichen — offen beantwortet. Steht Ihre nicht dabei? Schreiben Sie uns.',
+    lead: 'Die Fragen, die mich am häufigsten erreichen — offen beantwortet. Steht Ihre nicht dabei? Schreiben Sie mir.',
     items: [
       {
         q: 'Was kostet eine Website bei Plan B Studios?',
-        a: 'Jedes Projekt kalkulieren wir einzeln — abhängig von Umfang, Objektzahl und gewünschten Funktionen. Sie bekommen vorab einen Festpreis, keine Überraschungen und keine versteckten Folgekosten.',
+        a: 'Jedes Projekt kalkuliere ich einzeln — abhängig von Umfang, Objektzahl und gewünschten Funktionen. Sie bekommen vorab einen Festpreis, keine Überraschungen und keine versteckten Folgekosten.',
       },
       {
         q: 'Wie lange dauert ein Projekt?',
-        a: 'Eine hochwertige Immobilien-Website ist in der Regel in drei bis fünf Wochen live. Ein 3D-Rundgang ist je nach Objekt oft in wenigen Tagen fertig. Enge Termine sagen wir Ihnen offen, bevor wir starten.',
+        a: 'Eine hochwertige Immobilien-Website ist in der Regel in drei bis fünf Wochen live. Ein 3D-Rundgang ist je nach Objekt oft in wenigen Tagen fertig. Enge Termine sage ich Ihnen offen, bevor es losgeht.',
       },
       {
         q: 'Bekomme ich Website und 3D-Rundgang wirklich aus einer Hand?',
@@ -179,11 +179,11 @@ export const de = {
       },
       {
         q: 'Was, wenn ich noch keine Texte oder Fotos habe?',
-        a: 'Kein Problem. Wir beraten bei Text und Bild, ordnen vorhandenes Material und übernehmen auf Wunsch die komplette Umsetzung — bis die Seite steht.',
+        a: 'Kein Problem. Ich berate bei Text und Bild, ordne vorhandenes Material und übernehme auf Wunsch die komplette Umsetzung — bis die Seite steht.',
       },
       {
         q: 'Kann ich meine Objekte später selbst pflegen?',
-        a: 'Auf Wunsch bauen wir eine einfache Pflege-Oberfläche ein, mit der Sie Objekte selbst einstellen und ändern können — ohne Technikkenntnisse.',
+        a: 'Auf Wunsch baue ich eine einfache Pflege-Oberfläche ein, mit der Sie Objekte selbst einstellen und ändern können — ohne Technikkenntnisse.',
       },
     ],
   },
@@ -193,7 +193,7 @@ export const de = {
     title2a: 'etwas ',
     titleEm: 'bauen',
     title2b: '.',
-    lead: 'Eine neue Website, ein 3D-Rundgang oder beides — erzählen Sie uns von Ihrem Vorhaben. Wir melden uns in der Regel innerhalb von 24 Stunden (werktags).',
+    lead: 'Eine neue Website, ein 3D-Rundgang oder beides — erzählen Sie mir von Ihrem Vorhaben. Ich melde mich in der Regel innerhalb von 24 Stunden (werktags).',
     callPrefix: 'Oder rufen Sie an: ',
     studio: 'Studio · Lübeck',
   },
@@ -205,7 +205,7 @@ export const de = {
     linkWebdesign: 'Webdesign',
     linkRundgaenge: '3D-Rundgänge',
     linkArbeiten: 'Arbeiten',
-    linkAbout: 'Über uns',
+    linkAbout: 'Über mich',
     linkEmail: 'E-Mail',
     linkRequest: 'Anfragen',
     rights: 'Alle Rechte vorbehalten.',
@@ -268,7 +268,7 @@ export const en: Dict = {
   },
   statement: [
     { t: 'Most' }, { t: 'websites' }, { t: 'look' }, { t: 'like' }, { t: 'websites.' },
-    { t: 'We' }, { t: 'build' }, { t: 'digital' }, { t: 'places', gold: true },
+    { t: 'I' }, { t: 'build' }, { t: 'digital' }, { t: 'places', gold: true },
     { t: '—' }, { t: 'spaces' }, { t: 'you' }, { t: 'walk', gold: true },
     { t: 'into', gold: true }, { t: 'and' }, { t: 'never' }, { t: 'forget.' },
   ] as Word[],
@@ -393,7 +393,7 @@ export const en: Dict = {
     title1: 'Before you',
     titleEm: 'ask',
     title2: '.',
-    lead: 'The questions we hear most often — answered openly. Yours is not among them? Write to us.',
+    lead: 'The questions I hear most often — answered openly. Yours is not among them? Write to me.',
     items: [
       {
         q: 'What does a website at Plan B Studios cost?',
@@ -401,7 +401,7 @@ export const en: Dict = {
       },
       {
         q: 'How long does a project take?',
-        a: 'A high-quality real estate website is usually live within three to five weeks. A 3D tour is often finished within a few days, depending on the property. If a deadline is tight, we say so before we start.',
+        a: 'A high-quality real estate website is usually live within three to five weeks. A 3D tour is often finished within a few days, depending on the property. If a deadline is tight, I say so up front.',
       },
       {
         q: 'Do I really get website and 3D tour from one source?',
@@ -409,11 +409,11 @@ export const en: Dict = {
       },
       {
         q: 'What if I have no copy or photos yet?',
-        a: 'Not a problem. We advise on text and imagery, organise existing material and, if you wish, handle the entire implementation — until the site is live.',
+        a: 'Not a problem. I advise on text and imagery, organise existing material and, if you wish, handle the entire implementation — until the site is live.',
       },
       {
         q: 'Can I maintain my properties myself later on?',
-        a: 'On request we build in a simple editing interface that lets you add and change properties yourself — no technical knowledge needed.',
+        a: 'On request I build in a simple editing interface that lets you add and change properties yourself — no technical knowledge needed.',
       },
     ],
   },
@@ -423,8 +423,8 @@ export const en: Dict = {
     title2a: 'something ',
     titleEm: 'together',
     title2b: '.',
-    lead: 'A new website, a 3D tour or both — tell us about your plans. We usually reply within 24 hours (on working days).',
-    callPrefix: 'Or give us a call: ',
+    lead: 'A new website, a 3D tour or both — tell me about your plans. I usually reply within 24 hours (on working days).',
+    callPrefix: 'Or give me a call: ',
     studio: 'Studio · Lübeck',
   },
   footer: {

@@ -19,7 +19,7 @@ export function Datenschutz() {
 
       <h2>2. Überblick</h2>
       <p>
-        Der Schutz Ihrer persönlichen Daten ist uns wichtig. Diese Website ist
+        Der Schutz Ihrer persönlichen Daten ist mir wichtig. Diese Website ist
         bewusst datensparsam gestaltet: Sie enthält keine Kontaktformulare, kein
         Analyse-Tracking und setzt keine Cookies. Alle Inhalte — auch Schriften,
         Bilder und Videos — werden vom eigenen Server geladen; in die Website selbst
@@ -51,7 +51,7 @@ export function Datenschutz() {
         einem funktionierenden und geschützten Internetauftritt).
       </p>
       <p>
-        Auf diese Zugriffsdaten und deren Speicherdauer haben wir keinen Zugriff;
+        Auf diese Zugriffsdaten und deren Speicherdauer habe ich keinen Zugriff;
         Umfang, Dauer und Löschung legt Cloudflare als Betreiber der Infrastruktur
         fest. Mit Cloudflare besteht ein Auftragsverarbeitungsverhältnis nach
         Art.&nbsp;28 DSGVO.
@@ -73,7 +73,7 @@ export function Datenschutz() {
 
       <h2>4. Kontaktaufnahme per E-Mail</h2>
       <p>
-        Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben (E-Mail-Adresse,
+        Wenn Sie mich per E-Mail kontaktieren, werden Ihre Angaben (E-Mail-Adresse,
         Name, Inhalt der Nachricht) zur Bearbeitung Ihrer Anfrage gespeichert.
         Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO (vorvertragliche
         Maßnahmen) bzw. lit.&nbsp;f DSGVO. Die Daten werden gelöscht, sobald sie für
@@ -81,7 +81,7 @@ export function Datenschutz() {
         Aufbewahrungsfristen entgegenstehen.
       </p>
       <p>
-        Unser E-Mail-Postfach (planbstudios.de@gmail.com) wird über den Dienst
+        Mein E-Mail-Postfach (planbstudios.de@gmail.com) wird über den Dienst
         Gmail von Google betrieben (Google&nbsp;Ireland&nbsp;Limited, Gordon House,
         Barrow Street, Dublin&nbsp;4, Irland). Bei der Verarbeitung Ihrer E-Mail
         können Daten an Google&nbsp;LLC in die USA übermittelt werden. Google ist
