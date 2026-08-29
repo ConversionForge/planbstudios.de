@@ -20,12 +20,14 @@ export function Datenschutz() {
       <h2>2. Überblick</h2>
       <p>
         Der Schutz Ihrer persönlichen Daten ist mir wichtig. Diese Website ist
-        bewusst datensparsam gestaltet: Sie enthält keine Kontaktformulare, kein
-        Analyse-Tracking und setzt keine Cookies. Alle Inhalte — auch Schriften,
-        Bilder und Videos — werden vom eigenen Server geladen; in die Website selbst
-        sind, abgesehen vom Hosting bei Cloudflare (Ziffer&nbsp;3), keine
-        Dienste Dritter eingebunden. Eine Kontaktaufnahme erfolgt ausschließlich
-        über die angegebene E-Mail-Adresse (Ziffer&nbsp;4).
+        bewusst datensparsam gestaltet: Sie setzt keine Cookies und bindet kein
+        Analyse-Tracking ein. Alle Inhalte — auch Schriften, Bilder und Videos —
+        werden vom eigenen Server geladen. Eine Kontaktaufnahme ist per E-Mail
+        möglich (Ziffer&nbsp;4) oder über das Formular des Akquise-Checks
+        (Ziffer&nbsp;5). Beteiligte Dienstleister sind ausschließlich der Hoster
+        Cloudflare (Ziffer&nbsp;3), der E-Mail-Anbieter des Postfachs
+        (Ziffer&nbsp;4) sowie Brevo für den Versand und die Verwaltung von
+        Anfragen aus dem Formular (Ziffer&nbsp;5).
       </p>
 
       <h2>3. Hosting: Cloudflare</h2>
@@ -91,13 +93,59 @@ export function Datenschutz() {
         Postfachs.
       </p>
 
-      <h2>5. Schriftarten</h2>
+      <h2>5. Akquise-Check (Formular)</h2>
+      <p>
+        Über den Akquise-Check können Sie mir fünf Angaben zu Ihrer Situation
+        sowie Ihre Kontaktdaten übermitteln. Verarbeitet werden dabei:
+      </p>
+      <ul>
+        <li>Ihre Angaben zu Region, Objektzahl, Herkunft der Aufträge,
+          Online-Wertermittlung und Website-Adresse</li>
+        <li>Name und, falls angegeben, Firma</li>
+        <li>E-Mail-Adresse und, falls angegeben, Telefonnummer</li>
+        <li>Ihre Einwilligung sowie der Zeitpunkt des Absendens</li>
+      </ul>
+      <p>
+        Zweck ist die Bearbeitung Ihrer Anfrage und die anschließende
+        Kontaktaufnahme. Rechtsgrundlage ist Ihre Einwilligung nach Art.&nbsp;6
+        Abs.&nbsp;1 lit.&nbsp;a DSGVO in Verbindung mit Art.&nbsp;6 Abs.&nbsp;1
+        lit.&nbsp;b DSGVO (vorvertragliche Maßnahmen). Die Einwilligung können Sie
+        jederzeit formlos widerrufen; die Rechtmäßigkeit der bis dahin erfolgten
+        Verarbeitung bleibt davon unberührt.
+      </p>
+      <p>
+        Die Angabe der Website-Adresse ist freiwillig. Sie wird nicht automatisiert
+        ausgewertet, sondern dient allein der Vorbereitung eines Gesprächs.
+      </p>
+      <p>
+        <strong>Empfänger:</strong> Für den Versand der Benachrichtigung und die
+        Verwaltung der Anfrage setze ich Brevo ein (Sendinblue GmbH, Köpenicker
+        Straße&nbsp;126, 10179&nbsp;Berlin). Die Verarbeitung erfolgt auf Servern
+        innerhalb der Europäischen Union; eine Übermittlung in ein Drittland findet
+        insoweit nicht statt. Mit Brevo besteht ein
+        Auftragsverarbeitungsverhältnis nach Art.&nbsp;28 DSGVO.
+      </p>
+      <p>
+        <strong>Speicherdauer:</strong> Führt Ihre Anfrage nicht zu einer
+        Geschäftsbeziehung, lösche ich Ihre Angaben spätestens sechs Monate nach
+        dem letzten Kontakt. Entsteht ein Auftrag, gelten die gesetzlichen
+        Aufbewahrungsfristen.
+      </p>
+      <p>
+        <strong>Schutz vor automatisierten Einsendungen:</strong> Das Formular
+        enthält ein für Sie unsichtbares Zusatzfeld und misst die Zeit zwischen
+        Aufruf und Absenden, um maschinelle Einsendungen zu erkennen. Es werden
+        dabei keine zusätzlichen personenbezogenen Daten erhoben und keine
+        externen Dienste eingebunden.
+      </p>
+
+      <h2>6. Schriftarten</h2>
       <p>
         Diese Website lädt alle Schriftarten lokal vom eigenen Server. Es werden
         dabei keine Daten an Dritte (etwa Google Fonts) übertragen.
       </p>
 
-      <h2>6. Lokale Speicherung im Browser</h2>
+      <h2>7. Lokale Speicherung im Browser</h2>
       <p>
         Die Website speichert im Sitzungsspeicher (sessionStorage) Ihres Browsers
         zwei rein funktionale, sitzungsbezogene Angaben: einen Hinweis, ob die
@@ -105,12 +153,16 @@ export function Datenschutz() {
         zuletzt besuchte Scroll-Position, damit die Navigation flüssig bleibt. Diese
         Angaben enthalten keinen Personenbezug, dienen nicht der Analyse oder
         Nachverfolgung und werden beim Schließen des Browser-Tabs automatisch
-        gelöscht. Da es sich um für den Betrieb der Seite unbedingt erforderliche
+        gelöscht. Solange Sie den Akquise-Check (Ziffer&nbsp;5) ausfüllen, wird
+        zusätzlich Ihr Zwischenstand dort abgelegt, damit ein versehentliches
+        Neuladen Ihre Eingaben nicht löscht. Dieser Zwischenstand verbleibt
+        ausschließlich auf Ihrem Gerät und wird gelöscht, sobald Sie das Formular
+        abgeschickt oder den Browser-Tab geschlossen haben. Da es sich um für den Betrieb der Seite unbedingt erforderliche
         Speicherung handelt, ist hierfür nach § 25 Abs.&nbsp;2 TDDDG keine
         Einwilligung erforderlich.
       </p>
 
-      <h2>7. Keine automatisierte Entscheidungsfindung</h2>
+      <h2>8. Keine automatisierte Entscheidungsfindung</h2>
       <p>
         Es findet keine automatisierte Entscheidungsfindung einschließlich Profiling
         im Sinne des Art.&nbsp;22 DSGVO statt. Aufgrund der geringen Größe des
@@ -118,7 +170,7 @@ export function Datenschutz() {
         Datenschutzbeauftragten (§ 38 BDSG).
       </p>
 
-      <h2>8. Ihre Rechte</h2>
+      <h2>9. Ihre Rechte</h2>
       <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf:</p>
       <ul>
         <li>Auskunft über Ihre gespeicherten Daten (Art.&nbsp;15 DSGVO)</li>
@@ -135,7 +187,7 @@ export function Datenschutz() {
         24103 Kiel.
       </p>
 
-      <h2>9. Aktualität</h2>
+      <h2>10. Aktualität</h2>
       <p>
         Diese Datenschutzerklärung ist aktuell gültig und hat den Stand Juli 2026.
         Durch die Weiterentwicklung der Website oder geänderte gesetzliche Vorgaben

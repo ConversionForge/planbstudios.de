@@ -9,6 +9,10 @@
   "name": "planbstudios-de",
   "compatibility_date": "2025-01-01",
 
+  // Worker-Skript fuer /api/*. Alles andere reicht es unveraendert an die
+  // statischen Dateien durch (siehe worker/index.ts).
+  "main": "worker/index.ts",
+
   "assets": {
     // Ausgabeverzeichnis von "npm run build".
     "directory": "./dist",
@@ -22,12 +26,11 @@
     // beispiel, meridian, rundgang) liegen ohnehin als echte HTML-Dateien vor,
     // die postbuild.mjs vorrendert, und ein 200 auf nicht existierende Adressen
     // wuerde Suchmaschinen Seiten melden, die es nicht gibt.
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
 
-    // Hier stand versuchsweise "binding": "ASSETS". Das laesst Cloudflare in
-    // einem reinen Assets-Worker nicht zu ("Cannot use assets with a binding
-    // in an assets-only Worker") — eine Bindung setzt ein Worker-Skript unter
-    // "main" voraus. Beides kommt zusammen zurueck, sobald der
-    // Formular-Endpunkt gebaut wird.
+    // Jetzt zulaessig, weil oben ein Worker-Skript unter "main" steht. Ohne
+    // Skript lehnt Cloudflare die Bindung ab ("Cannot use assets with a
+    // binding in an assets-only Worker").
+    "binding": "ASSETS"
   }
 }

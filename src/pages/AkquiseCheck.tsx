@@ -10,7 +10,7 @@ import { melde, meldeSchritt } from '../akquise/ereignis'
 // Terminbuchung. Bewusst als Verlinkung und NICHT als Einbettung: Eine
 // Einbettung laedt fremde Skripte nach und wuerde eine Einwilligung noetig
 // machen. Solange die Adresse leer ist, wird stattdessen die E-Mail angeboten.
-const TERMIN_URL = ''
+const TERMIN_URL = 'https://cal.com/plan-b-studios/erstgesprach'
 
 const SPEICHER = 'pb-akquise-check'
 const MINDESTDAUER_MS = 4000 // schneller als das ausgefuellt = mit hoher Wahrscheinlichkeit ein Bot
