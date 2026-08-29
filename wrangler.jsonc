@@ -13,6 +13,13 @@
   // statischen Dateien durch (siehe worker/index.ts).
   "main": "worker/index.ts",
 
+  // Ohne diese Zeile beantwortet das Datei-Ausliefern die Anfrage zuerst und
+  // gibt bei POST auf /api/* ein leeres 405 zurueck, ohne das Skript je zu
+  // fragen. Nur /api/* laeuft deshalb zuerst durch den Worker; alle anderen
+  // Pfade kommen weiter direkt aus den Dateien, damit _headers und die
+  // 404-Behandlung unveraendert greifen.
+  "run_worker_first": ["/api/*"],
+
   "assets": {
     // Ausgabeverzeichnis von "npm run build".
     "directory": "./dist",
