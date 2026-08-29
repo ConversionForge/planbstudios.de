@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Plan B Studios — Webdesign & 3D-Rundgänge für Immobilien</title>
+    <title>Webdesign Lübeck &amp; 3D-Rundgänge für Immobilien — Plan B Studios</title>
     <meta
       name="description"
-      content="Plan B Studios entwirft Websites und begehbare 3D-Rundgänge für Immobilien — maßgeschneidert für Makler, Hausverwaltungen und Bauträger. Studio in Lübeck."
+      content="Webdesign und begehbare 3D-Rundgänge für Immobilien aus Lübeck. Maßgeschneiderte Websites für Makler, Hausverwaltungen und Bauträger in Schleswig-Holstein."
     />
     <link rel="canonical" href="https://planbstudios.de/" />
 
@@ -20,10 +20,10 @@
     <meta property="og:site_name" content="Plan B Studios" />
     <meta property="og:locale" content="de_DE" />
     <meta property="og:url" content="https://planbstudios.de/" />
-    <meta property="og:title" content="Plan B Studios — Webdesign & 3D-Rundgänge für Immobilien" />
+    <meta property="og:title" content="Webdesign Lübeck &amp; 3D-Rundgänge für Immobilien — Plan B Studios" />
     <meta
       property="og:description"
-      content="Websites und begehbare 3D-Rundgänge für Immobilien. Gebaut, nicht zusammengeklickt."
+      content="Websites und begehbare 3D-Rundgänge für Immobilien aus Lübeck. Gebaut, nicht zusammengeklickt."
     />
     <meta property="og:image" content="https://planbstudios.de/og-image.png" />
     <meta property="og:image:width" content="1200" />
@@ -31,12 +31,70 @@
     <meta property="og:image:alt" content="Plan B Studios" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Plan B Studios — Webdesign & 3D-Rundgänge für Immobilien" />
+    <meta name="twitter:title" content="Webdesign Lübeck &amp; 3D-Rundgänge für Immobilien — Plan B Studios" />
     <meta
       name="twitter:description"
-      content="Websites und begehbare 3D-Rundgänge für Immobilien. Gebaut, nicht zusammengeklickt."
+      content="Websites und begehbare 3D-Rundgänge für Immobilien aus Lübeck. Gebaut, nicht zusammengeklickt."
     />
     <meta name="twitter:image" content="https://planbstudios.de/og-image.png" />
+
+    <!-- Strukturierte Daten: Ortsgebundenes Unternehmen. Gibt Suchmaschinen die
+         Angaben maschinenlesbar, die sonst nur als Fliesstext im Impressum
+         stehen. Wichtig fuer die lokale Suche und fuer den Eintrag in Karten.
+
+         Der Hash dieses Blocks wird von scripts/postbuild.mjs automatisch in die
+         Content-Security-Policy aufgenommen, damit er nicht blockiert wird. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://planbstudios.de/#studio",
+        "name": "Plan B Studios",
+        "description": "Webdesign und begehbare 3D-Rundgänge für Immobilien. Maßgeschneiderte Websites für Makler, Hausverwaltungen und Bauträger.",
+        "url": "https://planbstudios.de/",
+        "image": "https://planbstudios.de/og-image.png",
+        "logo": "https://planbstudios.de/og-image.png",
+        "email": "info@planbstudios.de",
+        "telephone": "+49-178-8489408",
+        "founder": { "@type": "Person", "name": "Bilal Gnielka" },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Robert-Koch-Straße 24",
+          "postalCode": "23562",
+          "addressLocality": "Lübeck",
+          "addressRegion": "Schleswig-Holstein",
+          "addressCountry": "DE"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Lübeck" },
+          { "@type": "State", "name": "Schleswig-Holstein" }
+        ],
+        "knowsLanguage": ["de", "en"],
+        "priceRange": "$$",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Leistungen",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Webdesign für Immobilien",
+                "description": "Maßgeschneiderte Websites für Makler, Hausverwaltungen und Bauträger, ohne Baukasten und ohne Vorlage."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "3D-Rundgänge für Immobilien",
+                "description": "Begehbare 3D-Rundgänge und cinematische Objektfilme, die aus Exposés Besichtigungen machen."
+              }
+            }
+          ]
+        }
+      }
+    </script>
 
     <style>html { background-color: #0a0a0b; }</style>
     <!-- Scroll-Wiederherstellung so früh wie möglich der App übergeben, damit der

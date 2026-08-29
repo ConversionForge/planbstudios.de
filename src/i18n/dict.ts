@@ -9,9 +9,9 @@ type Word = { t: string; gold?: boolean }
 
 export const de = {
   htmlLang: 'de',
-  siteTitle: 'Plan B Studios — Webdesign & 3D-Rundgänge für Immobilien',
+  siteTitle: 'Webdesign Lübeck & 3D-Rundgänge für Immobilien — Plan B Studios',
   siteDesc:
-    'Plan B Studios entwirft Websites und begehbare 3D-Rundgänge für Immobilien — maßgeschneidert für Makler, Hausverwaltungen und Bauträger. Studio in Lübeck.',
+    'Webdesign und begehbare 3D-Rundgänge für Immobilien aus Lübeck. Maßgeschneiderte Websites für Makler, Hausverwaltungen und Bauträger in Schleswig-Holstein.',
   nav: {
     links: [
       { label: 'Webdesign', href: '#webdesign' },
@@ -240,7 +240,7 @@ export type Dict = typeof de
 
 export const en: Dict = {
   htmlLang: 'en',
-  siteTitle: 'Plan B Studios — Web design & 3D tours for real estate',
+  siteTitle: 'Web design & 3D tours for real estate — Plan B Studios, Lübeck',
   siteDesc:
     'Plan B Studios designs websites and walkable 3D tours for real estate — tailor-made for estate agents, property managers and developers. Studio in Lübeck, Germany.',
   nav: {
