@@ -32,7 +32,22 @@
   // ist, werden beide Werte hier getauscht.
   "vars": {
     "BREVO_ABSENDER": "planbstudios.de@gmail.com",
-    "LEAD_EMPFAENGER": "planbstudios.de@gmail.com"
+    "LEAD_EMPFAENGER": "planbstudios.de@gmail.com",
+
+    // DER SCHALTER FUER DIE BESTAETIGUNGSMAIL AN DEN INTERESSENTEN.
+    //
+    // "0" = stumm. Es geht nur die Benachrichtigung an den Inhaber raus.
+    // "1" = scharf. Der Interessent bekommt zusaetzlich seine drei Hinweise.
+    //
+    // ERST auf "1" stellen, wenn info@planbstudios.de laeuft UND oben als
+    // BREVO_ABSENDER eingetragen ist UND SPF/DKIM fuer planbstudios.de auf
+    // Brevo zeigen. Vorher waere der Absender eine Gmail-Adresse, fuer die
+    // SPF und DKIM unmoeglich auf Brevo zeigen koennen; die Mail landet dann
+    // bei Firmenadressen mit hoher Wahrscheinlichkeit im Spam.
+    "BESTAETIGUNG_AKTIV": "0",
+
+    // Buchungsadresse fuer den Knopf in der Bestaetigungsmail.
+    "TERMIN_URL": "https://cal.com/plan-b-studios/erstgesprach"
   },
 
   "assets": {
