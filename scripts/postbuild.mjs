@@ -49,6 +49,11 @@ const ROUTES = {
     desc: 'Eigentümer suchen online nach dem Wert ihrer Immobilie, lange bevor sie einen Makler anrufen. Situationsseiten, Bewertungsstrecke, Follow-up und Messung — aus einer Hand.',
     prerender: true,
   },
+  // Formularstrecke und Bestaetigungsseite: echte HTML-Datei fuer HTTP 200,
+  // aber kein Vorrendern (ein Formular hat im statischen HTML keinen Wert) und
+  // bewusst NICHT in der sitemap.xml.
+  'akquise-check': { title: 'Akquise-Check — Plan B Studios', prerender: false },
+  'termin-bestaetigt': { title: 'Termin bestätigt — Plan B Studios', prerender: false },
   beispiel: { title: 'Havel & Grau — Beispielprojekt von Plan B Studios', prerender: false },
   meridian: { title: 'MERIDIAN — Beispielprojekt von Plan B Studios', prerender: false },
   rundgang: { title: 'Design-Loft — 3D-Rundgang von Plan B Studios', prerender: false },
