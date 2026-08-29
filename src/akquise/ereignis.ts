@@ -22,7 +22,6 @@ export type Ereignis =
   | 'check_schritt_4'
   | 'check_schritt_5'
   | 'check_kontakt_gesendet'
-  | 'termin_gebucht'
 
 export function melde(ereignis: Ereignis) {
   try {

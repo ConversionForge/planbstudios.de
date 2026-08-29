@@ -9,7 +9,6 @@ import { PropertyTour } from './tour/PropertyTour'
 import { NotFound } from './pages/NotFound'
 import { MaklerSituation } from './pages/MaklerSituation'
 import { AkquiseCheck } from './pages/AkquiseCheck'
-import { TerminBestaetigt } from './pages/TerminBestaetigt'
 import { PageCurtain } from './components/PageCurtain'
 import { saveScroll, readScroll } from './lib/scroll'
 
@@ -67,7 +66,6 @@ function App() {
         <Route path="/rundgang" element={<PropertyTour />} />
         <Route path="/makler/mehr-eigentuemeranfragen" element={<MaklerSituation />} />
         <Route path="/akquise-check" element={<AkquiseCheck />} />
-        <Route path="/termin-bestaetigt" element={<TerminBestaetigt />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

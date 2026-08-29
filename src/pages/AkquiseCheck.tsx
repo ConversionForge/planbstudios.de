@@ -422,7 +422,6 @@ export function AkquiseCheck() {
                     href={TERMIN_URL}
                     target="_blank"
                     rel="noreferrer"
-                    onClick={() => melde('termin_gebucht')}
                     className="mt-7 inline-block bg-gold px-8 py-4 text-[15px] font-medium text-night transition-colors duration-300 hover:bg-gold-bright"
                   >
                     Termin auswählen
