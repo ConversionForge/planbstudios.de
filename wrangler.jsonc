@@ -3,7 +3,7 @@
   // statischen Assets an (kein klassisches Pages-Projekt). Ohne diese Datei
   // weiss der Worker nicht, welches Verzeichnis er ausliefern soll: Der Build
   // ist gruen, das Deployment aktiv, und trotzdem antwortet jede Adresse mit
-  // 404. Genau das war der Fehler.
+  // 404. Genau das war der erste Fehler beim Umzug.
 
   // Muss zum bestehenden Worker passen, sonst entsteht ein zweiter.
   "name": "planbstudios-de",
@@ -20,6 +20,21 @@
   // 404-Behandlung unveraendert greifen.
   "run_worker_first": ["/api/*"],
 
+  // Nicht-geheime Werte gehoeren hierher statt in die Cloudflare-Oberflaeche.
+  // Grund: Ein Deploy ueber wrangler kann Variablen entfernen, die in der
+  // Oberflaeche gesetzt, aber hier nicht deklariert sind. Secrets sind davon
+  // nicht betroffen. Beide Adressen stehen ohnehin oeffentlich im Impressum.
+  //
+  // NUR BREVO_API_KEY gehoert als Secret in die Oberflaeche und niemals hier
+  // hinein.
+  //
+  // Sobald info@planbstudios.de laeuft und in Brevo als Absender verifiziert
+  // ist, werden beide Werte hier getauscht.
+  "vars": {
+    "BREVO_ABSENDER": "planbstudios.de@gmail.com",
+    "LEAD_EMPFAENGER": "planbstudios.de@gmail.com"
+  },
+
   "assets": {
     // Ausgabeverzeichnis von "npm run build".
     "directory": "./dist",
@@ -29,15 +44,15 @@
     // GitHub Pages.
     //
     // Bewusst NICHT "single-page-application": Das wuerde fuer jeden Pfad
-    // Status 200 zurueckgeben. Bekannte Routen (impressum, datenschutz,
-    // beispiel, meridian, rundgang) liegen ohnehin als echte HTML-Dateien vor,
-    // die postbuild.mjs vorrendert, und ein 200 auf nicht existierende Adressen
-    // wuerde Suchmaschinen Seiten melden, die es nicht gibt.
+    // Status 200 zurueckgeben. Bekannte Routen liegen ohnehin als echte
+    // HTML-Dateien vor, die postbuild.mjs erzeugt, und ein 200 auf nicht
+    // existierende Adressen wuerde Suchmaschinen Seiten melden, die es nicht
+    // gibt.
     "not_found_handling": "404-page",
 
-    // Jetzt zulaessig, weil oben ein Worker-Skript unter "main" steht. Ohne
-    // Skript lehnt Cloudflare die Bindung ab ("Cannot use assets with a
-    // binding in an assets-only Worker").
+    // Zulaessig, weil oben ein Worker-Skript unter "main" steht. Ohne Skript
+    // lehnt Cloudflare die Bindung ab ("Cannot use assets with a binding in an
+    // assets-only Worker").
     "binding": "ASSETS"
   }
 }
