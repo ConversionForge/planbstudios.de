@@ -342,10 +342,10 @@ export function AkquiseCheck() {
                   <p className="mt-2 border border-gold/40 bg-gold/5 px-4 py-3 text-[14px] leading-relaxed text-cream-soft">
                     {fehlertext}{' '}
                     <a
-                      href="mailto:planbstudios.de@gmail.com"
+                      href="mailto:info@planbstudios.de"
                       className="text-gold underline underline-offset-4"
                     >
-                      planbstudios.de@gmail.com
+                      info@planbstudios.de
                     </a>
                   </p>
                 )}
@@ -429,7 +429,7 @@ export function AkquiseCheck() {
                   </a>
                 ) : (
                   <a
-                    href="mailto:planbstudios.de@gmail.com?subject=Akquise-Check"
+                    href="mailto:info@planbstudios.de?subject=Akquise-Check"
                     className="mt-7 inline-block bg-gold px-8 py-4 text-[15px] font-medium text-night transition-colors duration-300 hover:bg-gold-bright"
                   >
                     Termin per E-Mail vereinbaren

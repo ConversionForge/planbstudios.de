@@ -21,7 +21,7 @@ export function Impressum() {
         Telefon: 0178 8489408
         <br />
         E-Mail:{' '}
-        <a href="mailto:planbstudios.de@gmail.com">planbstudios.de@gmail.com</a>
+        <a href="mailto:info@planbstudios.de">info@planbstudios.de</a>
       </p>
 
       <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>

@@ -57,7 +57,7 @@ export function Footer() {
             </div>
             <div className="flex flex-col gap-3">
               <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">{t.footer.colContact}</span>
-              <a href="mailto:planbstudios.de@gmail.com" className="text-[14px] text-cream-soft transition-colors hover:text-gold">{t.footer.linkEmail}</a>
+              <a href="mailto:info@planbstudios.de" className="text-[14px] text-cream-soft transition-colors hover:text-gold">{t.footer.linkEmail}</a>
               <SectionLink id="kontakt">{t.footer.linkRequest}</SectionLink>
             </div>
           </div>

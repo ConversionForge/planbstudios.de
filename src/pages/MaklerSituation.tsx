@@ -256,10 +256,10 @@ export function MaklerSituation() {
             <p className="mt-6 text-[13px] text-stone">
               Lieber direkt sprechen?{' '}
               <a
-                href="mailto:planbstudios.de@gmail.com"
+                href="mailto:info@planbstudios.de"
                 className="text-cream-soft underline-offset-4 transition-colors hover:text-gold hover:underline"
               >
-                planbstudios.de@gmail.com
+                info@planbstudios.de
               </a>
             </p>
           </motion.div>

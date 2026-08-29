@@ -54,10 +54,10 @@ export function TerminBestaetigt() {
             Falls etwas dazwischenkommt oder Sie vorher noch etwas loswerden wollen,
             schreiben Sie mir einfach an{' '}
             <a
-              href="mailto:planbstudios.de@gmail.com"
+              href="mailto:info@planbstudios.de"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
-              planbstudios.de@gmail.com
+              info@planbstudios.de
             </a>
             .
           </p>

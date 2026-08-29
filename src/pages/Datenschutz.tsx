@@ -14,7 +14,7 @@ export function Datenschutz() {
         Robert-Koch-Straße 24, 23562 Lübeck
         <br />
         E-Mail:{' '}
-        <a href="mailto:planbstudios.de@gmail.com">planbstudios.de@gmail.com</a>
+        <a href="mailto:info@planbstudios.de">info@planbstudios.de</a>
       </p>
 
       <h2>2. Überblick</h2>
@@ -83,14 +83,19 @@ export function Datenschutz() {
         Aufbewahrungsfristen entgegenstehen.
       </p>
       <p>
-        Mein E-Mail-Postfach (planbstudios.de@gmail.com) wird über den Dienst
-        Gmail von Google betrieben (Google&nbsp;Ireland&nbsp;Limited, Gordon House,
-        Barrow Street, Dublin&nbsp;4, Irland). Bei der Verarbeitung Ihrer E-Mail
-        können Daten an Google&nbsp;LLC in die USA übermittelt werden. Google ist
-        unter dem EU-U.S. Data Privacy Framework zertifiziert; ergänzend werden die
-        Standardvertragsklauseln der EU-Kommission herangezogen. Empfänger Ihrer per
-        E-Mail übermittelten Daten ist damit auch Google als Betreiber des
-        Postfachs.
+        Nachrichten an info@planbstudios.de werden über Cloudflare&nbsp;Email
+        Routing entgegengenommen und an mein Postfach weitergeleitet. Cloudflare
+        ist bereits in Ziffer&nbsp;3 als Auftragsverarbeiter benannt; für die
+        Weiterleitung gelten dieselben Angaben zur Übermittlung in die USA.
+      </p>
+      <p>
+        Das Postfach, in dem die weitergeleiteten Nachrichten landen, wird über
+        den Dienst Gmail von Google betrieben (Google&nbsp;Ireland&nbsp;Limited,
+        Gordon House, Barrow Street, Dublin&nbsp;4, Irland). Dabei können Daten an
+        Google&nbsp;LLC in die USA übermittelt werden. Google ist unter dem
+        EU-U.S. Data Privacy Framework zertifiziert; ergänzend werden die
+        Standardvertragsklauseln der EU-Kommission herangezogen. Empfänger Ihrer
+        per E-Mail übermittelten Daten sind damit auch Cloudflare und Google.
       </p>
 
       <h2>5. Akquise-Check (Formular)</h2>

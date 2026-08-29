@@ -70,10 +70,10 @@ export function ChapterKontakt() {
         >
           <Magnetic strength={0.3}>
             <a
-              href="mailto:planbstudios.de@gmail.com"
+              href="mailto:info@planbstudios.de"
               className="group flex items-center gap-4 bg-gold px-9 py-4 text-[15px] font-medium tracking-[0.04em] text-night transition-colors duration-300 hover:bg-gold-bright"
             >
-              <span>planbstudios.de@gmail.com</span>
+              <span>info@planbstudios.de</span>
               <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1">
                 <path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

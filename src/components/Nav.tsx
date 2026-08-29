@@ -176,8 +176,8 @@ export function Nav() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="mt-10 flex flex-col gap-1 text-[13px] text-stone"
             >
-              <a href="mailto:planbstudios.de@gmail.com" className="hover:text-gold">
-                planbstudios.de@gmail.com
+              <a href="mailto:info@planbstudios.de" className="hover:text-gold">
+                info@planbstudios.de
               </a>
               <a href="tel:+491788489408" className="hover:text-gold">
                 0178 8489408
