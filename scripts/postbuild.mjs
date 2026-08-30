@@ -2,12 +2,13 @@
 // erzeugt aus der gebauten SPA-Hülle:
 //
 // 1. Für jede bekannte Route eine echte index.html (HTTP 200 statt 404).
-// 2. Für die Rechtsseiten (Impressum/Datenschutz) VOLLES vorgerendertes HTML —
-//    der Text ist damit auch ohne JavaScript und für Prüf-Bots lesbar (§ 5 DDG).
+// 2. Für die Startseite und die Textseiten VOLLES vorgerendertes HTML — der
+//    Inhalt ist damit auch ohne JavaScript und für Bots ohne JS-Ausführung
+//    lesbar (Rechtsseiten zusätzlich für Prüf-Bots, § 5 DDG).
 // 3. Pro Route korrektes <title>, canonical und og:url (statt überall die
 //    Startseite → sonst „Duplicate"-Signal an Suchmaschinen).
 // 4. Eine 404.html als Auffangnetz (liefert bewusst Status 404).
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
 import { pathToFileURL } from 'node:url'
@@ -109,10 +110,33 @@ for (const [route, cfg] of Object.entries(ROUTES)) {
 }
 
 // 404-Fallback: unveränderte Hülle, liefert Status 404 für unbekannte Pfade.
-copyFileSync(shellPath, 'dist/404.html')
+// Bewusst aus `shell` im Speicher und nicht von der Platte kopiert — dort
+// steht gleich die vorgerenderte Startseite, und die gehört nicht in eine
+// 404-Seite.
+writeFileSync('dist/404.html', shell)
+
+// Startseite. Sie ist der Sonderfall: keine eigene Unterordner-Datei, sondern
+// dist/index.html selbst, und ihre Meta-Angaben stimmen bereits. Bis hierhin
+// war sie eine leere Hülle — ohne JavaScript stand kein einziges Wort darin.
+if (render) {
+  try {
+    const body = render('/')
+    const html = shell.replace('<div id="root"></div>', `<div id="root">${body}</div>`)
+    if (html === shell) {
+      console.warn('[postbuild] WARNUNG: Startseite nicht vorgerendert — <div id="root"></div> nicht gefunden.')
+    } else {
+      writeFileSync(shellPath, html)
+      prerendered++
+    }
+  } catch (e) {
+    // Fehlschlag ist kein Baufehler: dist/index.html bleibt dann die Hülle,
+    // die Seite funktioniert im Browser wie bisher.
+    console.warn('[postbuild] Vorrendern der Startseite fehlgeschlagen:', e.message)
+  }
+}
 
 console.log(
-  `[postbuild] ${Object.keys(ROUTES).length} Routen erzeugt (HTTP 200), davon ${prerendered} vorgerendert, + 404.html als Fallback.`,
+  `[postbuild] ${Object.keys(ROUTES).length} Routen erzeugt (HTTP 200) + Startseite, davon ${prerendered} vorgerendert, + 404.html als Fallback.`,
 )
 
 // ---------------------------------------------------------------------------

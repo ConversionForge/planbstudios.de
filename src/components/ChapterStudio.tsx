@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { useT } from '../i18n'
+import { startVariante } from '../lib/ssr'
 
 const reveal = {
   hidden: { opacity: 0, y: 36 },
@@ -37,7 +38,7 @@ export function ChapterStudio() {
         <div className="grid gap-16 md:grid-cols-12">
           <motion.div
             variants={reveal}
-            initial="hidden"
+            initial={startVariante}
             whileInView="show"
             viewport={{ once: true, margin: '-100px' }}
             className="md:col-span-5"
@@ -58,7 +59,7 @@ export function ChapterStudio() {
           </motion.div>
 
           <motion.div
-            initial="hidden"
+            initial={startVariante}
             whileInView="show"
             viewport={{ once: true, margin: '-100px' }}
             variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}

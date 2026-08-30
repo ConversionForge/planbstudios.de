@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { Magnetic } from './Magnetic'
 import { useT } from '../i18n'
+import { start } from '../lib/ssr'
 
 // Dezenter Verweis auf die Situationsseite fuer Makler. Bewusst kein eigenes
 // nummeriertes Kapitel: Die Seite ist ein vertiefender Abzweig fuer eine
@@ -15,7 +16,7 @@ export function ChapterMakler() {
     <section className="relative border-t border-night-line/60">
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-28 lg:px-10">
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={start({ opacity: 0, y: 28 })}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}

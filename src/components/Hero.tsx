@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'motion/react'
 import { CubeMark } from './Logo'
 import { Magnetic } from './Magnetic'
 import { useT } from '../i18n'
+import { startVariante } from '../lib/ssr'
 
 const container = {
   hidden: {},
@@ -60,7 +61,7 @@ export function Hero({ introDone }: { introDone: boolean }) {
 
         <motion.div
           variants={container}
-          initial="hidden"
+          initial={startVariante}
           animate={introDone ? 'show' : 'hidden'}
           style={{ opacity, scale, y }}
           className="relative z-10 flex flex-col items-center text-center will-change-transform"

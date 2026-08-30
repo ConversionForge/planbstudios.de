@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'motion/react'
 import { CubeMark } from './Logo'
 import { Magnetic } from './Magnetic'
 import { useT } from '../i18n'
+import { start } from '../lib/ssr'
 
 export function ChapterKontakt() {
   const t = useT()
@@ -28,7 +29,7 @@ export function ChapterKontakt() {
 
       <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 py-44 text-center">
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={start({ opacity: 0, y: 20 })}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
@@ -38,7 +39,7 @@ export function ChapterKontakt() {
         </motion.p>
 
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+          initial={start({ opacity: 0, y: 30 })}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
@@ -52,7 +53,7 @@ export function ChapterKontakt() {
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={start({ opacity: 0, y: 20 })}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.1 }}
@@ -62,7 +63,7 @@ export function ChapterKontakt() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={start({ opacity: 0, y: 20 })}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.2 }}
@@ -82,7 +83,7 @@ export function ChapterKontakt() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={start({ opacity: 0 })}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.35 }}

@@ -5,6 +5,7 @@ import { CubeMark } from './Logo'
 import { Magnetic } from './Magnetic'
 import { MonogramHG, VillaIllo } from '../example/illustrations'
 import { useT } from '../i18n'
+import { start } from '../lib/ssr'
 
 const LOFT_IMG = `${import.meta.env.BASE_URL}rundgang/living-1.jpg`
 
@@ -117,7 +118,7 @@ export function ChapterReferenzen() {
       <div ref={ref} className="relative h-[300vh]">
         <div className="sticky top-0 flex h-screen flex-col justify-center gap-12 overflow-hidden pt-20">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={start({ opacity: 0, y: 30 })}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}

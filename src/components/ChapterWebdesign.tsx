@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'motion/react'
 import { Magnetic } from './Magnetic'
 import { useT } from '../i18n'
 import { MeridianMark, ElevationDrawing } from '../example/meridianBlueprint'
+import { SSR, startVariante } from '../lib/ssr'
 
 const GRID_BG = {
   backgroundImage:
@@ -124,14 +125,17 @@ export function ChapterWebdesign() {
   const scale = useTransform(scrollYProgress, [0, 0.35], [0.86, 1])
   const frameY = useTransform(scrollYProgress, [0, 0.35], [70, 0])
   const pageY = useTransform(scrollYProgress, [0.42, 0.96], ['0%', '-56%'])
-  const glowOpacity = useTransform(scrollYProgress, [0, 0.35], [0, 1])
+  // glowOpacity blendet nicht nur den Schein ein, sondern auch den Hinweis
+  // unter der Vorschau. Beim Vorrendern ist der Fortschritt 0 — ohne Sonderfall
+  // stuende dieser Text mit Deckkraft 0 im statischen HTML.
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.35], SSR ? [1, 1] : [0, 1])
 
   return (
     <section id="webdesign" className="relative">
       <div className="mx-auto max-w-7xl px-6 pb-16 pt-36 lg:px-10">
         <motion.div
           variants={reveal}
-          initial="hidden"
+          initial={startVariante}
           whileInView="show"
           viewport={{ once: true, margin: '-120px' }}
         >
@@ -208,7 +212,7 @@ export function ChapterWebdesign() {
 
       <div className="mx-auto max-w-7xl px-6 pb-40 pt-28 lg:px-10">
         <motion.div
-          initial="hidden"
+          initial={startVariante}
           whileInView="show"
           viewport={{ once: true, margin: '-100px' }}
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}

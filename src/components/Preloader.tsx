@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { CubeMark } from './Logo'
+import { SSR } from '../lib/ssr'
 
 export function Preloader({ onDone }: { onDone: () => void }) {
-  const [show, setShow] = useState(() => !sessionStorage.getItem('pb-intro'))
+  // Beim Vorrendern in Node gibt es keinen sessionStorage. Dort die Intro-
+  // Blende ueberspringen, damit sie nicht ueber dem Inhalt liegt.
+  const [show, setShow] = useState(
+    () => !SSR && !sessionStorage.getItem('pb-intro'),
+  )
 
   useEffect(() => {
     if (!show) {

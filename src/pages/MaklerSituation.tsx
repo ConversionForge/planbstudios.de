@@ -5,17 +5,12 @@ import { CubeMark } from '../components/Logo'
 import { Magnetic } from '../components/Magnetic'
 import { GrainOverlay } from '../components/GrainOverlay'
 import { Footer } from '../components/Footer'
+import { startVariante } from '../lib/ssr'
 
 // Situationsseite für die eigene Akquise. Bewusst nur auf Deutsch: Die
 // Zielgruppe sind Makler in Schleswig-Holstein. Bewusst nicht in der
 // Hauptnavigation: Die Seite wird gezielt verlinkt und über die Suche
 // gefunden, die Startseite bleibt davon unberührt.
-
-// Beim Vorrendern in Node gibt es kein window. Dann direkt den sichtbaren
-// Zustand rendern, sonst steht der gesamte Text mit opacity:0 im statischen
-// HTML und ist ohne JavaScript unsichtbar.
-const SSR = typeof window === 'undefined'
-const initialState = SSR ? 'show' : 'hidden'
 
 const reveal = {
   hidden: { opacity: 0, y: 32 },
@@ -103,7 +98,7 @@ export function MaklerSituation() {
       <main className="mx-auto max-w-4xl px-6 lg:px-8">
         {/* 1 + 2 — Problem benennen */}
         <section className="pb-20 pt-20 md:pb-28 md:pt-28">
-          <motion.div variants={reveal} initial={initialState} animate="show">
+          <motion.div variants={reveal} initial={startVariante} animate="show">
             <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">
               FÜR MAKLER
             </p>
@@ -130,7 +125,7 @@ export function MaklerSituation() {
         <section className="border-t border-night-line py-20 md:py-28">
           <motion.div
             variants={reveal}
-            initial={initialState}
+            initial={startVariante}
             whileInView="show"
             viewport={{ once: true, margin: '-80px' }}
           >
@@ -145,7 +140,7 @@ export function MaklerSituation() {
           </motion.div>
 
           <motion.div
-            initial={initialState}
+            initial={startVariante}
             whileInView="show"
             viewport={{ once: true, margin: '-60px' }}
             variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
@@ -177,7 +172,7 @@ export function MaklerSituation() {
         <section className="border-t border-night-line py-20 md:py-28">
           <motion.div
             variants={reveal}
-            initial={initialState}
+            initial={startVariante}
             whileInView="show"
             viewport={{ once: true, margin: '-80px' }}
           >
@@ -192,7 +187,7 @@ export function MaklerSituation() {
           </motion.div>
 
           <motion.div
-            initial={initialState}
+            initial={startVariante}
             whileInView="show"
             viewport={{ once: true, margin: '-60px' }}
             variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
@@ -212,7 +207,7 @@ export function MaklerSituation() {
         <section id="check" className="border-t border-night-line py-20 md:py-28">
           <motion.div
             variants={reveal}
-            initial={initialState}
+            initial={startVariante}
             whileInView="show"
             viewport={{ once: true, margin: '-80px' }}
             className="flex flex-col items-start"

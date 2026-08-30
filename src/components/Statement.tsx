@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, type MotionValue } from 'motion/react'
 import { useT } from '../i18n'
+import { SSR } from '../lib/ssr'
 
 function Word({
   children,
@@ -13,7 +14,8 @@ function Word({
   range: [number, number]
   gold?: boolean
 }) {
-  const opacity = useTransform(progress, range, [0.1, 1])
+  // Vorrendern: Fortschritt ist 0, das Wort stuende sonst bei Deckkraft 0,1.
+  const opacity = useTransform(progress, range, SSR ? [1, 1] : [0.1, 1])
   return (
     <motion.span
       style={{ opacity }}

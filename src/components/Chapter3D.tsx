@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform } from 'motion/react'
 import { CubeMark } from './Logo'
 import { WalkthroughVideo } from './WalkthroughVideo'
 import { useT } from '../i18n'
+import { startVariante } from '../lib/ssr'
+import { SSR } from '../lib/ssr'
 
 const TOUR_COVER = `${import.meta.env.BASE_URL}rundgang/living-1.jpg`
 
@@ -67,8 +69,10 @@ export function Chapter3D() {
   const lookY = useTransform(scrollYProgress, [0.72, 1], [0, -10])
 
   const hotspotOpacity = useTransform(scrollYProgress, [0.52, 0.62], [0, 1])
-  const textOpacity = useTransform(scrollYProgress, [0.62, 0.74], [0, 1])
-  const textY = useTransform(scrollYProgress, [0.62, 0.74], [50, 0])
+  // Vorrendern: Fortschritt ist 0. Ohne Sonderfall stuende die Ueberschrift
+  // des Kapitels mit Deckkraft 0 im statischen HTML.
+  const textOpacity = useTransform(scrollYProgress, [0.62, 0.74], SSR ? [1, 1] : [0, 1])
+  const textY = useTransform(scrollYProgress, [0.62, 0.74], SSR ? [0, 0] : [50, 0])
 
   return (
     <section id="rundgaenge" className="relative">
@@ -191,7 +195,7 @@ export function Chapter3D() {
       <div className="mx-auto max-w-7xl px-6 pt-28 lg:px-10">
         <motion.div
           variants={reveal}
-          initial="hidden"
+          initial={startVariante}
           whileInView="show"
           viewport={{ once: true, margin: '-100px' }}
         >
@@ -238,7 +242,7 @@ export function Chapter3D() {
       <div className="mx-auto max-w-7xl px-6 pb-40 pt-28 lg:px-10">
         <motion.div
           variants={reveal}
-          initial="hidden"
+          initial={startVariante}
           whileInView="show"
           viewport={{ once: true, margin: '-120px' }}
           className="mb-20"
@@ -254,7 +258,7 @@ export function Chapter3D() {
         </motion.div>
 
         <motion.div
-          initial="hidden"
+          initial={startVariante}
           whileInView="show"
           viewport={{ once: true, margin: '-100px' }}
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}
