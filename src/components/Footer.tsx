@@ -49,6 +49,12 @@ export function Footer() {
               <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">{t.footer.colServices}</span>
               <SectionLink id="webdesign">{t.footer.linkWebdesign}</SectionLink>
               <SectionLink id="rundgaenge">{t.footer.linkRundgaenge}</SectionLink>
+              <Link
+                to="/makler/mehr-eigentuemeranfragen"
+                className="text-[14px] text-cream-soft transition-colors hover:text-gold"
+              >
+                {t.footer.linkMakler}
+              </Link>
             </div>
             <div className="flex flex-col gap-3">
               <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">{t.footer.colStudio}</span>

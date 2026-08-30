@@ -434,6 +434,18 @@ export function AkquiseCheck() {
                     Termin per E-Mail vereinbaren
                   </a>
                 )}
+
+                {/* Weg zurueck, damit das Ergebnis keine Sackgasse ist. */}
+                <p className="mt-10 border-t border-night-line pt-6 text-[14px] leading-relaxed text-stone">
+                  Plan B Studios baut außerdem Websites und begehbare 3D-Rundgänge
+                  für Immobilien.{' '}
+                  <Link
+                    to="/"
+                    className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
+                  >
+                    Alle Leistungen ansehen
+                  </Link>
+                </p>
               </div>
             </motion.div>
           )}
@@ -441,8 +453,10 @@ export function AkquiseCheck() {
       </main>
 
       <footer className="border-t border-night-line px-6 py-6">
-        <div className="mx-auto flex max-w-2xl items-center justify-between text-[12px] text-stone">
-          <span>© {new Date().getFullYear()} Plan B Studios</span>
+        <div className="mx-auto flex max-w-2xl flex-wrap items-center justify-between gap-3 text-[12px] text-stone">
+          <Link to="/" className="transition-colors hover:text-cream-soft">
+            ← Zur Startseite
+          </Link>
           <LegalLinks />
         </div>
       </footer>

@@ -264,6 +264,21 @@ export function MaklerSituation() {
             </p>
           </motion.div>
         </section>
+
+        {/* Weg zurueck. Die Seite ist ein Abzweig fuer eine Zielgruppe, keine
+            Sackgasse: Wer hier landet, soll auch die uebrigen Leistungen finden. */}
+        <section className="border-t border-night-line py-12">
+          <p className="text-[15px] leading-relaxed text-stone">
+            Plan B Studios baut außerdem Websites und begehbare 3D-Rundgänge für
+            Immobilien.{' '}
+            <Link
+              to="/"
+              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
+            >
+              Alle Leistungen ansehen
+            </Link>
+          </p>
+        </section>
       </main>
 
       <Footer />
