@@ -5,6 +5,15 @@ import { CubeMark } from '../components/Logo'
 import { GrainOverlay } from '../components/GrainOverlay'
 import { LegalLinks } from '../components/LegalLinks'
 import { FRAGEN, hinweiseAus, type Antworten } from '../akquise/fragen'
+import { PlzFeld } from '../akquise/PlzFeld'
+import {
+  istEmailFormat,
+  istTelefonFormat,
+  istWegwerfAdresse,
+  normalisiereWebsite,
+  tippfehlerVorschlag,
+  zerlegeRegion,
+} from '../akquise/pruefung'
 import { melde, meldeSchritt } from '../akquise/ereignis'
 
 // Terminbuchung. Bewusst als Verlinkung und NICHT als Einbettung: Eine
@@ -34,6 +43,10 @@ export function AkquiseCheck() {
   const [einwilligung, setEinwilligung] = useState(false)
   const [status, setStatus] = useState<Status>('ruhe')
   const [fehlertext, setFehlertext] = useState('')
+  // Ablehnung vom Server, einem Feld zugeordnet. Der Server prueft strenger als
+  // der Browser (er fragt DNS), deshalb kann hier etwas ankommen, was im
+  // Formular noch in Ordnung aussah.
+  const [feldFehler, setFeldFehler] = useState<{ feld: string; text: string } | null>(null)
 
   // Spamschutz ohne Captcha und ohne fremde Skripte
   const [koeder, setKoeder] = useState('') // Honigtopf: fuer Menschen unsichtbar
@@ -94,17 +107,49 @@ export function AkquiseCheck() {
   const gesamt = FRAGEN.length + 1 // Fragen + Kontaktschritt
   const fortschritt = Math.min(schritt + 1, gesamt)
 
-  const setzeAntwort = (wert: string) =>
+  const setzeAntwort = (wert: string) => {
+    if (feldFehler && feldFehler.feld === frage?.id) setFeldFehler(null)
     setAntworten((a) => ({ ...a, [frage.id]: wert }))
+  }
 
-  const weiter = () => setSchritt((s) => s + 1)
-  const zurueck = () => setSchritt((s) => Math.max(0, s - 1))
+  // GEMESSEN: Ohne die Absicherung auf den aktuellen Schritt schaltet ein
+  // Doppelklick auf eine Antwortmoeglichkeit ZWEIMAL weiter und ueberspringt
+  // die naechste Frage — die bleibt dann unbeantwortet, und weil Pflichtfragen
+  // bewusst keinen Weiter-Knopf haben, kommt man dort nie wieder vorbei.
+  // `schritt` stammt aus dem aktuellen Rendern; jeder zweite Aufruf aus
+  // demselben Rendern findet einen anderen Wert vor und tut nichts.
+  const weiter = () => setSchritt((s) => (s === schritt ? s + 1 : s))
+  const zurueck = () => setSchritt((s) => (s === schritt ? Math.max(0, s - 1) : s))
 
-  const kannWeiter = frage ? !frage.pflicht || !!(antworten[frage.id] || '').trim() : true
+  // Weiter nur, wenn die Angabe auch taugt — nicht schon, wenn irgendetwas
+  // im Feld steht.
+  const kannWeiter = (() => {
+    if (!frage) return true
+    const wert = (antworten[frage.id] || '').trim()
+    if (!wert) return !frage.pflicht
+    if (frage.art === 'plz') return zerlegeRegion(wert) !== null
+    if (frage.art === 'website') return normalisiereWebsite(wert) !== null
+    return true
+  })()
 
-  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(kontakt.email.trim())
+  const emailOk = istEmailFormat(kontakt.email) && !istWegwerfAdresse(kontakt.email)
+  const telefonOk = istTelefonFormat(kontakt.telefon)
+  const vorschlag = tippfehlerVorschlag(kontakt.email)
   const kannSenden =
-    kontakt.name.trim().length > 1 && emailOk && einwilligung && status !== 'sendet'
+    kontakt.name.trim().length > 1 &&
+    emailOk &&
+    telefonOk &&
+    einwilligung &&
+    status !== 'sendet'
+
+  /** Zu welchem Schritt gehoert ein vom Server beanstandetes Feld? */
+  const SCHRITT_ZU_FELD: Record<string, number> = {
+    region: 0,
+    website: 4,
+    name: 5,
+    email: 5,
+    telefon: 5,
+  }
 
   async function senden() {
     if (koeder.trim() !== '') return // Honigtopf gefuellt: stillschweigend verwerfen
@@ -127,7 +172,19 @@ export function AkquiseCheck() {
           koeder,
         }),
       })
-      if (!antwort.ok) throw new Error('Status ' + antwort.status)
+      if (!antwort.ok) {
+        // Beanstandet der Server ein bestimmtes Feld, zurueck zu genau diesem
+        // Schritt springen und dort begruenden — statt pauschal "hat nicht
+        // geklappt" zu melden und den Nutzer suchen zu lassen.
+        const d = await antwort.json().catch(() => null)
+        if (d && typeof d.feld === 'string' && d.feld in SCHRITT_ZU_FELD) {
+          setFeldFehler({ feld: d.feld, text: String(d.fehler || 'Bitte prüfen Sie diese Angabe.') })
+          setStatus('ruhe')
+          setSchritt(SCHRITT_ZU_FELD[d.feld])
+          return
+        }
+        throw new Error('Status ' + antwort.status)
+      }
       melde('check_kontakt_gesendet')
       sessionStorage.removeItem(SPEICHER)
       setSchritt(6)
@@ -215,15 +272,50 @@ export function AkquiseCheck() {
                     )
                   })}
                 </div>
-              ) : (
-                <input
-                  autoFocus
-                  value={antworten[frage.id] || ''}
-                  onChange={(e) => setzeAntwort(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && kannWeiter && weiter()}
-                  placeholder={frage.platzhalter}
-                  className="mt-10 w-full border border-night-line bg-transparent px-5 py-4 text-[16px] text-cream outline-none transition-colors placeholder:text-stone/60 focus:border-gold"
+              ) : frage.art === 'plz' ? (
+                <PlzFeld
+                  wert={antworten[frage.id] || ''}
+                  onChange={setzeAntwort}
+                  platzhalter={frage.platzhalter}
+                  onFertig={() => kannWeiter && weiter()}
                 />
+              ) : (
+                <>
+                  <input
+                    autoFocus
+                    inputMode={frage.art === 'website' ? 'url' : 'text'}
+                    autoComplete={frage.art === 'website' ? 'url' : 'off'}
+                    value={antworten[frage.id] || ''}
+                    onChange={(e) => setzeAntwort(e.target.value)}
+                    onBlur={() => {
+                      // Web-Adresse beim Verlassen aufraeumen: "firma.de" wird zu
+                      // "https://firma.de/". Der Nutzer soll kein Schema tippen
+                      // muessen, gespeichert wird trotzdem etwas Vollstaendiges.
+                      if (frage.art !== 'website') return
+                      const roh = (antworten[frage.id] || '').trim()
+                      if (!roh) return
+                      const sauber = normalisiereWebsite(roh)
+                      if (sauber && sauber !== roh) setzeAntwort(sauber)
+                    }}
+                    onKeyDown={(e) => e.key === 'Enter' && kannWeiter && weiter()}
+                    placeholder={frage.platzhalter}
+                    className="mt-10 w-full border border-night-line bg-transparent px-5 py-4 text-[16px] text-cream outline-none transition-colors placeholder:text-stone/60 focus:border-gold"
+                  />
+                  {frage.art === 'website' &&
+                    (antworten[frage.id] || '').trim() &&
+                    !normalisiereWebsite(antworten[frage.id] || '') && (
+                      <p className="mt-3 text-[13px] text-gold">
+                        Das ist noch keine vollständige Web-Adresse. Beispiel:
+                        ihre-firma.de
+                      </p>
+                    )}
+                </>
+              )}
+
+              {feldFehler && feldFehler.feld === frage.id && (
+                <p className="mt-4 border border-gold/40 bg-gold/5 px-4 py-3 text-[14px] leading-relaxed text-cream-soft">
+                  {feldFehler.text}
+                </p>
               )}
 
               <div className="mt-10 flex items-center gap-6">
@@ -235,7 +327,10 @@ export function AkquiseCheck() {
                     Zurück
                   </button>
                 )}
-                {(frage.art === 'text' || !frage.pflicht) && (
+                {/* Bei Auswahlfragen springt ein Klick auf eine Option weiter, dort
+                    braucht es keinen Knopf. Bei allen Eingabefeldern schon —
+                    'text', 'plz' und 'website' gleichermassen. */}
+                {(frage.art !== 'auswahl' || !frage.pflicht) && (
                   <button
                     onClick={weiter}
                     disabled={!kannWeiter}
@@ -296,25 +391,69 @@ export function AkquiseCheck() {
                 {(
                   [
                     ['name', 'Name', 'text', true, 'name'],
-                    ['firma', 'Firma', 'text', false, 'organization'],
+                    ['firma', 'Firma (optional)', 'text', false, 'organization'],
                     ['email', 'E-Mail', 'email', true, 'email'],
-                    ['telefon', 'Telefon (optional)', 'tel', false, 'tel'],
+                    ['telefon', 'Telefon', 'tel', true, 'tel'],
                   ] as const
-                ).map(([feld, label, typ, pflicht, ac]) => (
-                  <label key={feld} className="flex flex-col gap-2">
-                    <span className="text-[13px] tracking-[0.04em] text-stone">
-                      {label}
-                      {pflicht && <span className="text-gold"> *</span>}
-                    </span>
-                    <input
-                      type={typ}
-                      autoComplete={ac}
-                      value={kontakt[feld]}
-                      onChange={(e) => setKontakt({ ...kontakt, [feld]: e.target.value })}
-                      className="w-full border border-night-line bg-transparent px-5 py-3.5 text-[16px] text-cream outline-none transition-colors focus:border-gold"
-                    />
-                  </label>
-                ))}
+                ).map(([feld, label, typ, pflicht, ac]) => {
+                  const wert = kontakt[feld]
+                  // Rueckmeldung erst, wenn etwas drinsteht — nicht schon beim
+                  // Betreten des leeren Feldes.
+                  const beanstandet =
+                    (feld === 'email' && wert.trim() !== '' && !emailOk) ||
+                    (feld === 'telefon' && wert.trim() !== '' && !telefonOk) ||
+                    (feldFehler?.feld === feld)
+                  return (
+                    <label key={feld} className="flex flex-col gap-2">
+                      <span className="text-[13px] tracking-[0.04em] text-stone">
+                        {label}
+                        {pflicht && <span className="text-gold"> *</span>}
+                      </span>
+                      <input
+                        type={typ}
+                        autoComplete={ac}
+                        value={wert}
+                        onChange={(e) => {
+                          if (feldFehler?.feld === feld) setFeldFehler(null)
+                          setKontakt({ ...kontakt, [feld]: e.target.value })
+                        }}
+                        className={`w-full border bg-transparent px-5 py-3.5 text-[16px] text-cream outline-none transition-colors focus:border-gold ${
+                          beanstandet ? 'border-gold/70' : 'border-night-line'
+                        }`}
+                      />
+                      {feldFehler?.feld === feld && (
+                        <span className="text-[13px] leading-relaxed text-gold">
+                          {feldFehler.text}
+                        </span>
+                      )}
+                      {feld === 'email' && !feldFehler && wert.trim() !== '' && !emailOk && (
+                        <span className="text-[13px] text-gold">
+                          {istWegwerfAdresse(wert)
+                            ? 'Unter einer Wegwerfadresse kann ich Sie nicht erreichen.'
+                            : 'Diese E-Mail-Adresse ist noch nicht vollständig.'}
+                        </span>
+                      )}
+                      {feld === 'email' && emailOk && vorschlag && (
+                        <span className="text-[13px] text-stone">
+                          Meinten Sie{' '}
+                          <button
+                            type="button"
+                            onClick={() => setKontakt({ ...kontakt, email: vorschlag })}
+                            className="text-gold underline underline-offset-4"
+                          >
+                            {vorschlag}
+                          </button>
+                          ?
+                        </span>
+                      )}
+                      {feld === 'telefon' && !feldFehler && wert.trim() !== '' && !telefonOk && (
+                        <span className="text-[13px] text-gold">
+                          Bitte mit Vorwahl, zum Beispiel 0451 1234567.
+                        </span>
+                      )}
+                    </label>
+                  )
+                })}
 
                 <label className="mt-3 flex cursor-pointer items-start gap-3">
                   <input

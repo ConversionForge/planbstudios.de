@@ -17,7 +17,9 @@ export interface Frage {
   nummer: number
   frage: string
   hinweis?: string
-  art: 'auswahl' | 'text'
+  // 'plz' = Postleitzahl mit Ort, 'website' = Web-Adresse. Beide werden
+  // geprueft, nicht nur eingesammelt.
+  art: 'auswahl' | 'text' | 'plz' | 'website'
   optionen?: Option[]
   platzhalter?: string
   pflicht: boolean
@@ -28,9 +30,9 @@ export const FRAGEN: Frage[] = [
     id: 'region',
     nummer: 1,
     frage: 'In welcher Region sind Sie tätig?',
-    hinweis: 'Ort oder Postleitzahl genügt.',
-    art: 'text',
-    platzhalter: 'z. B. Lübeck oder 23562',
+    hinweis: 'Postleitzahl eingeben, den Ort ergänze ich.',
+    art: 'plz',
+    platzhalter: '23552',
     pflicht: true,
   },
   {
@@ -76,9 +78,9 @@ export const FRAGEN: Frage[] = [
     nummer: 5,
     frage: 'Wie lautet Ihre Website-Adresse?',
     hinweis: 'Ich sehe sie mir vor dem Gespräch an. Sie wird nicht automatisch ausgewertet.',
-    art: 'text',
-    platzhalter: 'z. B. ihre-firma.de',
-    pflicht: false,
+    art: 'website',
+    platzhalter: 'ihre-firma.de',
+    pflicht: true,
   },
 ]
 
@@ -124,7 +126,7 @@ export interface Hinweis {
  * Erzeugt genau drei Hinweise, je einer aus Frage 4, 3 und 2. Frage 1 (Region)
  * liefert bewusst keinen Hinweis, weil sich daraus ohne Daten nichts Belegbares
  * ableiten ließe; sie wird nur für die Anrede verwendet. Frage 5 (Website) wird
- * nicht automatisch ausgewertet.
+ * nicht automatisch ausgewertet — sie wird aber geprueft, siehe pruefung.ts.
  */
 export function hinweiseAus(a: Antworten): Hinweis[] {
   const out: Hinweis[] = []

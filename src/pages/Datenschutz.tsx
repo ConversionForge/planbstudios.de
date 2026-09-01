@@ -25,9 +25,10 @@ export function Datenschutz() {
         werden vom eigenen Server geladen. Eine Kontaktaufnahme ist per E-Mail
         möglich (Ziffer&nbsp;4) oder über das Formular des Akquise-Checks
         (Ziffer&nbsp;5). Beteiligte Dienstleister sind ausschließlich der Hoster
-        Cloudflare (Ziffer&nbsp;3), der E-Mail-Anbieter des Postfachs
-        (Ziffer&nbsp;4) sowie Brevo für den Versand und die Verwaltung von
-        Anfragen aus dem Formular (Ziffer&nbsp;5).
+        Cloudflare (Ziffer&nbsp;3, zugleich DNS-Dienst für die Prüfung der
+        Formularangaben), der E-Mail-Anbieter des Postfachs (Ziffer&nbsp;4) sowie
+        Brevo für den Versand und die Verwaltung von Anfragen aus dem Formular
+        (Ziffer&nbsp;5).
       </p>
 
       <h2>3. Hosting: Cloudflare</h2>
@@ -104,10 +105,12 @@ export function Datenschutz() {
         sowie Ihre Kontaktdaten übermitteln. Verarbeitet werden dabei:
       </p>
       <ul>
-        <li>Ihre Angaben zu Region, Objektzahl, Herkunft der Aufträge,
-          Online-Wertermittlung und Website-Adresse</li>
+        <li>Postleitzahl und Ort Ihres Tätigkeitsgebiets</li>
+        <li>Ihre Angaben zu Objektzahl, Herkunft der Aufträge und
+          Online-Wertermittlung</li>
+        <li>die Adresse Ihrer Website</li>
         <li>Name und, falls angegeben, Firma</li>
-        <li>E-Mail-Adresse und, falls angegeben, Telefonnummer</li>
+        <li>E-Mail-Adresse und Telefonnummer</li>
         <li>Ihre Einwilligung sowie der Zeitpunkt des Absendens</li>
       </ul>
       <p>
@@ -119,8 +122,25 @@ export function Datenschutz() {
         Verarbeitung bleibt davon unberührt.
       </p>
       <p>
-        Die Angabe der Website-Adresse ist freiwillig. Sie wird nicht automatisiert
-        ausgewertet, sondern dient allein der Vorbereitung eines Gesprächs.
+        Die Website-Adresse wird inhaltlich nicht automatisiert ausgewertet; sie
+        dient der Vorbereitung eines Gesprächs. Geprüft wird lediglich, ob es die
+        angegebene Adresse technisch gibt (siehe folgender Absatz).
+      </p>
+      <p>
+        <strong>Prüfung Ihrer Angaben beim Absenden:</strong> Damit ich Sie
+        tatsächlich erreichen kann, prüft der Server beim Absenden, ob die
+        angegebene Postleitzahl mit dem Ort zusammenpasst, ob die Telefonnummer
+        eine gültige Rufnummer ist und ob die Domain Ihrer E-Mail-Adresse
+        überhaupt Post empfangen kann und die Domain Ihrer Website existiert. Für
+        die beiden letzten Punkte stellt der Server eine DNS-Anfrage an den
+        DNS-Dienst von Cloudflare. Dabei wird ausschließlich der Domainteil
+        übermittelt (also etwa <em>beispiel.de</em>), nicht Ihre vollständige
+        E-Mail-Adresse und nicht Ihre IP-Adresse. Die Abfrage stellt der Server,
+        nicht Ihr Browser. Postleitzahl und Ort werden gegen eine auf dem Server
+        gespeicherte Liste geprüft, ohne dass dabei Daten nach außen gehen.
+        Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO
+        (berechtigtes Interesse an erreichbaren Kontaktdaten und an der Abwehr
+        automatisierter Einsendungen).
       </p>
       <p>
         <strong>Empfänger:</strong> Für den Versand der Benachrichtigung und die
