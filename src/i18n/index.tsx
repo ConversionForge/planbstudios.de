@@ -53,11 +53,28 @@ const LangContext = createContext<Ctx>({
   toggle: () => {},
 })
 
+/**
+ * Hat der Besucher die Sprache selbst gewaehlt — oder wurde sie nur aus dem
+ * Browser geraten? Eine gespeicherte Wahl entsteht ausschliesslich durch einen
+ * Klick auf die Umschaltung.
+ */
+function hatEigeneWahl(): boolean {
+  if (typeof window === 'undefined') return false // Vorrendern in Node
+  try {
+    const gespeichert = localStorage.getItem(STORE_KEY)
+    return gespeichert === 'de' || gespeichert === 'en'
+  } catch {
+    return false // Speicher blockiert: dann gilt es als nicht gewaehlt
+  }
+}
+
 export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(detectLang)
+  const [gewaehlt, setGewaehlt] = useState<boolean>(hatEigeneWahl)
 
   const setLang = useCallback((l: Lang) => {
     setLangState(l)
+    setGewaehlt(true)
     try {
       localStorage.setItem(STORE_KEY, l)
     } catch {
@@ -70,16 +87,41 @@ export function LangProvider({ children }: { children: ReactNode }) {
     [lang, setLang],
   )
 
-  // lang-Attribut und Seiten-Meta mitfuehren (Screenreader, Suchmaschinen)
+  // lang-Attribut mitfuehren, damit Screenreader den Text richtig aussprechen.
+  // Das folgt bewusst dem TATSAECHLICH angezeigten Inhalt.
   useEffect(() => {
-    const dict = lang === 'de' ? de : en
     document.documentElement.lang = lang
-    // Nur den Standardtitel setzen; Unterseiten setzen ihren eigenen.
-    if (window.location.pathname === '/') document.title = dict.siteTitle
+  }, [lang])
+
+  /**
+   * Titel und Beschreibung nur bei AUSDRUECKLICHER Sprachwahl anfassen.
+   *
+   * GEMESSEN, und der Grund fuer diese Unterscheidung: Googlebot rendert die
+   * Seite mit navigator.languages = ["en-US","en"]. Die Erkennung lieferte
+   * daraufhin "en", und dieser Effekt hat Titel und Beschreibung mit den
+   * englischen Fassungen ueberschrieben. In der Google-Suche stand deshalb
+   * "Web design & 3D tours for real estate — Plan B Studios, Lübeck", obwohl
+   * der Server durchgehend Deutsch ausliefert.
+   *
+   * Ein Robot hat keine gespeicherte Wahl, sieht also weiterhin genau das, was
+   * im ausgelieferten HTML steht: Deutsch. Wer dagegen selbst auf EN klickt,
+   * bekommt den englischen Titel — das ist eine Entscheidung des Besuchers und
+   * kein Ratespiel.
+   *
+   * Zweite Korrektur hier: Die Beschreibung wurde bisher auf JEDER Seite
+   * ueberschrieben (nur der Titel hatte die Bereichspruefung). Damit hat sie
+   * die eigenen Beschreibungen der Unterseiten aus postbuild.mjs wieder
+   * plattgemacht. Jetzt gilt fuer beide dieselbe Grenze: nur die Startseite.
+   */
+  useEffect(() => {
+    if (!gewaehlt) return
+    if (window.location.pathname !== '/') return
+    const dict = lang === 'de' ? de : en
+    document.title = dict.siteTitle
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute('content', dict.siteDesc)
-  }, [lang])
+  }, [lang, gewaehlt])
 
   return (
     <LangContext.Provider value={{ lang, t: lang === 'de' ? de : en, setLang, toggle }}>
