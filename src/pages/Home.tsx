@@ -28,9 +28,13 @@ export function Home() {
 
   useEffect(() => {
     const key = location.key
+    // Der Pfad gehoert in den Schluessel, nicht fest '/': Sonst teilen sich die
+    // deutsche und die englische Fassung der Startseite denselben Eintrag, und
+    // ein Wechsel wuerde an der Position der jeweils anderen landen.
+    const pfad = location.pathname.replace(/\/+$/, '') || '/'
     // Nur beim Zurück (POP) wiederherstellen; sessionStorage-Fallback deckt
     // den Fall ab, dass ein Reload die Merkliste geleert hat.
-    const savedY = navType === 'POP' ? readScroll(key, '/') : null
+    const savedY = navType === 'POP' ? readScroll(key, pfad) : null
     const hash = location.hash
 
     // anchors: false → Lenis fasst Anker-Klicks NICHT an. Wir übernehmen das
@@ -45,7 +49,7 @@ export function Home() {
 
     // Scroll-Position laufend sichern. lenis.on('scroll') deckt das Mausrad ab;
     // der native Listener deckt Touch-Scrollen (Handy) ab.
-    const save = () => saveScroll(key, '/', Math.round(window.scrollY))
+    const save = () => saveScroll(key, pfad, Math.round(window.scrollY))
     lenis.on('scroll', save)
     window.addEventListener('scroll', save, { passive: true })
 

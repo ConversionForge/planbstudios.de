@@ -139,7 +139,7 @@ export const de = {
     titleEm: 'Plan B',
     title2: '?',
     lead1: 'In der Immobilienbranche entscheidet der erste Klick über den Preis. Trotzdem sehen die meisten Makler- und Bauträger-Seiten aus wie tausend andere — ein Objekt für 1,5 Millionen, präsentiert wie ein Möbelhaus-Prospekt.',
-    lead2: 'Bei Plan B Studios kommt beides aus einer Hand: Websites, die eine Marke tragen, und begehbare 3D-Rundgänge, die Objekte verkaufen, bevor der erste Besichtigungstermin steht. Kein Weiterreichen, kein Baukasten, kein Kompromiss.',
+    lead2: 'Bei Plan B Studios in Lübeck kommt beides aus einer Hand: Websites, die eine Marke tragen, und begehbare 3D-Rundgänge, die Objekte verkaufen, bevor der erste Besichtigungstermin steht. Kein Weiterreichen, kein Baukasten, kein Kompromiss.',
     principles: [
       {
         n: '01',
@@ -149,7 +149,7 @@ export const de = {
       {
         n: '02',
         title: 'Alles aus einer Hand.',
-        text: 'Website und 3D-Rundgang von derselben Person. Sie sprechen mit dem, der es baut — vom ersten Entwurf bis zur fertigen Seite. Keine Schnittstellen, keine Wartezeit, keine Ausreden.',
+        text: 'Website und 3D-Rundgang von derselben Person: Bilal Gnielka. Sie sprechen mit dem, der es baut — vom ersten Entwurf bis zur fertigen Seite. Keine Schnittstellen, keine Wartezeit, keine Ausreden.',
       },
       {
         n: '03',
@@ -206,7 +206,7 @@ export const de = {
     studio: 'Studio · Lübeck',
   },
   footer: {
-    tagline: 'Webdesign und 3D-Rundgänge für Immobilien. Gebaut, nicht zusammengeklickt.',
+    tagline: 'Webdesign und 3D-Rundgänge für Immobilien aus Lübeck. Gebaut, nicht zusammengeklickt.',
     colServices: 'Leistungen',
     colStudio: 'Studio',
     colContact: 'Kontakt',
@@ -388,7 +388,7 @@ export const en: Dict = {
       {
         n: '02',
         title: 'Everything from one hand.',
-        text: 'Website and 3D tour from the same person. You talk to the one who builds it — from the first draft to the finished site. No handovers, no waiting, no excuses.',
+        text: 'Website and 3D tour from the same person: Bilal Gnielka. You talk to the one who builds it — from the first draft to the finished site. No handovers, no waiting, no excuses.',
       },
       {
         n: '03',
@@ -445,7 +445,7 @@ export const en: Dict = {
     studio: 'Studio · Lübeck',
   },
   footer: {
-    tagline: 'Web design and 3D tours for real estate. Built, not clicked together.',
+    tagline: 'Web design and 3D tours for real estate, from Lübeck. Built, not clicked together.',
     colServices: 'Services',
     colStudio: 'Studio',
     colContact: 'Contact',

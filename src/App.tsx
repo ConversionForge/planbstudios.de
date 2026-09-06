@@ -24,8 +24,13 @@ function ScrollManager() {
   }, [])
 
   useEffect(() => {
-    // Die Startseite regelt ihre Scroll-Position (Lenis) selbst.
-    if (location.pathname === '/') return
+    // Die Startseite regelt ihre Scroll-Position (Lenis) selbst — in beiden
+    // Sprachfassungen. Der abschliessende Schraegstrich muss weg: Beim direkten
+    // Aufruf von /en/ liefert der Router "/en/", beim Klick auf den Umschalter
+    // "/en". Ohne die Vereinheitlichung liefe hier die Verwaltung fuer
+    // Unterseiten mit und wuerde gegen Lenis arbeiten.
+    const pfad = location.pathname.replace(/\/+$/, '') || '/'
+    if (pfad === '/' || pfad === '/en') return
 
     const key = location.key
     const saved = navType === 'POP' ? readScroll(key, location.pathname) : null
@@ -59,6 +64,10 @@ function App() {
       <PageCurtain />
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* Englische Fassung der Startseite unter eigener Adresse. Beide sind
+            ueber hreflang verknuepft; welche Sprache gilt, entscheidet die
+            Adresse (siehe src/i18n/index.tsx). */}
+        <Route path="/en" element={<Home />} />
         <Route path="/impressum" element={<Impressum />} />
         <Route path="/datenschutz" element={<Datenschutz />} />
         <Route path="/beispiel" element={<HavelGrauSite />} />

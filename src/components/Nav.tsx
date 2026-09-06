@@ -1,38 +1,41 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { LogoLockup } from './Logo'
 import { Magnetic } from './Magnetic'
 import { useLang } from '../i18n'
 
-/** Kompakter Sprachumschalter DE | EN */
+/**
+ * Kompakter Sprachumschalter DE | EN.
+ *
+ * Bewusst echte Verweise und keine Schaltflaechen: Ein Robot folgt einem
+ * <a href>, einem onClick-Handler nicht. Ohne echten Verweis wuerde die
+ * englische Fassung unter /en gar nicht erst gefunden.
+ */
 function LangSwitch({ className = '' }: { className?: string }) {
-  const { lang, setLang, t } = useLang()
+  const { lang, t, pfadFuer } = useLang()
+  const eintrag = (l: 'de' | 'en', beschriftung: string) => (
+    <Link
+      to={pfadFuer(l)}
+      hrefLang={l}
+      aria-current={lang === l ? 'true' : undefined}
+      className={`transition-colors duration-300 ${
+        lang === l ? 'text-gold' : 'text-stone hover:text-cream-soft'
+      }`}
+    >
+      {beschriftung}
+    </Link>
+  )
   return (
     <div
       className={`flex items-center gap-1.5 text-[12px] font-medium tracking-[0.08em] ${className}`}
       aria-label={t.nav.switchTo}
     >
-      <button
-        onClick={() => setLang('de')}
-        aria-pressed={lang === 'de'}
-        className={`transition-colors duration-300 ${
-          lang === 'de' ? 'text-gold' : 'text-stone hover:text-cream-soft'
-        }`}
-      >
-        DE
-      </button>
+      {eintrag('de', 'DE')}
       <span aria-hidden className="text-night-line">
         |
       </span>
-      <button
-        onClick={() => setLang('en')}
-        aria-pressed={lang === 'en'}
-        className={`transition-colors duration-300 ${
-          lang === 'en' ? 'text-gold' : 'text-stone hover:text-cream-soft'
-        }`}
-      >
-        EN
-      </button>
+      {eintrag('en', 'EN')}
     </div>
   )
 }

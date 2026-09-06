@@ -1,27 +1,45 @@
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, type ReactNode } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { de, en, type Dict } from './dict'
 
 export type Lang = 'de' | 'en'
 
 const STORE_KEY = 'pb-lang'
 
+/** Unter dieser Adresse liegt die englische Fassung der Startseite. */
+export const EN_PFAD = '/en'
+
 /**
- * Sprache bestimmen — ueber die BROWSERSPRACHE, nicht ueber die IP.
+ * Die ADRESSE bestimmt die Sprache — nicht der Browser.
  *
- * Bewusste Entscheidung: IP-Geolokalisierung braeuchte einen Drittanbieter,
- * der bei jedem Aufruf die IP der Besucher verarbeitet. Das wuerde die
- * Datenschutzerklaerung ("keine Dienste Dritter eingebunden") kippen. Die
- * Browsersprache ist ausserdem treffsicherer: Deutsche im Ausland bekommen
- * Deutsch, Englischsprachige in Deutschland bekommen Englisch.
+ * Vorgeschichte, damit das nicht wieder aufgeweicht wird: Frueher hat der
+ * Browser entschieden, und beide Sprachen lagen unter derselben Adresse.
+ * Googlebot rendert mit navigator.languages = ["en-US","en"], bekam also die
+ * englische Fassung — und genau die stand dann in der deutschen Suche. Eine
+ * Adresse, die je nach Besucher etwas anderes zeigt, kann eine Suchmaschine
+ * nicht sauber einordnen.
  *
- * Reihenfolge: gespeicherte Wahl > Browsersprache > Deutsch.
+ * Jetzt gilt: "/" ist deutsch, "/en" ist englisch, beide sind ueber
+ * hreflang miteinander verknuepft. Was ein Robot unter einer Adresse sieht,
+ * ist immer dasselbe.
  */
-export function detectLang(): Lang {
+export function langAusPfad(pathname: string): Lang {
+  return pathname === EN_PFAD || pathname.startsWith(EN_PFAD + '/') ? 'en' : 'de'
+}
+
+/**
+ * Bevorzugte Sprache des Browsers. Wird NUR noch fuer den dezenten Hinweis
+ * benutzt ("This site is also available in English"), nicht mehr fuer die
+ * Auslieferung. Ein Hinweis laesst dem Besucher die Wahl; eine automatische
+ * Umleitung wuerde Suchmaschinen dieselbe Wahl nehmen — davon raet Google
+ * ausdruecklich ab.
+ */
+export function browserBevorzugt(): Lang {
   if (typeof window === 'undefined') return 'de' // Vorrendern in Node
 
   try {
-    const stored = localStorage.getItem(STORE_KEY)
-    if (stored === 'de' || stored === 'en') return stored
+    const gespeichert = localStorage.getItem(STORE_KEY)
+    if (gespeichert === 'de' || gespeichert === 'en') return gespeichert
   } catch {
     /* Speicher blockiert — dann eben Browsersprache */
   }
@@ -44,6 +62,8 @@ interface Ctx {
   t: Dict
   setLang: (l: Lang) => void
   toggle: () => void
+  /** Adresse der jeweils anderen Sprachfassung, fuer echte Verweise. */
+  pfadFuer: (l: Lang) => string
 }
 
 const LangContext = createContext<Ctx>({
@@ -51,83 +71,76 @@ const LangContext = createContext<Ctx>({
   t: de,
   setLang: () => {},
   toggle: () => {},
+  pfadFuer: () => '/',
 })
 
-/**
- * Hat der Besucher die Sprache selbst gewaehlt — oder wurde sie nur aus dem
- * Browser geraten? Eine gespeicherte Wahl entsteht ausschliesslich durch einen
- * Klick auf die Umschaltung.
- */
-function hatEigeneWahl(): boolean {
-  if (typeof window === 'undefined') return false // Vorrendern in Node
-  try {
-    const gespeichert = localStorage.getItem(STORE_KEY)
-    return gespeichert === 'de' || gespeichert === 'en'
-  } catch {
-    return false // Speicher blockiert: dann gilt es als nicht gewaehlt
-  }
-}
-
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(detectLang)
-  const [gewaehlt, setGewaehlt] = useState<boolean>(hatEigeneWahl)
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
+  const lang = langAusPfad(pathname)
 
-  const setLang = useCallback((l: Lang) => {
-    setLangState(l)
-    setGewaehlt(true)
-    try {
-      localStorage.setItem(STORE_KEY, l)
-    } catch {
-      /* egal */
-    }
-  }, [])
+  const pfadFuer = useCallback((l: Lang) => (l === 'en' ? EN_PFAD : '/'), [])
 
-  const toggle = useCallback(
-    () => setLang(lang === 'de' ? 'en' : 'de'),
-    [lang, setLang],
+  const setLang = useCallback(
+    (l: Lang) => {
+      // Die Wahl merken, damit ein Wiederkehrer nicht erneut hingewiesen wird.
+      try {
+        localStorage.setItem(STORE_KEY, l)
+      } catch {
+        /* egal */
+      }
+      navigate(pfadFuer(l))
+    },
+    [navigate, pfadFuer],
   )
 
+  const toggle = useCallback(() => setLang(lang === 'de' ? 'en' : 'de'), [lang, setLang])
+
   // lang-Attribut mitfuehren, damit Screenreader den Text richtig aussprechen.
-  // Das folgt bewusst dem TATSAECHLICH angezeigten Inhalt.
   useEffect(() => {
     document.documentElement.lang = lang
   }, [lang])
 
   /**
-   * Titel und Beschreibung nur bei AUSDRUECKLICHER Sprachwahl anfassen.
+   * Titel und Beschreibung bei einem Sprachwechsel INNERHALB der Seite
+   * nachziehen. Beim ersten Aufruf steht das Richtige schon im ausgelieferten
+   * HTML (scripts/postbuild.mjs schreibt es je Adresse); das hier greift nur
+   * beim Klick auf DE/EN, wenn kein Neuladen stattfindet.
    *
-   * GEMESSEN, und der Grund fuer diese Unterscheidung: Googlebot rendert die
-   * Seite mit navigator.languages = ["en-US","en"]. Die Erkennung lieferte
-   * daraufhin "en", und dieser Effekt hat Titel und Beschreibung mit den
-   * englischen Fassungen ueberschrieben. In der Google-Suche stand deshalb
-   * "Web design & 3D tours for real estate — Plan B Studios, Lübeck", obwohl
-   * der Server durchgehend Deutsch ausliefert.
-   *
-   * Ein Robot hat keine gespeicherte Wahl, sieht also weiterhin genau das, was
-   * im ausgelieferten HTML steht: Deutsch. Wer dagegen selbst auf EN klickt,
-   * bekommt den englischen Titel — das ist eine Entscheidung des Besuchers und
-   * kein Ratespiel.
-   *
-   * Zweite Korrektur hier: Die Beschreibung wurde bisher auf JEDER Seite
-   * ueberschrieben (nur der Titel hatte die Bereichspruefung). Damit hat sie
-   * die eigenen Beschreibungen der Unterseiten aus postbuild.mjs wieder
-   * plattgemacht. Jetzt gilt fuer beide dieselbe Grenze: nur die Startseite.
+   * Massgeblich ist die ADRESSE. Ein Robot laedt jede Adresse frisch und sieht
+   * damit immer genau das, was der Server ausliefert.
    */
   useEffect(() => {
-    if (!gewaehlt) return
-    if (window.location.pathname !== '/') return
+    const istStartseite =
+      pathname === '/' || pathname === EN_PFAD || pathname === EN_PFAD + '/'
+    if (!istStartseite) return // Unterseiten setzen ihren eigenen Titel
+
     const dict = lang === 'de' ? de : en
+    const basis = 'https://planbstudios.de'
+    const url = lang === 'en' ? `${basis}${EN_PFAD}/` : `${basis}/`
+
     document.title = dict.siteTitle
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute('content', dict.siteDesc)
-  }, [lang, gewaehlt])
+    setzeMeta('name', 'description', dict.siteDesc)
+    setzeMeta('property', 'og:title', dict.siteTitle)
+    setzeMeta('property', 'og:description', dict.siteDesc)
+    setzeMeta('property', 'og:url', url)
+    setzeMeta('property', 'og:locale', lang === 'en' ? 'en_US' : 'de_DE')
+    setzeMeta('name', 'twitter:title', dict.siteTitle)
+    setzeMeta('name', 'twitter:description', dict.siteDesc)
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', url)
+  }, [lang, pathname])
 
   return (
-    <LangContext.Provider value={{ lang, t: lang === 'de' ? de : en, setLang, toggle }}>
+    <LangContext.Provider
+      value={{ lang, t: lang === 'de' ? de : en, setLang, toggle, pfadFuer }}
+    >
       {children}
     </LangContext.Provider>
   )
+}
+
+function setzeMeta(art: 'name' | 'property', schluessel: string, wert: string) {
+  document.querySelector(`meta[${art}="${schluessel}"]`)?.setAttribute('content', wert)
 }
 
 export function useLang() {

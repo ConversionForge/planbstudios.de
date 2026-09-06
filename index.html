@@ -11,6 +11,16 @@
     />
     <link rel="canonical" href="https://planbstudios.de/" />
 
+    <!--
+      Sprachfassungen. Beide Adressen fuehren dieselbe Liste — so verlangt es
+      die Spezifikation, und so kann Google die passende Fassung ausspielen,
+      statt zu raten. x-default zeigt auf die deutsche Seite, weil die
+      Zielgruppe deutschsprachig ist.
+    -->
+    <link rel="alternate" hreflang="de" href="https://planbstudios.de/" />
+    <link rel="alternate" hreflang="en" href="https://planbstudios.de/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://planbstudios.de/" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#0a0a0b" />
@@ -47,52 +57,89 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "@id": "https://planbstudios.de/#studio",
-        "name": "Plan B Studios",
-        "description": "Webdesign und begehbare 3D-Rundgänge für Immobilien. Maßgeschneiderte Websites für Makler, Hausverwaltungen und Bauträger.",
-        "url": "https://planbstudios.de/",
-        "image": "https://planbstudios.de/og-image.png",
-        "logo": "https://planbstudios.de/og-image.png",
-        "email": "info@planbstudios.de",
-        "telephone": "+49-178-8489408",
-        "founder": { "@type": "Person", "name": "Bilal Gnielka" },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Robert-Koch-Straße 24",
-          "postalCode": "23562",
-          "addressLocality": "Lübeck",
-          "addressRegion": "Schleswig-Holstein",
-          "addressCountry": "DE"
-        },
-        "areaServed": [
-          { "@type": "City", "name": "Lübeck" },
-          { "@type": "State", "name": "Schleswig-Holstein" }
-        ],
-        "knowsLanguage": ["de", "en"],
-        "priceRange": "$$",
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Leistungen",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Webdesign für Immobilien",
-                "description": "Maßgeschneiderte Websites für Makler, Hausverwaltungen und Bauträger, ohne Baukasten und ohne Vorlage."
-              }
+        "@graph": [
+          {
+            "@type": ["ProfessionalService", "LocalBusiness"],
+            "@id": "https://planbstudios.de/#studio",
+            "name": "Plan B Studios",
+            "alternateName": "Plan B Studios Lübeck",
+            "description": "Webdesign und begehbare 3D-Rundgänge für Immobilien aus Lübeck. Maßgeschneiderte Websites für Makler, Hausverwaltungen und Bauträger in Schleswig-Holstein.",
+            "url": "https://planbstudios.de/",
+            "image": "https://planbstudios.de/og-image.png",
+            "logo": "https://planbstudios.de/og-image.png",
+            "email": "info@planbstudios.de",
+            "telephone": "+49-178-8489408",
+            "founder": { "@id": "https://planbstudios.de/#bilal-gnielka" },
+            "employee": { "@id": "https://planbstudios.de/#bilal-gnielka" },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Robert-Koch-Straße 24",
+              "postalCode": "23562",
+              "addressLocality": "Lübeck",
+              "addressRegion": "Schleswig-Holstein",
+              "addressCountry": "DE"
             },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "3D-Rundgänge für Immobilien",
-                "description": "Begehbare 3D-Rundgänge und cinematische Objektfilme, die aus Exposés Besichtigungen machen."
-              }
+            "areaServed": [
+              { "@type": "City", "name": "Lübeck" },
+              { "@type": "State", "name": "Schleswig-Holstein" }
+            ],
+            "knowsAbout": [
+              "Webdesign",
+              "Webentwicklung",
+              "3D-Rundgänge für Immobilien",
+              "Virtuelle Besichtigungen",
+              "Immobilienmarketing"
+            ],
+            "knowsLanguage": ["de", "en"],
+            "priceRange": "$$",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Leistungen",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Webdesign für Immobilien",
+                    "description": "Maßgeschneiderte Websites für Makler, Hausverwaltungen und Bauträger, ohne Baukasten und ohne Vorlage."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "3D-Rundgänge für Immobilien",
+                    "description": "Begehbare 3D-Rundgänge und cinematische Objektfilme, die aus Exposés Besichtigungen machen."
+                  }
+                }
+              ]
             }
-          ]
-        }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://planbstudios.de/#bilal-gnielka",
+            "name": "Bilal Gnielka",
+            "jobTitle": "Webdesigner und 3D-Artist",
+            "description": "Gründer von Plan B Studios in Lübeck. Baut Websites und begehbare 3D-Rundgänge für Immobilien.",
+            "worksFor": { "@id": "https://planbstudios.de/#studio" },
+            "url": "https://planbstudios.de/",
+            "knowsAbout": ["Webdesign", "3D-Rundgänge für Immobilien", "Immobilienmarketing"],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Lübeck",
+              "addressRegion": "Schleswig-Holstein",
+              "addressCountry": "DE"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://planbstudios.de/#website",
+            "url": "https://planbstudios.de/",
+            "name": "Plan B Studios",
+            "inLanguage": "de",
+            "publisher": { "@id": "https://planbstudios.de/#studio" }
+          }
+        ]
       }
     </script>
 

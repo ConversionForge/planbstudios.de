@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!--
+  Die beiden Sprachfassungen der Startseite verweisen ueber xhtml:link
+  aufeinander. Jeder Eintrag fuehrt die vollstaendige Liste aller Fassungen,
+  einschliesslich seiner selbst — so verlangt es die Spezifikation.
+
+  Nicht enthalten und das mit Absicht: /akquise-check (Formularstrecke),
+  /beispiel, /meridian und /rundgang (Demonstrationen, in robots.txt gesperrt).
+-->
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
   <url>
     <loc>https://planbstudios.de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://planbstudios.de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://planbstudios.de/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://planbstudios.de/" />
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://planbstudios.de/en/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://planbstudios.de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://planbstudios.de/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://planbstudios.de/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://planbstudios.de/makler/mehr-eigentuemeranfragen/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://planbstudios.de/impressum/</loc>
@@ -14,10 +41,5 @@
     <loc>https://planbstudios.de/datenschutz/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://planbstudios.de/makler/mehr-eigentuemeranfragen/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
 </urlset>

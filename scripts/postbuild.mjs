@@ -35,6 +35,18 @@ try {
 }
 
 const ROUTES = {
+  // Englische Fassung der Startseite. Eigene Adresse statt Umschalten unter
+  // derselben — sonst kann eine Suchmaschine nicht entscheiden, welche Sprache
+  // die Seite hat. Verknuepft sind beide ueber die hreflang-Angaben, die schon
+  // in index.html stehen und deshalb in beiden Dateien identisch landen.
+  en: {
+    title: 'Web design & 3D tours for real estate — Plan B Studios, Lübeck',
+    desc: 'Plan B Studios designs websites and walkable 3D tours for real estate — tailor-made for estate agents, property managers and developers in northern Germany.',
+    ogDesc: 'Websites and walkable 3D tours for real estate, from Lübeck. Built, not clicked together.',
+    lang: 'en',
+    locale: 'en_US',
+    prerender: true,
+  },
   impressum: {
     title: 'Impressum — Plan B Studios',
     desc: 'Impressum und Anbieterkennzeichnung von Plan B Studios, Lübeck.',
@@ -77,15 +89,33 @@ function swap(html, pattern, ersatz, label, route) {
 
 function withMeta(html, route, cfg) {
   const url = `${BASE}/${route}/`
+
+  // Sprachfassung: lang-Attribut, og:locale und die Sprachangabe in den
+  // strukturierten Daten muessen zur Seite passen, sonst widersprechen sich
+  // die Signale.
+  if (cfg.lang && cfg.lang !== 'de') {
+    html = swap(html, /<html lang="de">/, `<html lang="${cfg.lang}">`, 'html lang', route)
+    html = swap(
+      html,
+      /<meta property="og:locale"[\s\S]*?>/i,
+      `<meta property="og:locale" content="${cfg.locale || 'en_US'}" />`,
+      'og:locale',
+      route,
+    )
+    html = swap(html, /"inLanguage": "de"/, `"inLanguage": "${cfg.lang}"`, 'inLanguage', route)
+  }
   html = swap(html, /<title>[\s\S]*?<\/title>/i, `<title>${esc(cfg.title)}</title>`, 'title', route)
   html = swap(html, /<link\s+rel="canonical"[\s\S]*?>/i, `<link rel="canonical" href="${url}" />`, 'canonical', route)
   html = swap(html, /<meta\s+property="og:url"[\s\S]*?>/i, `<meta property="og:url" content="${url}" />`, 'og:url', route)
   html = swap(html, /<meta\s+property="og:title"[\s\S]*?>/i, `<meta property="og:title" content="${esc(cfg.title)}" />`, 'og:title', route)
   html = swap(html, /<meta\s+name="twitter:title"[\s\S]*?>/i, `<meta name="twitter:title" content="${esc(cfg.title)}" />`, 'twitter:title', route)
   if (cfg.desc) {
+    // ogDesc ist optional: Die Sozialvorschau darf kuerzer sein als die
+    // Beschreibung fuer die Suche. Fehlt sie, gilt dieselbe fuer beides.
+    const sozial = cfg.ogDesc || cfg.desc
     html = swap(html, /<meta\s+name="description"[\s\S]*?>/i, `<meta name="description" content="${esc(cfg.desc)}" />`, 'description', route)
-    html = swap(html, /<meta\s+property="og:description"[\s\S]*?>/i, `<meta property="og:description" content="${esc(cfg.desc)}" />`, 'og:description', route)
-    html = swap(html, /<meta\s+name="twitter:description"[\s\S]*?>/i, `<meta name="twitter:description" content="${esc(cfg.desc)}" />`, 'twitter:description', route)
+    html = swap(html, /<meta\s+property="og:description"[\s\S]*?>/i, `<meta property="og:description" content="${esc(sozial)}" />`, 'og:description', route)
+    html = swap(html, /<meta\s+name="twitter:description"[\s\S]*?>/i, `<meta name="twitter:description" content="${esc(sozial)}" />`, 'twitter:description', route)
   }
   return html
 }
