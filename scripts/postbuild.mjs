@@ -40,7 +40,7 @@ const ROUTES = {
   // die Seite hat. Verknuepft sind beide ueber die hreflang-Angaben, die schon
   // in index.html stehen und deshalb in beiden Dateien identisch landen.
   en: {
-    title: 'Web design & 3D tours for real estate — Plan B Studios, Lübeck',
+    title: 'Web design & 3D tours for real estate | Plan B Studios',
     desc: 'Plan B Studios designs websites and walkable 3D tours for real estate — tailor-made for estate agents, property managers and developers in northern Germany.',
     ogDesc: 'Websites and walkable 3D tours for real estate, from Lübeck. Built, not clicked together.',
     lang: 'en',
@@ -65,7 +65,11 @@ const ROUTES = {
   // Formularstrecke und Bestaetigungsseite: echte HTML-Datei fuer HTTP 200,
   // aber kein Vorrendern (ein Formular hat im statischen HTML keinen Wert) und
   // bewusst NICHT in der sitemap.xml.
-  'akquise-check': { title: 'Akquise-Check — Plan B Studios', prerender: false },
+  'akquise-check': {
+    title: 'Akquise-Check für Makler — Plan B Studios',
+    desc: 'Fünf Fragen zur eigenen Akquise, ohne Anmeldung. Am Ende stehen drei Hinweise, die sich aus den eigenen Antworten ergeben.',
+    prerender: false,
+  },
   beispiel: { title: 'Havel & Grau — Beispielprojekt von Plan B Studios', prerender: false },
   meridian: { title: 'MERIDIAN — Beispielprojekt von Plan B Studios', prerender: false },
   rundgang: { title: 'Design-Loft — 3D-Rundgang von Plan B Studios', prerender: false },
@@ -85,6 +89,34 @@ function swap(html, pattern, ersatz, label, route) {
     console.warn(`[postbuild] WARNUNG: ${label} in /${route} nicht ersetzt`)
   }
   return neu2
+}
+
+/**
+ * Breadcrumb-Daten fuer eine Unterseite. Google stellt damit den Pfad statt
+ * der nackten Adresse ins Suchergebnis. Die Startseite bekommt keine — sie ist
+ * die Wurzel und haette nur einen einzigen Eintrag.
+ */
+function breadcrumb(route, cfg) {
+  const teile = [{ name: cfg.wurzel || 'Startseite', url: `${BASE}/` }]
+  if (cfg.oberBegriff && cfg.oberPfad) {
+    teile.push({ name: cfg.oberBegriff, url: `${BASE}/${cfg.oberPfad}/` })
+  }
+  teile.push({ name: cfg.krume || cfg.title.split(/\s+[—|]\s+/)[0], url: `${BASE}/${route}/` })
+
+  return (
+    '<script type="application/ld+json">' +
+    JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: teile.map((t, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: t.name,
+        item: t.url,
+      })),
+    }) +
+    '</script>'
+  )
 }
 
 function withMeta(html, route, cfg) {
@@ -117,6 +149,12 @@ function withMeta(html, route, cfg) {
     html = swap(html, /<meta\s+property="og:description"[\s\S]*?>/i, `<meta property="og:description" content="${esc(sozial)}" />`, 'og:description', route)
     html = swap(html, /<meta\s+name="twitter:description"[\s\S]*?>/i, `<meta name="twitter:description" content="${esc(sozial)}" />`, 'twitter:description', route)
   }
+  // Breadcrumbs vor dem schliessenden </head> einhaengen. Die englische
+  // Startseite bekommt keine: Sie ist die Wurzel ihrer Sprachfassung.
+  if (route !== 'en') {
+    html = html.replace('</head>', '    ' + breadcrumb(route, cfg) + '\n  </head>')
+  }
+
   return html
 }
 

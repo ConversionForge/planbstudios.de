@@ -9,7 +9,7 @@ type Word = { t: string; gold?: boolean }
 
 export const de = {
   htmlLang: 'de',
-  siteTitle: 'Webdesign Lübeck & 3D-Rundgänge für Immobilien — Plan B Studios',
+  siteTitle: 'Webdesign Lübeck & 3D-Rundgänge | Plan B Studios',
   siteDesc:
     'Webdesign und begehbare 3D-Rundgänge für Immobilien aus Lübeck. Maßgeschneiderte Websites für Makler, Hausverwaltungen und Bauträger in Schleswig-Holstein.',
   nav: {
@@ -81,6 +81,7 @@ export const de = {
     demoTitleEm: 'Kino',
     demoTitle2: '.',
     demoText: 'Aus statischen Fotos wird ein Film, der durch die Räume gleitet — ein Objekt in fünfzehn Sekunden erlebbar, nicht nur betrachtet.',
+    loftAlt: 'Wohnbereich eines Design-Lofts in Hamburg, Ausgangsbild für den begehbaren 3D-Rundgang von Plan B Studios',
     videoCaption: 'Cinematischer Rundgang durch ein Design-Loft in Hamburg — als Bewegtbild aus den Objektaufnahmen komponiert.',
     videoLabel: 'Cinematic Walkthrough',
     videoPlay: 'Abspielen',
@@ -109,6 +110,7 @@ export const de = {
   },
   arbeiten: {
     eyebrow: '03 — ARBEITEN',
+    loftAlt: 'Standbild aus dem cinematischen Rundgang durch ein Design-Loft in Hamburg',
     title1: 'Arbeiten, die für sich',
     titleEm: 'sprechen',
     title2: '.',
@@ -249,7 +251,7 @@ export type Dict = typeof de
 
 export const en: Dict = {
   htmlLang: 'en',
-  siteTitle: 'Web design & 3D tours for real estate — Plan B Studios, Lübeck',
+  siteTitle: 'Web design & 3D tours for real estate | Plan B Studios',
   siteDesc:
     'Plan B Studios designs websites and walkable 3D tours for real estate — tailor-made for estate agents, property managers and developers. Studio in Lübeck, Germany.',
   nav: {
@@ -320,6 +322,7 @@ export const en: Dict = {
     demoTitleEm: 'film',
     demoTitle2: '.',
     demoText: 'Static photos become a film that glides through the rooms — a property experienced in fifteen seconds, not merely looked at.',
+    loftAlt: 'Living area of a design loft in Hamburg, source image for the walkable 3D tour by Plan B Studios',
     videoCaption: 'Cinematic tour through a design loft in Hamburg — composed as moving images from the property photos.',
     videoLabel: 'Cinematic Walkthrough',
     videoPlay: 'Play',
@@ -348,6 +351,7 @@ export const en: Dict = {
   },
   arbeiten: {
     eyebrow: '03 — WORK',
+    loftAlt: 'Still from the cinematic walkthrough of a design loft in Hamburg',
     title1: 'Work that speaks',
     titleEm: 'for itself',
     title2: '.',

@@ -62,7 +62,7 @@ function CaseCard({ to, tag, kind, title, text, media }: Case) {
           <>
             <img
               src={LOFT_IMG}
-              alt=""
+              alt={t.arbeiten.loftAlt}
               className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.05]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-night-raised/60 to-transparent" />

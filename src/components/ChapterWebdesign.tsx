@@ -50,11 +50,14 @@ function MeridianPreview() {
           <span>N° 01 — NEUBAUPROJEKT</span>
           <span>53°52′N · 10°41′E</span>
         </div>
-        <h1 className="mt-8 font-tech text-7xl font-bold uppercase leading-[0.9] tracking-[-0.02em]">
+        {/* Bewusst KEIN h1: Das hier ist ein Mockup einer fremden Website im
+            Rahmen. Ein zweites h1 auf der Startseite waere semantisch falsch —
+            die Startseite hat genau eine Hauptueberschrift. */}
+        <div className="mt-8 font-tech text-7xl font-bold uppercase leading-[0.9] tracking-[-0.02em]">
           Wohnen
           <br />
           <span className="mer-outline">am Wasser</span>
-        </h1>
+        </div>
         <div className="mt-6 flex items-end justify-between gap-6 pb-6">
           <p className="max-w-xs text-[13px] leading-relaxed text-mer-muted">
             42 Wohnungen in vier Baukörpern, direkt am Kai der Trave.

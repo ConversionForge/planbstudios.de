@@ -221,7 +221,7 @@ export function Chapter3D() {
           >
             <img
               src={TOUR_COVER}
-              alt=""
+              alt={t.rundgaenge.loftAlt}
               className="h-14 w-20 shrink-0 rounded object-cover"
             />
             <span className="flex-1">
