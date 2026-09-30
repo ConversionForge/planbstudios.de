@@ -57,6 +57,22 @@ const ROUTES = {
     desc: 'Datenschutzerklärung von Plan B Studios.',
     prerender: true,
   },
+  'webdesign-luebeck': {
+    title: 'Webdesign für Immobilien in Lübeck — Plan B Studios',
+    desc: 'Websites für Makler, Hausverwaltungen und Bauträger aus Lübeck. Einzeln gebaut, ohne Baukasten und ohne Vorlage — von der Person, die sie auch umsetzt.',
+    prerender: true,
+  },
+  '3d-rundgaenge': {
+    title: '3D-Rundgänge für Immobilien — Plan B Studios',
+    desc: 'Begehbare 3D-Rundgänge und cinematische Objektfilme für Immobilien. Aus vorhandenen Fotos oder als vollständiger Rundgang — gebaut in Lübeck.',
+    prerender: true,
+  },
+  'ueber-mich': {
+    title: 'Bilal Gnielka — Plan B Studios, Lübeck',
+    desc: 'Bilal Gnielka baut Websites und begehbare 3D-Rundgänge für Immobilien. Plan B Studios ist sein Studio in Lübeck — ein Ein-Personen-Betrieb.',
+    krume: 'Über mich',
+    prerender: true,
+  },
   'makler/mehr-eigentuemeranfragen': {
     title: 'Mehr Eigentümeranfragen — Plan B Studios',
     desc: 'Eigentümer suchen online nach dem Wert ihrer Immobilie, lange bevor sie einen Makler anrufen. Situationsseiten, Bewertungsstrecke, Follow-up und Messung — aus einer Hand.',

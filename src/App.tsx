@@ -8,6 +8,9 @@ import { MeridianSite } from './example/MeridianSite'
 import { PropertyTour } from './tour/PropertyTour'
 import { NotFound } from './pages/NotFound'
 import { MaklerSituation } from './pages/MaklerSituation'
+import { WebdesignLuebeck } from './pages/WebdesignLuebeck'
+import { Rundgaenge } from './pages/Rundgaenge'
+import { UeberMich } from './pages/UeberMich'
 import { AkquiseCheck } from './pages/AkquiseCheck'
 import { PageCurtain } from './components/PageCurtain'
 import { saveScroll, readScroll } from './lib/scroll'
@@ -74,6 +77,11 @@ function App() {
         <Route path="/meridian" element={<MeridianSite />} />
         <Route path="/rundgang" element={<PropertyTour />} />
         <Route path="/makler/mehr-eigentuemeranfragen" element={<MaklerSituation />} />
+        {/* Eigenstaendige Seiten je Suchbegriff. Die Startseite stellt das
+            Studio vor; wer gezielt nach einer Leistung sucht, landet hier. */}
+        <Route path="/webdesign-luebeck" element={<WebdesignLuebeck />} />
+        <Route path="/3d-rundgaenge" element={<Rundgaenge />} />
+        <Route path="/ueber-mich" element={<UeberMich />} />
         <Route path="/akquise-check" element={<AkquiseCheck />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
