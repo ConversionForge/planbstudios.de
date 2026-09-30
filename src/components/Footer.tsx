@@ -47,8 +47,18 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-x-16 gap-y-8 sm:grid-cols-3">
             <div className="flex flex-col gap-3">
               <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">{t.footer.colServices}</span>
-              <SectionLink id="webdesign">{t.footer.linkWebdesign}</SectionLink>
-              <SectionLink id="rundgaenge">{t.footer.linkRundgaenge}</SectionLink>
+              <Link
+                to="/webdesign-luebeck"
+                className="text-[14px] text-cream-soft transition-colors hover:text-gold"
+              >
+                {t.footer.linkWebdesign}
+              </Link>
+              <Link
+                to="/3d-rundgaenge"
+                className="text-[14px] text-cream-soft transition-colors hover:text-gold"
+              >
+                {t.footer.linkRundgaenge}
+              </Link>
               <Link
                 to="/makler/mehr-eigentuemeranfragen"
                 className="text-[14px] text-cream-soft transition-colors hover:text-gold"
@@ -59,7 +69,12 @@ export function Footer() {
             <div className="flex flex-col gap-3">
               <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">{t.footer.colStudio}</span>
               <SectionLink id="referenzen">{t.footer.linkArbeiten}</SectionLink>
-              <SectionLink id="studio">{t.footer.linkAbout}</SectionLink>
+              <Link
+                to="/ueber-mich"
+                className="text-[14px] text-cream-soft transition-colors hover:text-gold"
+              >
+                {t.footer.linkAbout}
+              </Link>
             </div>
             <div className="flex flex-col gap-3">
               <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">{t.footer.colContact}</span>
