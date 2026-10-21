@@ -59,7 +59,7 @@ const ROUTES = {
   },
   'webdesign-luebeck': {
     title: 'Webdesign für Immobilien in Lübeck — Plan B Studios',
-    desc: 'Websites für Makler, Hausverwaltungen und Bauträger aus Lübeck. Einzeln gebaut, ohne Baukasten und ohne Vorlage — von der Person, die sie auch umsetzt.',
+    desc: 'Websites für Makler, Hausverwaltungen und Bauträger aus Lübeck. Was eine Webagentur leistet, ohne Agentur zu sein: einzeln gebaut, ohne Baukasten.',
     prerender: true,
   },
   '3d-rundgaenge': {

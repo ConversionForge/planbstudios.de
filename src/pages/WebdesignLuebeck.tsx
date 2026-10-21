@@ -107,6 +107,39 @@ export function WebdesignLuebeck() {
         </Block>
       </section>
 
+      {/* Webagentur
+          Gemessen, nicht vermutet: Fuer "webagentur lübeck" steht die Seite in
+          der Search Console auf Position 1 — obwohl der Begriff bisher nirgends
+          vorkam und die Seite sogar dagegen argumentierte ("keine Agentur").
+          Dieser Abschnitt greift den Begriff auf, ohne die Positionierung
+          aufzugeben, und beantwortet nebenbei eine Frage, die ein Besucher
+          ohnehin hat. */}
+      <section className="border-t border-night-line py-20 md:py-28">
+        <Block>
+          <Marke>WEBAGENTUR ODER NICHT</Marke>
+          <h2 className="max-w-2xl font-serif text-[clamp(1.9rem,4.5vw,3rem)] font-light leading-tight text-cream">
+            Was eine Webagentur leistet,
+            <br />
+            ohne <em className="italic text-gold-bright">Agentur</em> zu sein.
+          </h2>
+          <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-12">
+            <p className="text-base leading-relaxed text-cream-soft">
+              Wer in Lübeck nach einer Webagentur sucht, ist hier richtig, auch
+              wenn auf dem Schild etwas anderes steht. Den Leistungsumfang einer
+              Agentur bekommen Sie: Konzept, Gestaltung, Umsetzung, Texte, die
+              rechtlich nötige Einbindung, Übergabe mit Zugang.
+            </p>
+            <p className="text-base leading-relaxed text-stone">
+              Was Sie nicht bekommen, ist der Apparat darum herum. Keinen
+              Projektleiter, der weitergibt, was Sie gesagt haben. Keine
+              Abstimmungsrunde zwischen drei Leuten, die Sie nie zu Gesicht
+              bekommen. Und keine Rechnung, auf der die Abstimmung mit drauf
+              steht.
+            </p>
+          </div>
+        </Block>
+      </section>
+
       {/* Umfang */}
       <section className="border-t border-night-line py-20 md:py-28">
         <div className="grid gap-12 md:grid-cols-[1fr_1.1fr] md:gap-16">
