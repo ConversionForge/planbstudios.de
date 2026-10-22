@@ -75,7 +75,7 @@ const ROUTES = {
   },
   'ueber-mich': {
     title: 'Bilal Gnielka — Plan B Studios, Lübeck',
-    desc: 'Bilal Gnielka baut Websites und begehbare 3D-Rundgänge für Immobilien. Plan B Studios ist sein Studio in Lübeck — ein Ein-Personen-Betrieb.',
+    desc: 'Bilal Gnielka baut Websites und begehbare 3D-Rundgänge für Immobilien. Plan B Studios in Lübeck, angemeldet an seinem 18. Geburtstag im Juli 2026.',
     krume: 'Über mich',
     prerender: true,
   },
