@@ -60,27 +60,17 @@ export function UeberMich() {
 
           <div className="mt-10 max-w-2xl">
             <p className="text-base leading-relaxed text-cream-soft md:text-lg">
-              Ich entwickle Websites und digitale Erlebnisse, die Immobilien
-              nicht nur präsentieren, sondern sie erlebbar machen. Mit Plan B
-              Studios verbinde ich Webdesign mit begehbaren 3D-Rundgängen, mit
-              dem Anspruch, aus einer ersten Begegnung einen bleibenden Eindruck
-              zu machen.
+              Ich baue Websites und begehbare 3D-Rundgänge für Immobilien. Plan
+              B Studios ist mein Studio in Lübeck, ein Ein-Personen-Unternehmen,
+              und das ist Absicht.
             </p>
             <p className="mt-6 text-base leading-relaxed text-stone">
-              Plan B Studios ist mein eigenes Studio in Lübeck. Ein
-              Ein-Personen-Unternehmen. Bewusst.
+              Bei mir steht nicht erst ein Vertrieb, dann ein Projektleiter und
+              schließlich ein Designer. Wenn Sie anfragen, sprechen Sie mit der
+              Person, die anschließend auch die Arbeit macht. Vom ersten
+              Gespräch bis zur fertigen Seite.
             </p>
-            <p className="mt-6 text-base leading-relaxed text-stone">
-              Denn hinter jedem Projekt steht bei mir nicht erst ein Vertrieb,
-              dann ein Projektmanager und schließlich ein Designer. Wenn Sie
-              mich kontaktieren, sprechen Sie direkt mit der Person, die Ihre
-              Vorstellungen versteht, Entscheidungen trifft und die Arbeit
-              umsetzt. Vom ersten Gespräch bis zum fertigen Ergebnis.
-            </p>
-            <Merksatz>
-              Kurze Wege. Klare Verantwortung. Ein persönlicher Anspruch, der
-              nicht mit der Übergabe an jemand anderen endet.
-            </Merksatz>
+            <Merksatz>Kurze Wege. Klare Verantwortung.</Merksatz>
           </div>
         </motion.div>
       </section>
@@ -99,51 +89,40 @@ export function UeberMich() {
 
           <Block>
             <p className="text-base leading-relaxed text-cream-soft md:text-lg">
-              Mit dreizehn wusste ich, dass ich eines Tages mein eigenes
-              Unternehmen führen wollte. Nicht als vage Vorstellung für
-              irgendwann, sondern als Ziel, das mich über Jahre begleitet hat.
+              Mit dreizehn stand für mich fest, dass ich etwas Eigenes machen
+              will. Nicht als Plan für irgendwann, sondern als Ziel, das mich
+              seitdem begleitet.
             </p>
             <p className="mt-6 text-base leading-relaxed text-stone">
-              Die Idee hinter Plan B Studios entstand bereits zwei bis drei
-              Jahre vor der Gründung. Ich habe mich mit Möglichkeiten
-              beschäftigt, Konzepte entwickelt und daran gearbeitet, aus einer
+              Die Idee zu Plan B Studios gibt es seit zwei bis drei Jahren. Ich
+              habe Konzepte entwickelt und daran gearbeitet, aus einer
               Vorstellung etwas Konkretes zu machen. Es fehlte nicht der Wille.
-              Es fehlte schlicht das Alter.
+              Es fehlte das Alter.
             </p>
             <p className="mt-6 text-base leading-relaxed text-stone">
-              Also stand für mich fest: Sobald ich gründen darf, tue ich es.
+              Am 15. Juli 2026, meinem achtzehnten Geburtstag, habe ich die
+              Firma angemeldet. Nicht irgendwann, wenn alles perfekt vorbereitet
+              ist. An dem ersten Tag, an dem ich es durfte.
             </p>
             <p className="mt-6 text-base leading-relaxed text-stone">
-              Am 15. Juli 2026, meinem achtzehnten Geburtstag, habe ich mein
-              Unternehmen angemeldet. Nicht irgendwann, wenn alle Voraussetzungen
-              perfekt sind. Nicht erst, wenn jeder Schritt risikofrei erscheint.
-              Sondern an dem ersten Tag, an dem ich es selbst in die Hand nehmen
-              konnte.
+              Nebenher mache ich mein Abitur.
             </p>
             <Merksatz>
-              Für mich war das kein spontaner Entschluss. Es war der Startschuss
-              für etwas, auf das ich jahrelang hingearbeitet hatte.
+              Man muss nicht warten, bis man sich bereit fühlt. Man muss bereit
+              sein anzufangen, dazuzulernen und für das geradezustehen, was man
+              abliefert.
             </Merksatz>
-            <p className="mt-8 text-base leading-relaxed text-stone">
-              Heute baue ich Plan B Studios auf und mache parallel mein Abitur.
-              Beides verlangt Disziplin, Organisation und die Bereitschaft,
-              Verantwortung zu übernehmen. Ich sehe darin keinen Widerspruch. Im
-              Gegenteil: Ich möchte nicht erst irgendwann anfangen, das
-              umzusetzen, was ich mir vorgenommen habe.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-stone">
-              Ich glaube daran, dass man nicht warten muss, bis man sich bereit
-              fühlt. Man muss bereit sein, anzufangen, dazuzulernen und die
-              Verantwortung für das zu übernehmen, was man abliefert.
-            </p>
           </Block>
         </div>
       </section>
 
-      {/* Was das bedeutet */}
+      {/* Was das heisst
+          Hier lagen vorher zwei Abschnitte, die dieselbe Aussage gebracht
+          haben ("Was das fuer Sie bedeutet" und "Mein Anspruch"). Zusammengelegt
+          traegt sie einmal und dafuer deutlich. */}
       <section className="border-t border-night-line py-20 md:py-28">
         <Block>
-          <Marke>WAS DAS FÜR SIE BEDEUTET</Marke>
+          <Marke>WAS DAS FÜR SIE HEISST</Marke>
           <h2 className="max-w-3xl font-serif text-[clamp(1.9rem,4.5vw,3rem)] font-light leading-tight text-cream">
             Ich habe einen Namen,
             <br />
@@ -154,165 +133,68 @@ export function UeberMich() {
         <Block gestaffelteKinder className="mt-12 grid gap-x-16 gap-y-6 md:grid-cols-2">
           <motion.div variants={einblenden}>
             <p className="text-base leading-relaxed text-cream-soft md:text-lg">
-              Ich werde Ihnen nicht erzählen, dass ich auf jahrzehntelange
-              Erfahrung und Hunderte abgeschlossene Projekte zurückblicke. Das
-              wäre nicht ehrlich. Plan B Studios steht am Anfang seiner
-              unternehmerischen Geschichte, und genau deshalb nehme ich meinen
-              eigenen Anspruch besonders ernst.
+              Ich werde Ihnen nicht erzählen, dass ich auf zehn Jahre Erfahrung
+              und hunderte abgeschlossene Projekte zurückblicke. Das wäre nicht
+              wahr. Plan B Studios steht am Anfang.
             </p>
             <p className="mt-6 text-base leading-relaxed text-stone">
-              Ich habe keinen riesigen Kundenstamm, hinter dem sich Ihr Projekt
-              einreihen muss. Keine langen internen Abstimmungen, keine
-              wechselnden Ansprechpartner und keine Distanz zwischen dem, was
-              Ihnen versprochen wird, und dem, was tatsächlich umgesetzt wird.
+              Für Sie heißt das zweierlei. Sie reihen sich nicht hinter einem
+              Kundenstamm ein, den ich nebenher mitbediene. Und es gibt keine
+              Distanz zwischen dem, was Ihnen zugesagt wird, und dem, was
+              gebaut wird, weil beides von derselben Person kommt.
             </p>
-            <p className="mt-6 text-base leading-relaxed text-stone">
-              Stattdessen bekommen Sie meine unmittelbare Aufmerksamkeit,
-              direkte Kommunikation und jemanden, der sich persönlich mit Ihrem
-              Projekt auseinandersetzt.
-            </p>
+            <Merksatz>
+              Ihr Projekt ist für mich nicht ein Auftrag mehr. Es ist ein Teil
+              des Rufs, den ich mir gerade aufbaue.
+            </Merksatz>
           </motion.div>
 
           <motion.div variants={einblenden}>
             <p className="text-base leading-relaxed text-stone">
-              Mir ist bewusst, dass Vertrauen nicht durch schöne Worte entsteht.
-              Es entsteht dadurch, dass man zuhört, Zusagen einhält, Probleme
-              offen anspricht und am Ende eine Arbeit abliefert, hinter der man
-              stehen kann.
-            </p>
-            <Merksatz>
-              Ihr Projekt ist für mich nicht einfach ein weiterer Auftrag. Es
-              ist ein Teil des Rufs, den ich mir mit Plan B Studios aufbaue.
-            </Merksatz>
-            <p className="mt-8 text-base leading-relaxed text-stone">
-              Eine etablierte Agentur hat möglicherweise bereits einen Namen,
-              der über viele Jahre gewachsen ist. Ich baue meinen gerade auf.
-              Deshalb möchte ich nicht, dass Sie sich für mich entscheiden, weil
-              ich behaupte, der Beste zu sein. Ich möchte, dass Sie sich für mich
-              entscheiden können, weil meine Arbeit, meine Kommunikation und mein
-              Umgang mit Ihrem Projekt dafür sprechen.
+              Eine Agentur mit zweihundert Projekten übersteht eine schlechte
+              Arbeit. Ich nicht. Entscheiden Sie sich deshalb nicht für mich,
+              weil ich behaupte, der Beste zu sein. Entscheiden Sie sich, wenn
+              meine Arbeit und der Umgang damit dafür sprechen.
             </p>
             <p className="mt-6 text-base leading-relaxed text-stone">
-              Ich kann Ihnen nicht versprechen, dass auf Anhieb immer alles
-              perfekt läuft. Was ich Ihnen versprechen möchte, ist, dass ich mich
-              mit dem Anspruch an die Arbeit mache, eine Lösung zu finden,
-              Probleme nicht zu verstecken und Ihr Projekt nicht halbherzig zu
-              behandeln.
+              Ich verspreche Ihnen nicht, dass immer alles auf Anhieb sitzt. Ich
+              verspreche Ihnen, dass ich Probleme anspreche statt sie zu
+              verstecken, und dass ich nicht halb arbeite.
             </p>
-            <p className="mt-6 text-base leading-relaxed text-stone">
-              Denn am Ende zählt nicht, wie groß ein Unternehmen aussieht.
-              Sondern was es für seine Kunden leistet.
-            </p>
+            <Merksatz>Nicht größer wirken. Besser werden.</Merksatz>
           </motion.div>
         </Block>
       </section>
 
       {/* Warum beides */}
       <section className="border-t border-night-line py-20 md:py-28">
-        <Block>
-          <Marke>WARUM WEBDESIGN UND 3D-RUNDGÄNGE</Marke>
-          <h2 className="max-w-3xl font-serif text-[clamp(1.9rem,4.5vw,3rem)] font-light leading-tight text-cream">
-            Eine Immobilie sollte mehr sein
-            <br />
-            als eine Sammlung von <em className="italic text-gold-bright">Bildern</em>.
-          </h2>
-        </Block>
-
-        <Block gestaffelteKinder className="mt-12 grid gap-x-16 gap-y-6 md:grid-cols-2">
-          <motion.div variants={einblenden}>
-            <p className="text-base leading-relaxed text-cream-soft md:text-lg">
-              Eine Website und ein begehbarer 3D-Rundgang erfüllen
-              unterschiedliche Aufgaben. Richtig miteinander verbunden, können
-              sie jedoch ein deutlich vollständigeres Bild einer Immobilie
-              vermitteln.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-stone">
-              Die Website ist häufig der erste Kontaktpunkt. Sie entscheidet mit
-              darüber, welchen Eindruck ein Objekt hinterlässt, welche
-              Informationen Interessenten finden und ob sie sich näher damit
-              beschäftigen möchten.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-stone">
-              Der 3D-Rundgang geht einen Schritt weiter. Er ermöglicht es
-              Interessenten, Räume aus eigener Perspektive zu erkunden, sich
-              räumliche Zusammenhänge besser vorzustellen und sich bereits vor
-              einer Besichtigung intensiver mit dem Objekt auseinanderzusetzen.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-stone">
-              Aus einzelnen Bildern wird ein räumlicher Eindruck. Aus einer
-              gewöhnlichen Präsentation wird eine Erfahrung, bei der
-              Interessenten selbst entscheiden, wohin sie schauen und welchen
-              Bereich sie als Nächstes erkunden möchten.
-            </p>
-          </motion.div>
-
-          <motion.div variants={einblenden}>
-            <Merksatz>
-              Technologie nicht einfach einzusetzen, weil sie modern ist, sondern
-              weil sie Menschen helfen kann, etwas besser zu verstehen und zu
-              erleben.
-            </Merksatz>
-            <p className="mt-8 text-base leading-relaxed text-stone">
-              Warum also beide Leistungen getrennt betrachten, wenn sie gemeinsam
-              ein stimmiges Gesamtbild schaffen können?
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-stone">
-              Wenn Website und Rundgang aufeinander abgestimmt sind, lassen sich
-              Gestaltung, Informationen und visuelle Präsentation miteinander
-              verbinden. Das schafft einen konsistenten Auftritt und vermeidet
-              unnötige Abstimmungen zwischen mehreren Dienstleistern.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-stone">
-              Ich möchte nicht einfach eine weitere Website erstellen oder einen
-              Rundgang produzieren, der für sich allein steht. Mein Ziel ist es,
-              digitale Präsentationen zu entwickeln, bei denen die einzelnen
-              Bestandteile sinnvoll ineinandergreifen.
-            </p>
-          </motion.div>
-        </Block>
-      </section>
-
-      {/* Mein Anspruch */}
-      <section className="border-t border-night-line py-20 md:py-28">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:gap-16">
           <Block>
-            <Marke>MEIN ANSPRUCH</Marke>
+            <Marke>WARUM BEIDES</Marke>
             <h2 className="font-serif text-[clamp(1.9rem,4.5vw,3rem)] font-light leading-tight text-cream">
-              Nicht größer wirken.
+              Eine Immobilie ist mehr
               <br />
-              <em className="italic text-gold-bright">Besser</em> werden.
+              als eine Sammlung von <em className="italic text-gold-bright">Bildern</em>.
             </h2>
           </Block>
 
           <Block>
             <p className="text-base leading-relaxed text-cream-soft md:text-lg">
-              Ich stehe mit Plan B Studios am Anfang einer langen Reise. Ich habe
-              noch viel zu lernen, neue Herausforderungen vor mir und einen Namen
-              aufzubauen, der irgendwann für eine bestimmte Qualität stehen soll.
+              Die Website entscheidet, ob jemand bleibt. Sie ist meist der erste
+              Kontakt und bestimmt, welchen Eindruck ein Objekt hinterlässt.
             </p>
             <p className="mt-6 text-base leading-relaxed text-stone">
-              Genau das motiviert mich.
+              Der Rundgang entscheidet, ob jemand sich das Objekt vorstellen
+              kann. Er lässt Interessenten selbst durch die Räume gehen,
+              Zusammenhänge erfassen und sich eine Meinung bilden, bevor der
+              erste Termin steht.
             </p>
             <p className="mt-6 text-base leading-relaxed text-stone">
-              Ich möchte mich nicht auf dem ausruhen, was ich heute kann. Ich
-              möchte neue Techniken verstehen, bessere Lösungen entwickeln und
-              mit jedem Projekt dazulernen. Nicht, um möglichst viele Leistungen
-              auf eine Website schreiben zu können, sondern um meinen Kunden mit
-              der Zeit noch mehr bieten zu können.
+              Getrennt vergeben heißt in der Praxis: Jeder wartet auf den
+              anderen, die Übergabe passt nicht, und am Ende ist niemand
+              zuständig. Deshalb mache ich beides. Nicht weil es bequemer ist,
+              sondern weil es sonst nicht zusammengeht.
             </p>
-            <p className="mt-6 text-base leading-relaxed text-stone">
-              Dabei ist mir wichtig, dass die Zusammenarbeit genauso überzeugend
-              ist wie das Ergebnis: ehrlich, unkompliziert und auf Augenhöhe.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-stone">
-              Ich glaube nicht, dass jedes Projekt kompliziert sein muss, um gut
-              zu werden. Ich glaube aber, dass hinter jeder guten Arbeit klare
-              Gedanken, Sorgfalt und ein echter Anspruch stehen sollten.
-            </p>
-            <Merksatz>
-              Plan B Studios soll nicht durch große Versprechen wachsen, sondern
-              durch Arbeit, die für sich selbst spricht.
-            </Merksatz>
           </Block>
         </div>
       </section>
@@ -397,17 +279,13 @@ export function UeberMich() {
             mit einem <em className="italic text-gold-bright">Gespräch</em>.
           </h2>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-stone md:text-lg">
-            Vielleicht möchten Sie Ihre Immobilie digital erlebbar machen.
-            Vielleicht braucht Ihr Unternehmen eine Website, die professioneller
-            auftritt und Ihre Leistungen verständlich vermittelt. Oder Sie haben
-            eine Idee, für die Sie noch den richtigen Ansatz suchen.
+            Vielleicht wollen Sie ein Objekt begehbar machen. Vielleicht braucht
+            Ihre Firma eine Seite, die zeigt, was sie kann. Vielleicht haben Sie
+            eine Idee und noch keinen Weg dorthin.
           </p>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-stone">
-            Was auch immer Sie vorhaben: Erzählen Sie mir davon. Ich möchte
-            verstehen, was Sie erreichen wollen, was Ihnen wichtig ist und welche
-            Lösung wirklich zu Ihrem Vorhaben passt. Daraus entwickeln wir
-            gemeinsam den nächsten Schritt, direkt, persönlich und ohne unnötige
-            Umwege.
+            Erzählen Sie mir davon. Ich will verstehen, was Sie erreichen
+            wollen, bevor ich etwas vorschlage.
           </p>
           <p className="mt-8 max-w-xl font-serif text-[clamp(1.15rem,2.2vw,1.45rem)] font-light leading-snug text-cream">
             Ich bin Bilal Gnielka. Ich baue Plan B Studios auf. Und ich freue
