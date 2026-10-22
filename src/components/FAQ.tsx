@@ -49,8 +49,41 @@ export function FAQ() {
   const FAQS = t.faq.items
   const [open, setOpen] = useState<number | null>(0)
 
+  /**
+   * Strukturierte Daten fuer die Fragen.
+   *
+   * Ohne diesen Block sieht eine Suchmaschine hier fuenf Textabsaetze. Mit ihm
+   * sieht sie fuenf Fragen mit Antworten — und genau daraus speisen sich die
+   * KI-Uebersichten von Google und die Antworten von ChatGPT oder Perplexity.
+   * Man wird zitiert, ohne selbst ein Modell zu betreiben.
+   *
+   * Bewusst aus denselben Daten erzeugt, die auch angezeigt werden: So koennen
+   * sichtbarer Text und Markup nicht auseinanderlaufen. Google wertet es als
+   * Verstoss, wenn im Markup etwas anderes steht als auf der Seite.
+   *
+   * Steht im Koerper statt im Kopf, weil es aus dem Woerterbuch kommt und damit
+   * automatisch der jeweiligen Sprachfassung folgt. JSON-LD ist ein Datenblock
+   * und wird nicht ausgefuehrt, deshalb greift die CSP hier nicht.
+   */
+  const fragenDaten = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
+
   return (
-    <section className="relative border-t border-night-line/60 py-32 md:py-40">
+    <section id="faq" className="relative border-t border-night-line/60 py-32 md:py-40">
+      <script
+        type="application/ld+json"
+        // Ein "</script>" im Text wuerde den Block sonst vorzeitig schliessen.
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(fragenDaten).replace(/</g, '\\u003c'),
+        }}
+      />
       <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 lg:px-10">
         <motion.div
           initial={start({ opacity: 0, y: 30 })}
