@@ -60,6 +60,12 @@ export function Footer() {
                 {t.footer.linkRundgaenge}
               </Link>
               <Link
+                to="/website-betreuung"
+                className="text-[14px] text-cream-soft transition-colors hover:text-gold"
+              >
+                {t.footer.linkBetreuung}
+              </Link>
+              <Link
                 to="/makler/mehr-eigentuemeranfragen"
                 className="text-[14px] text-cream-soft transition-colors hover:text-gold"
               >

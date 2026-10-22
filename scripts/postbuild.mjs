@@ -67,6 +67,12 @@ const ROUTES = {
     desc: 'Begehbare 3D-Rundgänge und cinematische Objektfilme für Immobilien. Aus vorhandenen Fotos oder als vollständiger Rundgang — gebaut in Lübeck.',
     prerender: true,
   },
+  'website-betreuung': {
+    title: 'Website-Betreuung & Automatisierung — Plan B Studios',
+    desc: 'Laufende Betreuung und angebundene Abläufe für Immobilienunternehmen in Lübeck: technische Pflege, Inhalte, Anfragestrecken, Terminbuchung.',
+    krume: 'Website-Betreuung',
+    prerender: true,
+  },
   'ueber-mich': {
     title: 'Bilal Gnielka — Plan B Studios, Lübeck',
     desc: 'Bilal Gnielka baut Websites und begehbare 3D-Rundgänge für Immobilien. Plan B Studios ist sein Studio in Lübeck — ein Ein-Personen-Betrieb.',

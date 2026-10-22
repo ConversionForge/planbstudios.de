@@ -11,6 +11,7 @@ import { MaklerSituation } from './pages/MaklerSituation'
 import { WebdesignLuebeck } from './pages/WebdesignLuebeck'
 import { Rundgaenge } from './pages/Rundgaenge'
 import { UeberMich } from './pages/UeberMich'
+import { WebsiteBetreuung } from './pages/WebsiteBetreuung'
 import { AkquiseCheck } from './pages/AkquiseCheck'
 import { PageCurtain } from './components/PageCurtain'
 import { saveScroll, readScroll } from './lib/scroll'
@@ -82,6 +83,7 @@ function App() {
         <Route path="/webdesign-luebeck" element={<WebdesignLuebeck />} />
         <Route path="/3d-rundgaenge" element={<Rundgaenge />} />
         <Route path="/ueber-mich" element={<UeberMich />} />
+        <Route path="/website-betreuung" element={<WebsiteBetreuung />} />
         <Route path="/akquise-check" element={<AkquiseCheck />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
