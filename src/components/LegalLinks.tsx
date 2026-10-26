@@ -11,11 +11,11 @@ export function LegalLinks({ className = '' }: { className?: string }) {
   const t = useT()
   return (
     <span className={className}>
-      <Link to="/impressum" className="underline-offset-4 hover:underline">
+      <Link to="/impressum/" className="underline-offset-4 hover:underline">
         {t.common.imprint}
       </Link>
       <span aria-hidden> · </span>
-      <Link to="/datenschutz" className="underline-offset-4 hover:underline">
+      <Link to="/datenschutz/" className="underline-offset-4 hover:underline">
         {t.common.privacy}
       </Link>
     </span>

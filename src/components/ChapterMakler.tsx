@@ -38,7 +38,7 @@ export function ChapterMakler() {
 
           <Magnetic strength={0.2}>
             <Link
-              to="/makler/mehr-eigentuemeranfragen"
+              to="/makler/mehr-eigentuemeranfragen/"
               className="group flex shrink-0 items-center gap-3 border border-gold/40 px-7 py-3.5 text-[14px] font-medium tracking-[0.04em] text-cream transition-all duration-300 hover:border-gold hover:bg-gold hover:text-night"
             >
               {t.makler.cta}

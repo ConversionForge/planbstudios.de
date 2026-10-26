@@ -79,7 +79,10 @@ export function LangProvider({ children }: { children: ReactNode }) {
   const navigate = useNavigate()
   const lang = langAusPfad(pathname)
 
-  const pfadFuer = useCallback((l: Lang) => (l === 'en' ? EN_PFAD : '/'), [])
+  // Mit abschliessendem Schraegstrich, passend zum canonical. Ohne ihn
+  // antwortet der Server mit 307 auf die Fassung MIT Schraegstrich, und
+  // Google meldet die verlinkte Adresse als "Seite mit Weiterleitung".
+  const pfadFuer = useCallback((l: Lang) => (l === 'en' ? EN_PFAD + '/' : '/'), [])
 
   const setLang = useCallback(
     (l: Lang) => {

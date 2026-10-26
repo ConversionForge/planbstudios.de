@@ -199,7 +199,7 @@ export function ChapterWebdesign() {
               </p>
               <Magnetic>
                 <Link
-                  to="/meridian"
+                  to="/meridian/"
                   className="group flex items-center gap-3 border border-gold/40 bg-night/40 px-7 py-3.5 text-[14px] font-medium tracking-[0.04em] text-cream transition-all duration-300 hover:border-gold hover:bg-gold hover:text-night"
                 >
                   {t.webdesign.demoCta}

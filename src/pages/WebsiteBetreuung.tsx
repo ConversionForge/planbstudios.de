@@ -136,7 +136,7 @@ export function WebsiteBetreuung() {
             Benachrichtigung, Bestätigungsmail, Kontakt im System,
             Terminbuchung. Sie können ihn{' '}
             <Link
-              to="/akquise-check"
+              to="/akquise-check/"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
               selbst ausprobieren
@@ -185,21 +185,21 @@ export function WebsiteBetreuung() {
         text={
           <>
             <Link
-              to="/webdesign-luebeck"
+              to="/webdesign-luebeck/"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
               Webdesign in Lübeck
             </Link>{' '}
             ·{' '}
             <Link
-              to="/3d-rundgaenge"
+              to="/3d-rundgaenge/"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
               3D-Rundgänge
             </Link>{' '}
             ·{' '}
             <Link
-              to="/ueber-mich"
+              to="/ueber-mich/"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
               Über mich

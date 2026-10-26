@@ -301,21 +301,21 @@ export function UeberMich() {
         text={
           <>
             <Link
-              to="/webdesign-luebeck"
+              to="/webdesign-luebeck/"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
               Webdesign in Lübeck
             </Link>{' '}
             ·{' '}
             <Link
-              to="/3d-rundgaenge"
+              to="/3d-rundgaenge/"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
               3D-Rundgänge
             </Link>{' '}
             ·{' '}
             <Link
-              to="/website-betreuung"
+              to="/website-betreuung/"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
               Betreuung & Automatisierung

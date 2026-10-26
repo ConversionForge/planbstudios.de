@@ -216,7 +216,7 @@ export function Chapter3D() {
           <WalkthroughVideo />
 
           <Link
-            to="/rundgang"
+            to="/rundgang/"
             className="group mt-10 flex items-center gap-4 border-t border-night-line pt-6"
           >
             <img

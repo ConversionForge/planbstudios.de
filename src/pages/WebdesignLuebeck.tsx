@@ -192,13 +192,13 @@ export function WebdesignLuebeck() {
         <Block gestaffelteKinder className="mt-14 grid gap-6 md:grid-cols-2">
           {[
             {
-              zu: '/beispiel',
+              zu: '/beispiel/',
               tag: 'MAKLERBÜRO',
               titel: 'Havel & Grau',
               text: 'Ein Maklerbüro in Potsdam. Ruhige Typografie, Objekte im Mittelpunkt, klarer Weg zur Anfrage.',
             },
             {
-              zu: '/meridian',
+              zu: '/meridian/',
               tag: 'NEUBAUPROJEKT',
               titel: 'MERIDIAN',
               text: 'Ein Wohnquartier an der Trave. Architektonisch gedacht, mit Grundrissen und Bauabschnitten.',
@@ -252,14 +252,14 @@ export function WebdesignLuebeck() {
           <>
             Plan B Studios baut außerdem begehbare Rundgänge für Immobilien.{' '}
             <Link
-              to="/3d-rundgaenge"
+              to="/3d-rundgaenge/"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
               3D-Rundgänge
             </Link>{' '}
             ·{' '}
             <Link
-              to="/ueber-mich"
+              to="/ueber-mich/"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
               Über mich

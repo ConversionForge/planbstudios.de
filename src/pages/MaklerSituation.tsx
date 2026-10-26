@@ -228,7 +228,7 @@ export function MaklerSituation() {
 
             <Magnetic>
               <Link
-                to="/akquise-check"
+                to="/akquise-check/"
                 className="group mt-10 flex items-center gap-3 bg-gold px-8 py-4 text-[15px] font-medium tracking-[0.04em] text-night transition-colors duration-300 hover:bg-gold-bright"
               >
                 Zum Akquise-Check

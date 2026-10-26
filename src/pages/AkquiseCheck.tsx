@@ -466,7 +466,7 @@ export function AkquiseCheck() {
                     Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung
                     meiner Anfrage gespeichert und verarbeitet werden. Die{' '}
                     <Link
-                      to="/datenschutz"
+                      to="/datenschutz/"
                       target="_blank"
                       className="text-cream-soft underline underline-offset-4 hover:text-gold"
                     >

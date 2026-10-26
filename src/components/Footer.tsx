@@ -48,25 +48,25 @@ export function Footer() {
             <div className="flex flex-col gap-3">
               <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">{t.footer.colServices}</span>
               <Link
-                to="/webdesign-luebeck"
+                to="/webdesign-luebeck/"
                 className="text-[14px] text-cream-soft transition-colors hover:text-gold"
               >
                 {t.footer.linkWebdesign}
               </Link>
               <Link
-                to="/3d-rundgaenge"
+                to="/3d-rundgaenge/"
                 className="text-[14px] text-cream-soft transition-colors hover:text-gold"
               >
                 {t.footer.linkRundgaenge}
               </Link>
               <Link
-                to="/website-betreuung"
+                to="/website-betreuung/"
                 className="text-[14px] text-cream-soft transition-colors hover:text-gold"
               >
                 {t.footer.linkBetreuung}
               </Link>
               <Link
-                to="/makler/mehr-eigentuemeranfragen"
+                to="/makler/mehr-eigentuemeranfragen/"
                 className="text-[14px] text-cream-soft transition-colors hover:text-gold"
               >
                 {t.footer.linkMakler}
@@ -76,7 +76,7 @@ export function Footer() {
               <span className="mb-1 text-[11px] uppercase tracking-[0.2em] text-stone/60">{t.footer.colStudio}</span>
               <SectionLink id="referenzen">{t.footer.linkArbeiten}</SectionLink>
               <Link
-                to="/ueber-mich"
+                to="/ueber-mich/"
                 className="text-[14px] text-cream-soft transition-colors hover:text-gold"
               >
                 {t.footer.linkAbout}
@@ -93,8 +93,8 @@ export function Footer() {
         <div className="mt-16 flex flex-col gap-4 border-t border-night-line pt-8 text-[13px] text-stone sm:flex-row sm:items-center sm:justify-between">
           <span>© {YEAR} Plan B Studios. {t.footer.rights}</span>
           <div className="flex gap-8">
-            <Link to="/impressum" className="transition-colors hover:text-cream-soft">{t.common.imprint}</Link>
-            <Link to="/datenschutz" className="transition-colors hover:text-cream-soft">{t.common.privacy}</Link>
+            <Link to="/impressum/" className="transition-colors hover:text-cream-soft">{t.common.imprint}</Link>
+            <Link to="/datenschutz/" className="transition-colors hover:text-cream-soft">{t.common.privacy}</Link>
           </div>
         </div>
       </div>

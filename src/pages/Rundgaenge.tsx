@@ -93,7 +93,7 @@ export function Rundgaenge() {
             das — vor dem ersten Termin.
           </p>
           <div className="mt-10">
-            <Aufruf to="/rundgang">Einen Rundgang ansehen</Aufruf>
+            <Aufruf to="/rundgang/">Einen Rundgang ansehen</Aufruf>
           </div>
         </motion.div>
       </section>
@@ -130,7 +130,7 @@ export function Rundgaenge() {
           <p className="max-w-2xl text-[15px] leading-relaxed text-stone">
             Der Rundgang unter{' '}
             <Link
-              to="/rundgang"
+              to="/rundgang/"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
               dieser Adresse
@@ -220,7 +220,7 @@ export function Rundgaenge() {
           <>
             Plan B Studios baut außerdem Websites für Immobilienunternehmen.{' '}
             <Link
-              to="/webdesign-luebeck"
+              to="/webdesign-luebeck/"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
               Webdesign in Lübeck

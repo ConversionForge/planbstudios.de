@@ -20,8 +20,8 @@ interface Case {
 
 // Struktur (Ziel + Bildart) bleibt fest, die Texte kommen aus dem Wörterbuch.
 const CASE_STRUCT = [
-  { to: '/beispiel', media: 'havelgrau' as const },
-  { to: '/rundgang', media: 'loft' as const },
+  { to: '/beispiel/', media: 'havelgrau' as const },
+  { to: '/rundgang/', media: 'loft' as const },
 ]
 
 function HavelGrauMini() {
