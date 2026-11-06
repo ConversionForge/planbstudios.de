@@ -32,7 +32,7 @@ const OBEN: Leistung[] = [
   {
     nummer: '02',
     titel: 'Akquise-Strecken',
-    text: 'Eine Akquise-Strecke führt Interessenten vom ersten Klick bis zum Termin: eine Seite zu ihrer konkreten Frage, ein kurzes Formular, eine sofortige Antwort und ein Nachfassen, wenn sich niemand meldet. Am weitesten ausgebaut habe ich das für Immobilienmakler, die Eigentümer gewinnen wollen.',
+    text: 'Eine Akquise-Strecke führt Interessenten vom ersten Klick bis zum Termin: eine Seite zu ihrer konkreten Frage, ein kurzes Formular, eine sofortige Antwort und ein Nachfassen, wenn sich niemand meldet. Am weitesten ausgearbeitet ist das für Immobilienmakler, die Eigentümer gewinnen wollen.',
     beispiele: ['Eigentümer-Akquise für Makler', 'Anfrageformulare', 'Nachfassen per Mail'],
     verweise: [
       { text: 'Mehr zu Akquise-Strecken', zu: '/akquise-strecken/' },

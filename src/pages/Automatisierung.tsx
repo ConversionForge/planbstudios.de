@@ -41,6 +41,10 @@ const ABLAEUFE = [
   },
 ]
 
+// Wie der Inhaber Automatisierung tatsaechlich anbietet (siehe sein Angebot
+// an einen Interessenten, November 2026): erst ein Pilot zum Festpreis, der an
+// wenigen Zahlen gemessen wird, danach auf Wunsch eine laufende
+// Zusammenarbeit mit schrittweisem Ausbau.
 const VORGEHEN = [
   {
     n: 'I',
@@ -49,18 +53,41 @@ const VORGEHEN = [
   },
   {
     n: 'II',
-    titel: 'Abwägen',
-    text: 'Welche Abläufe sich lohnen und welche nicht. Sie bekommen einen Festpreis für den Aufbau und erfahren vorher, was laufend dazukommt.',
+    titel: 'Pilot',
+    text: 'Ein Ablauf, wenige Wochen, fester Preis. Was er spart, messen wir an zwei, drei Zahlen, statt es vorher zu schätzen.',
   },
   {
     n: 'III',
-    titel: 'Bauen',
-    text: 'Ein Ablauf nach dem anderen, nicht alles auf einmal. Jeder läuft erst eine Weile neben der gewohnten Arbeit, bevor er sie ersetzt.',
+    titel: 'Ausbauen',
+    text: 'Was sich bewährt, wird erweitert. Ein Ablauf nach dem anderen, und jeder läuft erst eine Weile neben der gewohnten Arbeit.',
   },
   {
     n: 'IV',
-    titel: 'Übergeben',
-    text: 'Sie wissen, was wann passiert und wen Sie anrufen, wenn sich etwas ändert. Auf Wunsch betreue ich die Abläufe weiter.',
+    titel: 'Betreuen',
+    text: 'Auf Wunsch betreue ich die Abläufe weiter, passe sie an und baue neue dazu. Sie wissen jederzeit, was wann passiert.',
+  },
+]
+
+// Ein Beispiel dafuer, wie eine solche Automatisierung aussieht. Die vier
+// Punkte entsprechen Modulen, die der Inhaber tatsaechlich gebaut und getestet
+// hat (Stand November 2026). Bewusst ohne Branche und ohne Kundennamen: Es
+// war ein Angebot an einen Interessenten, kein Auftrag.
+const ASSISTENT = [
+  {
+    titel: 'Schreiben auslesen',
+    text: 'Ein Brief oder eine PDF kommt an. Der Assistent erkennt Aktenzeichen, Fristen und Beteiligte, sucht den passenden Vorgang heraus und bereitet die Antwort vor.',
+  },
+  {
+    titel: 'Offene Posten im Blick',
+    text: 'Was überfällig ist, steht morgens auf einer Liste, statt dass es jemand zusammensuchen muss.',
+  },
+  {
+    titel: 'Bewertungen auswerten',
+    text: 'Kundenbewertungen, nach Themen sortiert, dazu Antwortentwürfe zum Kopieren. Veröffentlicht wird nichts von selbst.',
+  },
+  {
+    titel: 'Nachtlauf mit Tagesbericht',
+    text: 'Nachts läuft alles von selbst. Morgens liegt ein Bericht bereit: was erledigt ist und was sich jemand ansehen sollte.',
   },
 ]
 
@@ -118,6 +145,43 @@ export function Automatisierung() {
                 <h3 className="mb-4 mt-4 font-serif text-2xl font-light text-cream">{a.titel}</h3>
                 <p className="text-[15px] leading-relaxed text-stone md:text-base">{a.text}</p>
               </Karte>
+            </motion.div>
+          ))}
+        </Block>
+      </section>
+
+      {/* Ein Beispiel */}
+      <section className="border-t border-night-line py-20 md:py-28">
+        <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:gap-16">
+          <Block>
+            <Marke>EIN BEISPIEL</Marke>
+            <h2 className="font-serif text-[clamp(1.9rem,4.5vw,3rem)] font-light leading-tight text-cream">
+              Ein Assistent <em className="italic text-gold-bright">neben</em> Ihrem Programm.
+            </h2>
+          </Block>
+          <Block>
+            <p className="text-base leading-relaxed text-cream-soft md:text-lg">
+              So sieht eine Automatisierung aus, wie ich sie baue: Ein Assistent
+              läuft neben dem Programm, mit dem Ihr Betrieb ohnehin arbeitet. Er
+              ersetzt es nicht. Er liest dessen Exporte und erledigt die Arbeit
+              zwischen den Systemen.
+            </p>
+            <p className="mt-6 text-base leading-relaxed text-stone">
+              Dieses Beispiel läuft komplett auf einem Rechner im Betrieb, ohne
+              Cloud. Briefe und Antworten verschickt es nicht selbst: Ein Mensch
+              sieht sie an und entscheidet.
+            </p>
+          </Block>
+        </div>
+
+        <Block gestaffelteKinder className="mt-14 grid gap-px overflow-hidden rounded-[1.6rem] bg-night-line ring-1 ring-night-line sm:grid-cols-2">
+          {ASSISTENT.map((a, i) => (
+            <motion.div key={a.titel} variants={einblenden} className="bg-night p-8 md:p-9">
+              <span className="font-mono text-[12px] tracking-[0.2em] text-gold">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 className="mb-3 mt-5 font-serif text-[1.45rem] font-light leading-tight text-cream">{a.titel}</h3>
+              <p className="text-[15px] leading-relaxed text-stone">{a.text}</p>
             </motion.div>
           ))}
         </Block>

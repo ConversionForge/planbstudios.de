@@ -11,7 +11,7 @@ import { start } from '../lib/ssr'
 const FRAGEN = [
   {
     q: 'Für welche Betriebe arbeiten Sie?',
-    a: 'Für kleine und mittlere Betriebe in Lübeck und Schleswig-Holstein. Akquise-Strecken habe ich bisher vor allem für Immobilienmakler gebaut, Automatisierungen auch für Büro und Verwaltung und für die Gastronomie.',
+    a: 'Für kleine und mittlere Betriebe in Lübeck und Schleswig-Holstein. Akquise-Strecken sind am weitesten für Immobilienmakler ausgearbeitet. Automatisierungen passen überall, wo Arbeit nach festem Muster anfällt, im Büro genauso wie in der Gastronomie.',
   },
   {
     q: 'Was lässt sich überhaupt automatisieren?',
@@ -23,7 +23,7 @@ const FRAGEN = [
   },
   {
     q: 'Was kostet das?',
-    a: 'Das hängt davon ab, wie viele Abläufe und Programme beteiligt sind. Nach dem Erstgespräch bekommen Sie einen Festpreis für den Aufbau. Laufende Kosten, etwa für Programme oder Betreuung, nenne ich vorher getrennt.',
+    a: 'Das hängt davon ab, wie viele Abläufe und Programme beteiligt sind. Am Anfang steht ein Pilot oder ein Aufbau mit festem Umfang zum Festpreis. Danach, wenn Sie wollen, eine monatliche Zusammenarbeit für Betrieb, Anpassungen und neue Automatisierungen. Was genau dazugehört, steht vorher im schriftlichen Angebot.',
   },
   {
     q: 'Wie lange dauert ein Projekt?',

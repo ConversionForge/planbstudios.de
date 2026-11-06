@@ -69,8 +69,7 @@ export function Websites() {
           </div>
           <p className="max-w-md text-[16px] leading-relaxed text-stone lg:justify-self-end">
             Zwei Beispielprojekte, vollständig gebaut und zum Durchklicken. Beide
-            Marken sind erfunden. So kann ich zeigen, wie ich arbeite, ohne
-            Daten von Kunden zu verwenden.
+            Marken sind erfunden, es sind keine Kundenaufträge.
           </p>
         </Block>
 

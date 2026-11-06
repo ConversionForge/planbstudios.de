@@ -8,6 +8,7 @@ import { Referenzen } from '../components/start/Referenzen'
 import { Makler } from '../components/start/Makler'
 import { Websites } from '../components/start/Websites'
 import { Rundgang } from '../components/start/Rundgang'
+import { Ehrlich } from '../components/start/Ehrlich'
 import { UeberMichKurz } from '../components/start/UeberMichKurz'
 import { FAQ } from '../components/FAQ'
 import { Kontakt } from '../components/start/Kontakt'
@@ -191,6 +192,7 @@ export function Home() {
         <Makler />
         <Websites />
         <Rundgang />
+        <Ehrlich />
         <UeberMichKurz />
         <FAQ />
         <Kontakt />

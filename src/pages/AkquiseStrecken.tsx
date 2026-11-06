@@ -48,7 +48,7 @@ const STRECKE = [
   {
     n: '05',
     titel: 'Messen',
-    text: 'Sie sehen, an welchem Schritt Menschen aussteigen. Genau dort wird nachgebessert, cookiefrei gemessen.',
+    text: 'Jeder Schritt wird gezählt, vom ersten Klick bis zum gebuchten Termin. Sie sehen jeden Monat, wo Menschen aussteigen, und genau dort wird nachgebessert. Cookiefrei gemessen.',
   },
 ]
 
@@ -88,7 +88,7 @@ export function AkquiseStrecken() {
             Anfrage passiert, läuft automatisch.
           </p>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-stone md:text-lg">
-            Am weitesten ausgebaut habe ich das für Immobilienmakler, die
+            Am weitesten ausgearbeitet ist das für Immobilienmakler, die
             Eigentümer gewinnen wollen. Das Prinzip passt überall, wo Kunden
             erst online suchen und dann anrufen.
           </p>
@@ -133,6 +133,14 @@ export function AkquiseStrecken() {
               </motion.li>
             ))}
           </ol>
+        </Block>
+
+        {/* Aus der Praesentation des Inhabers (Folie "Vier Bausteine"). */}
+        <Block className="mt-14 border-t border-night-line pt-8">
+          <p className="max-w-2xl text-[15px] leading-relaxed text-cream-soft md:text-base">
+            Alles läuft auf Ihrer Domain. Alles gehört Ihnen, auch wenn wir
+            irgendwann nicht mehr zusammenarbeiten.
+          </p>
         </Block>
       </section>
 
@@ -181,7 +189,7 @@ export function AkquiseStrecken() {
                 <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-stone">
                   Fünf Fragen, eine pro Schritt. Danach eine Benachrichtigung an
                   mich, eine Bestätigung an Sie, der Kontakt im System und ein Link
-                  zur Terminbuchung. Genau so, wie ich es für Kunden baue.
+                  zur Terminbuchung. Genau so würde ich es für Ihren Betrieb bauen.
                 </p>
               </div>
               <Aufruf to="/akquise-check/" variante="rand">
