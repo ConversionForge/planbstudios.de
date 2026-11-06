@@ -1,3 +1,4 @@
+import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'motion/react'
 
 const CUBE_EDGES = [
@@ -53,9 +54,15 @@ export function CubeMark({
   )
 }
 
+/**
+ * Wortmarke mit Wuerfel. Auf der Startseite ein Anker nach oben, auf allen
+ * anderen Seiten der Weg zurueck zur Startseite.
+ */
 export function LogoLockup({ className }: { className?: string }) {
-  return (
-    <a href="#top" className={`group flex items-center gap-3 ${className ?? ''}`}>
+  const { pathname } = useLocation()
+  const klassen = `group flex items-center gap-3 ${className ?? ''}`
+  const inhalt = (
+    <>
       <CubeMark className="h-7 w-7 text-gold transition-colors duration-300 group-hover:text-gold-bright" />
       <span className="flex flex-col leading-none">
         <span className="font-serif text-[17px] tracking-wide text-cream">Plan B</span>
@@ -63,6 +70,15 @@ export function LogoLockup({ className }: { className?: string }) {
           Studios
         </span>
       </span>
+    </>
+  )
+  return pathname === '/' ? (
+    <a href="#top" aria-label="Plan B Studios, nach oben" className={klassen}>
+      {inhalt}
     </a>
+  ) : (
+    <Link to="/" aria-label="Plan B Studios, zur Startseite" className={klassen}>
+      {inhalt}
+    </Link>
   )
 }

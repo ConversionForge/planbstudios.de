@@ -9,8 +9,13 @@ import {
   einblenden,
 } from '../components/SeitenLayout'
 import { startVariante } from '../lib/ssr'
+import { WalkthroughVideo } from '../components/WalkthroughVideo'
 import { motion } from 'motion/react'
 
+// Seit November 2026 eine Ergaenzung fuer Makler und keine Hauptleistung mehr:
+// nicht in der Hauptnavigation, auf der Startseite nur ein schmales Band. Die
+// Seite bleibt fuer die Suche bestehen und fuehrt zur Akquise-Strecke.
+//
 // Eigenstaendige Seite fuer die Suche nach "3D-Rundgang Immobilien",
 // "virtueller Rundgang" und verwandten Begriffen. Die Startseite streift das
 // Thema; wer gezielt danach sucht, braucht eine Seite, die nur davon handelt.
@@ -23,13 +28,13 @@ const WEGE = [
   {
     n: '01',
     titel: 'Aus vorhandenen Fotos',
-    text: 'Wenn das Objekt bereits fotografiert ist, entsteht daraus ein cinematischer Walkthrough — eine Kamerafahrt durch die Räume, komponiert aus den Aufnahmen. Kein Termin vor Ort, kein Scan, keine zusätzliche Technik.',
+    text: 'Wenn das Objekt bereits fotografiert ist, entsteht daraus ein Objektfilm: eine Kamerafahrt durch die Räume, komponiert aus den Aufnahmen. Kein Termin vor Ort, kein Scan, keine zusätzliche Technik.',
     braucht: 'Was ich brauche: die Objektfotos in voller Auflösung.',
   },
   {
     n: '02',
     titel: 'Begehbarer Rundgang',
-    text: 'Der Interessent bewegt sich selbst durch die Räume, wechselt Standpunkte, sieht sich um. Punkte im Raum lassen sich beschriften — Quadratmeter, Ausstattung, Hinweise zur Lage.',
+    text: 'Der Interessent bewegt sich selbst durch die Räume, wechselt Standpunkte, sieht sich um. Punkte im Raum lassen sich beschriften, etwa mit Quadratmetern, Ausstattung oder Hinweisen zur Lage.',
     braucht: 'Was ich brauche: Aufnahmen aller Räume, die zusammenhängen sollen.',
   },
 ]
@@ -37,7 +42,7 @@ const WEGE = [
 const FUER_WEN = [
   {
     titel: 'Makler',
-    text: 'Das Exposé zeigt Bilder. Ein Rundgang zeigt, wie die Räume zusammenhängen — welcher Raum an welchen grenzt, wie hoch die Decken sind, wohin die Fenster gehen. Fragen, die sonst am Telefon oder gar nicht geklärt werden.',
+    text: 'Das Exposé zeigt Bilder. Ein Rundgang zeigt, wie die Räume zusammenhängen: welcher Raum an welchen grenzt, wie hoch die Decken sind, wohin die Fenster gehen. Fragen, die sonst am Telefon oder gar nicht geklärt werden.',
   },
   {
     titel: 'Bauträger',
@@ -53,7 +58,7 @@ const ABLAUF = [
   {
     n: 'I',
     titel: 'Material sichten',
-    text: 'Ich sehe mir an, was vorhanden ist, und sage Ihnen, welcher der beiden Wege dazu passt — oder was fehlt, damit er möglich wird.',
+    text: 'Ich sehe mir an, was vorhanden ist, und sage Ihnen, welcher der beiden Wege dazu passt, oder was fehlt, damit er möglich wird.',
   },
   {
     n: 'II',
@@ -69,12 +74,9 @@ const ABLAUF = [
 
 export function Rundgaenge() {
   return (
-    <SeitenLayout
-      titel="3D-Rundgänge für Immobilien — Plan B Studios"
-      aktion={{ text: 'Anfragen', zu: '/#kontakt' }}
-    >
+    <SeitenLayout titel="3D-Rundgänge für Immobilien — Plan B Studios">
       {/* Einstieg */}
-      <section className="pb-20 pt-20 md:pb-28 md:pt-28">
+      <section className="pb-16 pt-16 md:pb-20 md:pt-24">
         <motion.div variants={einblenden} initial={startVariante} animate="show">
           <Marke>3D-RUNDGÄNGE</Marke>
           <h1 className="font-serif text-[clamp(2.4rem,6.5vw,4.5rem)] font-light leading-[1.05] tracking-[-0.01em] text-cream">
@@ -83,19 +85,40 @@ export function Rundgaenge() {
             Ein Rundgang zeigt den <em className="italic text-gold-bright">Raum</em>.
           </h1>
           <p className="mt-10 max-w-2xl text-lg leading-relaxed text-cream-soft md:text-xl">
-            Begehbare 3D-Rundgänge und cinematische Objektfilme für Immobilien —
-            gebaut in Lübeck, für Makler, Bauträger und Hausverwaltungen in
-            Schleswig-Holstein und darüber hinaus.
+            Objektfilme und Rundgänge für Immobilien, gebaut in Lübeck. Ich
+            biete sie vor allem Maklern an, als Ergänzung zur{' '}
+            <Link
+              to="/akquise-strecken/"
+              className="text-cream underline underline-offset-4 transition-colors hover:text-gold"
+            >
+              Akquise-Strecke
+            </Link>
+            .
           </p>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-stone md:text-lg">
             Wer eine Wohnung online sucht, sieht acht Fotos und weiß danach
             nicht, wie die Räume zusammenhängen. Ein Rundgang beantwortet genau
-            das — vor dem ersten Termin.
+            das, vor dem ersten Termin.
           </p>
-          <div className="mt-10">
-            <Aufruf to="/rundgang/">Einen Rundgang ansehen</Aufruf>
-          </div>
         </motion.div>
+      </section>
+
+      {/* Der Film selbst, ganz oben. Vorher zeigte diese Seite keinen einzigen
+          bewegten Rundgang, nur Text. Die Rueckmeldung dazu: Beworben wird ein
+          Rundgang, zu sehen sind dann Fotos. */}
+      <section className="pb-20 md:pb-28">
+        <Block>
+          <WalkthroughVideo />
+          <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <p className="max-w-xl text-[14px] leading-relaxed text-stone">
+              Objektfilm eines Design-Lofts in Hamburg, komponiert aus den
+              Objektfotos. Ohne 3D-Scan und ohne Termin vor Ort.
+            </p>
+            <Aufruf to="/rundgang/" variante="rand">
+              Geführten Rundgang öffnen
+            </Aufruf>
+          </div>
+        </Block>
       </section>
 
       {/* Zwei Wege */}
@@ -136,7 +159,7 @@ export function Rundgaenge() {
               dieser Adresse
             </Link>{' '}
             ist auf dem ersten Weg entstanden: ein Design-Loft in Hamburg,
-            sieben Räume, ausschließlich aus Objektfotos — ohne 3D-Scan und ohne
+            sieben Räume, ausschließlich aus Objektfotos, ohne 3D-Scan und ohne
             Termin vor Ort.
           </p>
         </Block>
@@ -203,7 +226,7 @@ export function Rundgaenge() {
             vom <em className="italic text-gold-bright">Objekt</em>.
           </h2>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-stone md:text-lg">
-            Schicken Sie mir, was Sie haben — Fotos, Grundriss, die Adresse des
+            Schicken Sie mir, was Sie haben: Fotos, Grundriss, die Adresse des
             Exposés. Ich sage Ihnen, was daraus wird und was es kostet, bevor
             irgendetwas beginnt.
           </p>
@@ -218,18 +241,20 @@ export function Rundgaenge() {
       <Rueckweg
         text={
           <>
-            Plan B Studios baut außerdem Websites für Immobilienunternehmen.{' '}
-            <Link
-              to="/webdesign-luebeck/"
-              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
-            >
-              Webdesign in Lübeck
+            Außerdem:{' '}
+            <Link to="/akquise-strecken/" className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold">
+              Akquise-Strecken für Makler
             </Link>{' '}
             ·{' '}
-            <Link
-              to="/"
-              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
-            >
+            <Link to="/automatisierung/" className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold">
+              Automatisierung
+            </Link>{' '}
+            ·{' '}
+            <Link to="/webdesign-luebeck/" className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold">
+              Websites
+            </Link>{' '}
+            ·{' '}
+            <Link to="/" className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold">
               Alle Leistungen
             </Link>
           </>

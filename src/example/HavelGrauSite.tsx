@@ -362,7 +362,7 @@ export function HavelGrauSite() {
   useEffect(() => {
     document.title = 'Havel & Grau — Immobilien in Potsdam (Beispielprojekt)'
     return () => {
-      document.title = 'Plan B Studios — Webdesign & 3D-Rundgänge'
+      document.title = 'Automatisierung & Akquise-Strecken in Lübeck | Plan B Studios'
     }
   }, [])
 

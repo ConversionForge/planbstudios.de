@@ -17,7 +17,7 @@ export function LegalLayout({
   useEffect(() => {
     document.title = `${title} — Plan B Studios`
     return () => {
-      document.title = 'Plan B Studios — Webdesign & 3D-Rundgänge'
+      document.title = 'Automatisierung & Akquise-Strecken in Lübeck | Plan B Studios'
     }
   }, [title])
 

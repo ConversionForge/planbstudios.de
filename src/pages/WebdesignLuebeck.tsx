@@ -7,76 +7,81 @@ import {
   Marke,
   Rueckweg,
   SeitenLayout,
+  TextVerweis,
   einblenden,
 } from '../components/SeitenLayout'
+import { TERMIN_URL } from '../lib/kontakt'
 import { startVariante } from '../lib/ssr'
 
-// Eigenstaendige Seite fuer die Suche nach "Webdesign Lübeck" und
-// "Website für Makler". Bewusst enger gefasst als die Startseite: Die
-// Startseite stellt das Studio vor, diese Seite eine Leistung.
+// Eigenstaendige Seite fuer die Suche nach "Webdesign Luebeck".
+//
+// Seit November 2026 die dritte Leistung nach Automatisierung und
+// Akquise-Strecken, und nicht mehr nur fuer Immobilien: Websites baut Plan B
+// Studios fuer Betriebe allgemein, mit Maklern als einem Schwerpunkt. Die
+// Startseite hat den Begriff "Webdesign Luebeck" deshalb an diese Seite
+// abgegeben, damit sich die beiden nicht gegenseitig Konkurrenz machen.
 //
 // REGEL FUER DEN TEXT: Nichts behaupten, was sich nicht belegen laesst. Keine
 // Kundenzahlen, keine Umsatzversprechen. Die beiden gezeigten Projekte sind
-// ausdruecklich Beispielprojekte und werden auch so benannt.
+// ausdruecklich Beispielprojekte mit erfundenen Marken und werden so benannt.
 
 const GRUNDSAETZE = [
   {
     n: '01',
     titel: 'Einzeln gebaut',
-    text: 'Kein Baukasten, keine gekaufte Vorlage. Die Seite entsteht aus Ihrer Marke, Ihren Objekten und der Frage, wen Sie erreichen wollen. Wer eine Vorlage kauft, bekommt eine Seite, die es schon tausendmal gibt — in einer Branche, in der der erste Eindruck über den Preis mitentscheidet.',
+    text: 'Kein Baukasten, keine gekaufte Vorlage. Die Seite entsteht aus Ihrem Angebot, Ihrem Auftritt und der Frage, wen Sie erreichen wollen. Eine gekaufte Vorlage sieht aus wie tausend andere Seiten, die dieselbe Vorlage gekauft haben.',
   },
   {
     n: '02',
     titel: 'Eine Person, kein Weiterreichen',
-    text: 'Sie sprechen mit dem, der die Seite baut: Bilal Gnielka. Kein Projektleiter zwischen Ihnen und der Umsetzung, keine Abstimmungsrunde zwischen Agentur und Fotograf. Website und 3D-Rundgang kommen aus derselben Hand.',
+    text: 'Sie sprechen mit dem, der die Seite baut: Bilal Gnielka. Kein Projektleiter zwischen Ihnen und der Umsetzung. Website, Akquise-Strecke und Automatisierung kommen aus derselben Hand.',
   },
   {
     n: '03',
     titel: 'Schnell und am Handy brauchbar',
-    text: 'Auf üblichen Verbindungen unter einer Sekunde bis zum sichtbaren Inhalt. Die meisten Immobiliensuchen laufen am Handy — eine Seite, die dort ruckelt oder erst lädt, verliert den Interessenten vor der ersten Zeile.',
+    text: 'Auf üblichen Verbindungen unter einer Sekunde bis zum sichtbaren Inhalt. Eine Seite, die am Handy ruckelt oder erst lädt, verliert Besucher vor der ersten Zeile.',
   },
   {
     n: '04',
     titel: 'Cookiefrei, wo es geht',
-    text: 'Diese Seite hier setzt keine Cookies und bindet kein fremdes Skript ein. Das ist keine Ideologie, sondern praktisch: kein Zustimmungsbanner, das den ersten Eindruck verdeckt, und keine Diskussion über Auftragsverarbeitung.',
+    text: 'Diese Seite hier setzt keine Cookies und bindet kein fremdes Skript ein. Das hat einen praktischen Grund: kein Zustimmungsbanner, das den ersten Eindruck verdeckt.',
   },
 ]
 
 const LEISTUNG = [
   'Aufbau und Gestaltung der gesamten Seite',
   'Texte gemeinsam erarbeitet, nicht von Ihnen geliefert',
-  'Objektdarstellung, Referenzen, Kontaktstrecke',
+  'Leistungen, Referenzen und ein klarer Weg zur Anfrage',
   'Impressum und Datenschutzerklärung technisch eingebunden',
   'Übergabe mit Zugang, damit Sie unabhängig bleiben',
 ]
 
 export function WebdesignLuebeck() {
   return (
-    <SeitenLayout
-      titel="Webdesign für Immobilien in Lübeck — Plan B Studios"
-      aktion={{ text: 'Anfragen', zu: '/#kontakt' }}
-    >
+    <SeitenLayout titel="Webdesign in Lübeck: Websites für Betriebe — Plan B Studios">
       {/* Einstieg */}
-      <section className="pb-20 pt-20 md:pb-28 md:pt-28">
+      <section className="pb-20 pt-16 md:pb-28 md:pt-24">
         <motion.div variants={einblenden} initial={startVariante} animate="show">
           <Marke>WEBDESIGN · LÜBECK</Marke>
-          <h1 className="font-serif text-[clamp(2.4rem,6.5vw,4.5rem)] font-light leading-[1.05] tracking-[-0.01em] text-cream">
-            Websites für
-            <br />
-            <em className="italic text-gold-bright">Immobilien</em>.
+          <h1 className="font-serif text-[clamp(2.4rem,6.5vw,4.5rem)] font-light leading-[1.05] tracking-[-0.01em] text-cream [text-wrap:balance]">
+            Websites für Betriebe in <em className="italic text-gold-bright">Lübeck</em>
           </h1>
           <p className="mt-10 max-w-2xl text-lg leading-relaxed text-cream-soft md:text-xl">
-            Ich baue Websites für Makler, Hausverwaltungen und Bauträger — aus
-            Lübeck, einzeln gebaut, ohne Baukasten und ohne Vorlage.
+            Ich baue Websites für Betriebe in Lübeck und Schleswig-Holstein, mit
+            einem Schwerpunkt auf Immobilienmaklern. Einzeln gebaut, ohne
+            Baukasten und ohne gekaufte Vorlage.
           </p>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-stone md:text-lg">
-            Ein Objekt für 1,5 Millionen, präsentiert wie ein Möbelhausprospekt:
-            Das ist der Normalfall in dieser Branche. Die meisten Makler- und
-            Bauträgerseiten sehen aus wie tausend andere, obwohl der erste Klick
-            darüber mitentscheidet, ob jemand anruft.
+            Eine Website ist bei mir selten das Ende. Meist ist sie der Ort, an dem
+            eine Akquise-Strecke beginnt oder eine Automatisierung ihre Angaben
+            herbekommt. Deshalb baue ich sie so, dass beides später dazukommen
+            kann, ohne dass die Seite neu gebaut werden muss.
           </p>
-          <div className="mt-10">
-            <Aufruf to="/#kontakt">Projekt anfragen</Aufruf>
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
+            <Aufruf to={TERMIN_URL} neuesFenster>
+              Erstgespräch buchen
+            </Aufruf>
+            <TextVerweis to="#beispiele">Beispielprojekte ansehen</TextVerweis>
           </div>
         </motion.div>
       </section>
@@ -108,12 +113,11 @@ export function WebdesignLuebeck() {
       </section>
 
       {/* Webagentur
-          Gemessen, nicht vermutet: Fuer "webagentur lübeck" steht die Seite in
-          der Search Console auf Position 1 — obwohl der Begriff bisher nirgends
-          vorkam und die Seite sogar dagegen argumentierte ("keine Agentur").
-          Dieser Abschnitt greift den Begriff auf, ohne die Positionierung
-          aufzugeben, und beantwortet nebenbei eine Frage, die ein Besucher
-          ohnehin hat. */}
+          Der Begriff "webagentur luebeck" tauchte in der Search Console auf,
+          allerdings mit nur zwei Impressionen in drei Monaten. Das ist kein
+          Ranking, sondern Zufall. Der Abschnitt bleibt trotzdem, weil er eine
+          Frage beantwortet, die ein Besucher ohnehin hat: Ist das hier eine
+          Agentur? */}
       <section className="border-t border-night-line py-20 md:py-28">
         <Block>
           <Marke>WEBAGENTUR ODER NICHT</Marke>
@@ -151,8 +155,9 @@ export function WebdesignLuebeck() {
               nicht ein <em className="italic text-gold-bright">Bausatz</em>.
             </h2>
             <p className="mt-8 max-w-md text-base leading-relaxed text-stone">
-              Was nicht dabei ist, sage ich vorher — nicht als Nachtrag auf der
-              Rechnung.
+              Was nicht dabei ist, sage ich vorher und nicht als Nachtrag auf der
+              Rechnung. Eine Website ist in der Regel in drei bis fünf Wochen
+              online.
             </p>
           </Block>
 
@@ -174,34 +179,34 @@ export function WebdesignLuebeck() {
       </section>
 
       {/* Beispiele */}
-      <section className="border-t border-night-line py-20 md:py-28">
+      <section id="beispiele" className="scroll-mt-28 border-t border-night-line py-20 md:py-28">
         <Block>
           <Marke>ZWEI BEISPIELPROJEKTE</Marke>
           <h2 className="max-w-2xl font-serif text-[clamp(1.9rem,4.5vw,3rem)] font-light leading-tight text-cream">
             Vollständig gebaut,
             <br />
-            hier <em className="italic text-gold-bright">begehbar</em>.
+            zum <em className="italic text-gold-bright">Durchklicken</em>.
           </h2>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-stone">
-            Beides sind Arbeiten aus dem Studio, keine Kundenprojekte. Sie
-            zeigen, wie eine fertige Seite aussieht — Sie können sie anklicken
-            und durchsehen wie eine echte.
+            Beide Marken sind erfunden, es sind keine Kundenprojekte. Sie zeigen,
+            wie eine fertige Seite von mir aussieht. Sie können sie anklicken und
+            durchsehen wie eine echte.
           </p>
         </Block>
 
         <Block gestaffelteKinder className="mt-14 grid gap-6 md:grid-cols-2">
           {[
             {
+              zu: '/meridian/',
+              tag: 'NEUBAUQUARTIER',
+              titel: 'MERIDIAN',
+              text: 'Ein Wohnquartier an der Trave. Grundrisse, die sich beim Scrollen zeichnen, Wohnungstypen als Tabelle, Lage mit Entfernungen.',
+            },
+            {
               zu: '/beispiel/',
               tag: 'MAKLERBÜRO',
               titel: 'Havel & Grau',
-              text: 'Ein Maklerbüro in Potsdam. Ruhige Typografie, Objekte im Mittelpunkt, klarer Weg zur Anfrage.',
-            },
-            {
-              zu: '/meridian/',
-              tag: 'NEUBAUPROJEKT',
-              titel: 'MERIDIAN',
-              text: 'Ein Wohnquartier an der Trave. Architektonisch gedacht, mit Grundrissen und Bauabschnitten.',
+              text: 'Ein Maklerbüro in Potsdam. Ruhige Schrift, Objekte im Mittelpunkt, kurzer Weg zur Anfrage.',
             },
           ].map((b) => (
             <motion.div key={b.titel} variants={einblenden}>
@@ -236,13 +241,20 @@ export function WebdesignLuebeck() {
           </h2>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-stone md:text-lg">
             Eine neue Seite, ein Umbau der bestehenden oder erst einmal eine
-            Einschätzung dazu, woran es gerade hakt. Schreiben Sie mir, ich melde
-            mich in der Regel innerhalb von 24 Stunden an Werktagen.
+            Einschätzung dazu, woran es gerade hakt. Buchen Sie ein Erstgespräch
+            oder schreiben Sie mir, ich melde mich in der Regel innerhalb von 24
+            Stunden an Werktagen.
           </p>
-          <div className="mt-10">
-            <Aufruf to="mailto:info@planbstudios.de" extern>
-              info@planbstudios.de
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
+            <Aufruf to={TERMIN_URL} neuesFenster>
+              Erstgespräch buchen
             </Aufruf>
+            <a
+              href="mailto:info@planbstudios.de"
+              className="text-[15px] font-medium text-cream-soft underline-offset-4 transition-colors hover:text-gold-bright hover:underline"
+            >
+              info@planbstudios.de
+            </a>
           </div>
         </Block>
       </section>
@@ -250,25 +262,20 @@ export function WebdesignLuebeck() {
       <Rueckweg
         text={
           <>
-            Plan B Studios baut außerdem begehbare Rundgänge für Immobilien.{' '}
-            <Link
-              to="/3d-rundgaenge/"
-              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
-            >
-              3D-Rundgänge
+            Außerdem:{' '}
+            <Link to="/automatisierung/" className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold">
+              Automatisierung
             </Link>{' '}
             ·{' '}
-            <Link
-              to="/ueber-mich/"
-              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
-            >
-              Über mich
+            <Link to="/akquise-strecken/" className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold">
+              Akquise-Strecken
             </Link>{' '}
             ·{' '}
-            <Link
-              to="/"
-              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
-            >
+            <Link to="/website-betreuung/" className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold">
+              Website-Betreuung
+            </Link>{' '}
+            ·{' '}
+            <Link to="/" className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold">
               Alle Leistungen
             </Link>
           </>

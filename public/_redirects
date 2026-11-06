@@ -1,0 +1,9 @@
+# Dauerhafte Weiterleitungen (Cloudflare Workers, statische Assets).
+#
+# Die englische Fassung der Startseite unter /en/ ist im November 2026
+# entfallen. Google hatte sie bereits indexiert; ohne Weiterleitung liefe die
+# Adresse ins Leere (404) und die Signale, die sie gesammelt hat, gingen
+# verloren. 301 sagt: dauerhaft umgezogen, bitte die neue Adresse merken.
+/en/ / 301
+/en / 301
+/en/* / 301

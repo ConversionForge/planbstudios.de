@@ -1,25 +1,23 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLocation, useNavigationType } from 'react-router-dom'
 import Lenis from 'lenis'
 import { Nav } from '../components/Nav'
-import { Hero } from '../components/Hero'
-import { Statement } from '../components/Statement'
-import { ChapterWebdesign } from '../components/ChapterWebdesign'
-import { Chapter3D } from '../components/Chapter3D'
-import { ChapterReferenzen } from '../components/ChapterReferenzen'
-import { ChapterStudio } from '../components/ChapterStudio'
-import { ChapterMakler } from '../components/ChapterMakler'
+import { Hero } from '../components/start/Hero'
+import { Leistungen } from '../components/start/Leistungen'
+import { Referenzen } from '../components/start/Referenzen'
+import { Makler } from '../components/start/Makler'
+import { Websites } from '../components/start/Websites'
+import { Rundgang } from '../components/start/Rundgang'
+import { UeberMichKurz } from '../components/start/UeberMichKurz'
 import { FAQ } from '../components/FAQ'
-import { ChapterKontakt } from '../components/ChapterKontakt'
+import { Kontakt } from '../components/start/Kontakt'
 import { Footer } from '../components/Footer'
 import { Cursor } from '../components/Cursor'
 import { GrainOverlay } from '../components/GrainOverlay'
-import { Preloader } from '../components/Preloader'
 import { ScrollProgress } from '../components/ScrollProgress'
 import { lenisRef, saveScroll, readScroll } from '../lib/scroll'
 
 export function Home() {
-  const [introDone, setIntroDone] = useState(false)
   const location = useLocation()
   const navType = useNavigationType()
   // Dunkler Vorhang für weite Sektionssprünge: Der Sprung passiert verdeckt,
@@ -28,10 +26,7 @@ export function Home() {
 
   useEffect(() => {
     const key = location.key
-    // Der Pfad gehoert in den Schluessel, nicht fest '/': Sonst teilen sich die
-    // deutsche und die englische Fassung der Startseite denselben Eintrag, und
-    // ein Wechsel wuerde an der Position der jeweils anderen landen.
-    const pfad = location.pathname.replace(/\/+$/, '') || '/'
+    const pfad = '/'
     // Nur beim Zurück (POP) wiederherstellen; sessionStorage-Fallback deckt
     // den Fall ab, dass ein Reload die Merkliste geleert hat.
     const savedY = navType === 'POP' ? readScroll(key, pfad) : null
@@ -175,27 +170,30 @@ export function Home() {
 
   return (
     <div className="bg-night text-cream">
-      <Preloader onDone={() => setIntroDone(true)} />
       <Cursor />
       <GrainOverlay />
       <ScrollProgress />
       <Nav />
-      {/* Sprung-Vorhang: unter der Navigation (z-50), über dem Inhalt */}
+      {/* Sprung-Vorhang: unter der Navigation (z-50), ueber dem Inhalt */}
       <div
         ref={veilRef}
         aria-hidden
         className="pointer-events-none fixed inset-0 z-[45] bg-night opacity-0"
       />
-      <main>
-        <Hero introDone={introDone} />
-        <Statement />
-        <ChapterWebdesign />
-        <Chapter3D />
-        <ChapterReferenzen />
-        <ChapterStudio />
-        <ChapterMakler />
+      {/* Reihenfolge = Gewichtung: Automatisierung und Akquise zuerst,
+          Websites danach, 3D-Rundgaenge als schmales Band. Ein Einstiegs-
+          bildschirm (Preloader) entfaellt bewusst: Wer sofort klicken will,
+          soll nicht zwei Sekunden auf eine Animation warten. */}
+      <main id="inhalt" tabIndex={-1} className="outline-none">
+        <Hero />
+        <Leistungen />
+        <Referenzen />
+        <Makler />
+        <Websites />
+        <Rundgang />
+        <UeberMichKurz />
         <FAQ />
-        <ChapterKontakt />
+        <Kontakt />
       </main>
       <Footer />
     </div>

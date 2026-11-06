@@ -10,8 +10,11 @@
 // Ohne BREVO_API_KEY endet ein gueltiger Fall bei 503 "Versand noch nicht
 // eingerichtet" — genau das ist hier das Zeichen, dass alle Pruefungen
 // bestanden wurden.
-const URL_ = 'http://127.0.0.1:8788/api/akquise-check'
+const BASIS = 'http://127.0.0.1:8788'
 
+const tief = (o) => JSON.parse(JSON.stringify(o))
+
+// --- Akquise-Check (/api/akquise-check) ------------------------------------
 const GUELTIG = {
   antworten: {
     region: '23552 Lübeck',
@@ -30,8 +33,6 @@ const GUELTIG = {
   dauerMs: 9000,
   koeder: '',
 }
-
-const tief = (o) => JSON.parse(JSON.stringify(o))
 
 /** Faelle: [Name, Aenderung am gueltigen Fall, erwarteter Status, erwartetes Feld] */
 const FAELLE = [
@@ -72,38 +73,75 @@ const FAELLE = [
   ['Einwilligung fehlt', (d) => { d.einwilligung = false; return d }, 400, null],
 ]
 
+// --- Ablauf-Einschaetzung (/api/einschaetzung) -----------------------------
+const GUELTIG_E = {
+  ablaeufe: 'Anfragen kommen per Mail und werden von Hand in eine Tabelle übertragen.',
+  branche: 'Steuerbüro',
+  name: 'Max Mustermann',
+  email: 'info@planbstudios.de',
+  telefon: '',
+  einwilligung: true,
+  dauerMs: 9000,
+  koeder: '',
+}
+
+const FAELLE_E = [
+  ['gueltig ohne Telefon (muss durch)', (d) => d, 503, null],
+  ['gueltig mit Telefon (muss durch)', (d) => { d.telefon = '0451 1234567'; return d }, 503, null],
+  ['Branche leer (muss durch)', (d) => { d.branche = ''; return d }, 503, null],
+  ['Ablaeufe zu kurz', (d) => { d.ablaeufe = 'Rechnungen'; return d }, 400, 'ablaeufe'],
+  ['Ablaeufe leer', (d) => { d.ablaeufe = ''; return d }, 400, 'ablaeufe'],
+  ['Ablaeufe nur Leerzeichen', (d) => { d.ablaeufe = ' '.repeat(40); return d }, 400, 'ablaeufe'],
+  ['Name fehlt', (d) => { d.name = ''; return d }, 400, 'name'],
+  ['E-Mail unvollstaendig', (d) => { d.email = 'keine-adresse'; return d }, 400, 'email'],
+  ['E-Mail Wegwerfadresse', (d) => { d.email = 'x@mailinator.com'; return d }, 400, 'email'],
+  ['E-Mail-Domain nimmt keine Post', (d) => { d.email = 'x@gibt-es-ganz-sicher-nicht-4711-xyz.de'; return d }, 400, 'email'],
+  ['Telefon angegeben, aber ungueltig', (d) => { d.telefon = '0123456789'; return d }, 400, 'telefon'],
+  ['zu schnell abgesendet', (d) => { d.dauerMs = 500; return d }, 400, null],
+  ['Einwilligung fehlt', (d) => { d.einwilligung = false; return d }, 400, null],
+  ['Honigtopf gefuellt (still verworfen)', (d) => { d.koeder = 'bot'; return d }, 200, null],
+]
+
 let fehler = 0
 // Je Fall eine eigene Absenderadresse: Der Zaehler im Worker begrenzt sonst
 // nach fuenf Aufrufen. In Produktion greift er ohnehin nicht (siehe Kommentar
 // im Worker), lokal aber schon, weil dort nur eine Instanz laeuft.
 let nr = 0
-for (const [bez, aendern, erwStatus, erwFeld] of FAELLE) {
-  nr++
-  const koerper = aendern(tief(GUELTIG))
-  let status = 0
-  let daten = {}
-  try {
-    const a = await fetch(URL_, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'cf-connecting-ip': '203.0.113.' + nr },
-      body: JSON.stringify(koerper),
-    })
-    status = a.status
-    daten = await a.json().catch(() => ({}))
-  } catch (e) {
-    console.log(' FEHL  ' + bez + ' -> Aufruf gescheitert: ' + e.message)
-    fehler++
-    continue
-  }
 
-  const feldOk = erwFeld === null ? true : daten.feld === erwFeld
-  const ok = status === erwStatus && feldOk
-  if (!ok) fehler++
-  console.log(
-    `${ok ? '  ok  ' : ' FEHL '} ${bez.padEnd(36)} ${status}` +
-      (daten.feld ? ` [${daten.feld}]` : '') +
-      (daten.fehler ? '  ' + daten.fehler.slice(0, 62) : ''),
-  )
+async function pruefe(pfad, gueltig, faelle, titel) {
+  console.log('\n' + titel)
+  for (const [bez, aendern, erwStatus, erwFeld] of faelle) {
+    nr++
+    const koerper = aendern(tief(gueltig))
+    let status = 0
+    let daten = {}
+    try {
+      const a = await fetch(BASIS + pfad, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'cf-connecting-ip': '203.0.113.' + nr },
+        body: JSON.stringify(koerper),
+      })
+      status = a.status
+      daten = await a.json().catch(() => ({}))
+    } catch (e) {
+      console.log(' FEHL  ' + bez + ' -> Aufruf gescheitert: ' + e.message)
+      fehler++
+      continue
+    }
+
+    const feldOk = erwFeld === null ? true : daten.feld === erwFeld
+    const ok = status === erwStatus && feldOk
+    if (!ok) fehler++
+    console.log(
+      `${ok ? '  ok  ' : ' FEHL '} ${bez.padEnd(38)} ${status}` +
+        (daten.feld ? ` [${daten.feld}]` : '') +
+        (daten.fehler ? '  ' + daten.fehler.slice(0, 62) : ''),
+    )
+  }
 }
-console.log(fehler === 0 ? '\nAlle Faelle wie erwartet.' : `\n${fehler} abweichend.`)
+
+await pruefe('/api/akquise-check', GUELTIG, FAELLE, 'Akquise-Check (/api/akquise-check)')
+await pruefe('/api/einschaetzung', GUELTIG_E, FAELLE_E, 'Ablauf-Einschätzung (/api/einschaetzung)')
+
+console.log(fehler === 0 ? '\nAlle Fälle wie erwartet.' : `\n${fehler} abweichend.`)
 process.exit(fehler === 0 ? 0 : 1)

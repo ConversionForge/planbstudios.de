@@ -15,11 +15,11 @@ import {
   zerlegeRegion,
 } from '../akquise/pruefung'
 import { melde, meldeSchritt } from '../akquise/ereignis'
+import { TERMIN_URL } from '../lib/kontakt'
 
-// Terminbuchung. Bewusst als Verlinkung und NICHT als Einbettung: Eine
-// Einbettung laedt fremde Skripte nach und wuerde eine Einwilligung noetig
-// machen. Solange die Adresse leer ist, wird stattdessen die E-Mail angeboten.
-const TERMIN_URL = 'https://cal.com/plan-b-studios/erstgesprach'
+// Terminbuchung: bewusst als Verlinkung, nicht als Einbettung (siehe
+// src/lib/kontakt.ts). Solange die Adresse leer ist, wird stattdessen die
+// E-Mail angeboten.
 
 const SPEICHER = 'pb-akquise-check'
 const MINDESTDAUER_MS = 4000 // schneller als das ausgefuellt = mit hoher Wahrscheinlichkeit ein Bot
@@ -57,7 +57,7 @@ export function AkquiseCheck() {
   useEffect(() => {
     document.title = 'Akquise-Check — Plan B Studios'
     return () => {
-      document.title = 'Plan B Studios — Webdesign & 3D-Rundgänge'
+      document.title = 'Automatisierung & Akquise-Strecken in Lübeck | Plan B Studios'
     }
   }, [])
 

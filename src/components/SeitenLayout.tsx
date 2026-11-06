@@ -1,18 +1,20 @@
 import { useEffect, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
-import { CubeMark } from './Logo'
 import { GrainOverlay } from './GrainOverlay'
 import { Footer } from './Footer'
+import { Nav } from './Nav'
 import { startVariante } from '../lib/ssr'
+import { useInPageAnchors } from '../example/useInPageAnchors'
 
 /**
  * Gemeinsames Geruest fuer die eigenstaendigen Leistungsseiten.
  *
- * Bewusst eine schlanke Kopfzeile statt der Hauptnavigation: Wer ueber die
- * Suche auf einer dieser Seiten landet, sucht eine Sache. Die volle Navigation
- * wuerde davon ablenken. Der Weg zur Startseite bleibt ueber das Zeichen und
- * ueber den Abschnitt am Fuss offen — keine Sackgasse.
+ * Seit dem Neuaufbau im November 2026 mit der vollen Hauptnavigation statt
+ * einer schlanken Kopfzeile. Grund: Wer ueber die Suche auf "Webdesign
+ * Luebeck" landet, soll sehen, dass es Automatisierung und Akquise-Strecken
+ * gibt. Das sind die Leistungen, fuer die Plan B Studios bekannt werden will,
+ * und eine Kopfzeile ohne Navigation hat sie versteckt.
  */
 
 export const einblenden = {
@@ -87,22 +89,36 @@ export function Karte({
 /**
  * Handlungsaufruf mit eingefasstem Pfeil. Der Pfeil sitzt in einem eigenen
  * runden Feld statt nackt daneben und bewegt sich beim Zeigen leicht heraus.
+ *
+ * Ziele, die mit "#" beginnen, werden als einfacher Anker ausgegeben: Auf der
+ * Startseite faengt ein zentraler Klick-Handler genau diese ab und scrollt
+ * weich, ohne den Anker in die Adresszeile zu schreiben. Ein Router-Link
+ * wuerde daraus "/#..." machen und am Handler vorbeilaufen.
  */
 export function Aufruf({
   to,
   children,
   extern = false,
+  neuesFenster = false,
+  variante = 'gold',
 }: {
   to: string
   children: ReactNode
   extern?: boolean
+  /** Fuer fremde Seiten wie die Terminbuchung: Plan B Studios bleibt offen. */
+  neuesFenster?: boolean
+  /** "gold" fuer den Hauptaufruf, "rand" fuer einen zweiten daneben. */
+  variante?: 'gold' | 'rand'
 }) {
+  const gold = variante === 'gold'
   const inhalt = (
     <>
       <span>{children}</span>
       <span
         aria-hidden
-        className="flex h-8 w-8 items-center justify-center rounded-full bg-night/15 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105"
+        className={`flex h-8 w-8 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105 ${
+          gold ? 'bg-night/15' : 'bg-cream/[0.08]'
+        }`}
       >
         <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
           <path
@@ -116,16 +132,73 @@ export function Aufruf({
       </span>
     </>
   )
-  const klassen =
-    'group inline-flex items-center gap-3 rounded-full bg-gold py-2.5 pl-7 pr-2.5 text-[15px] font-medium tracking-[0.02em] text-night transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-gold-bright active:scale-[0.98]'
+  const klassen = `group inline-flex items-center gap-3 rounded-full py-2.5 pl-7 pr-2.5 text-[15px] font-medium tracking-[0.02em] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-bright ${
+    gold
+      ? 'bg-gold text-night hover:bg-gold-bright'
+      : 'text-cream ring-1 ring-cream/20 hover:text-gold-bright hover:ring-gold/60'
+  }`
 
-  return extern ? (
-    <a href={to} className={klassen}>
-      {inhalt}
-    </a>
-  ) : (
+  if (extern || neuesFenster || to.startsWith('#')) {
+    return (
+      <a
+        href={to}
+        className={klassen}
+        {...(neuesFenster ? { target: '_blank', rel: 'noopener' } : {})}
+      >
+        {inhalt}
+      </a>
+    )
+  }
+  return (
     <Link to={to} className={klassen}>
       {inhalt}
+    </Link>
+  )
+}
+
+/**
+ * Leiser Textverweis mit Pfeil, fuer den zweiten Weg neben einem Aufruf.
+ * Bewusst kein zweiter Knopf: Zwei gleich laute Knoepfe nebeneinander lassen
+ * offen, welcher gemeint ist.
+ */
+export function TextVerweis({
+  to,
+  children,
+  className = '',
+}: {
+  to: string
+  children: ReactNode
+  className?: string
+}) {
+  const klassen = `group inline-flex min-h-11 items-center gap-2 text-[15px] font-medium text-cream-soft transition-colors duration-300 hover:text-gold-bright focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-bright ${className}`
+  const pfeil = (
+    <svg
+      aria-hidden
+      viewBox="0 0 24 24"
+      fill="none"
+      className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+    >
+      <path
+        d="M5 12h14m0 0-6-6m6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+  if (to.startsWith('#')) {
+    return (
+      <a href={to} className={klassen}>
+        <span>{children}</span>
+        {pfeil}
+      </a>
+    )
+  }
+  return (
+    <Link to={to} className={klassen}>
+      <span>{children}</span>
+      {pfeil}
     </Link>
   )
 }
@@ -133,48 +206,34 @@ export function Aufruf({
 export function SeitenLayout({
   titel,
   children,
-  aktion,
 }: {
   /** Fenstertitel. Steht zusaetzlich im HTML, das postbuild.mjs erzeugt. */
   titel: string
   children: ReactNode
-  /** Verweis oben rechts, etwa auf den Akquise-Check. */
-  aktion?: { text: string; zu: string }
 }) {
   useEffect(() => {
     document.title = titel
     return () => {
-      document.title = 'Plan B Studios — Webdesign & 3D-Rundgänge'
+      document.title = 'Automatisierung & Akquise-Strecken in Lübeck | Plan B Studios'
     }
   }, [titel])
+
+  // Anker innerhalb der Seite (etwa "#einschaetzung") abfangen: Ein nativer
+  // Sprung schriebe den Anker in die Adresszeile und braechte Browser-Verlauf
+  // und Router aus dem Takt (siehe useInPageAnchors). 100 Pixel Abstand fuer
+  // die feste Kopfzeile.
+  useInPageAnchors(100)
 
   return (
     <div className="min-h-screen bg-night text-cream">
       <GrainOverlay />
+      <Nav />
+      {/* Platz fuer die feste Kopfzeile (h-24, beim Scrollen h-16). */}
+      <div aria-hidden className="h-24" />
 
-      <header className="border-b border-night-line">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5 lg:px-8">
-          <Link to="/" className="group flex items-center gap-3">
-            <CubeMark className="h-6 w-6 text-gold transition-colors group-hover:text-gold-bright" />
-            <span className="flex flex-col leading-none">
-              <span className="font-serif text-[15px] tracking-wide text-cream">Plan B</span>
-              <span className="mt-0.5 text-[8px] font-medium uppercase tracking-[0.42em] text-gold">
-                Studios
-              </span>
-            </span>
-          </Link>
-          {aktion && (
-            <Link
-              to={aktion.zu}
-              className="text-[13px] font-medium tracking-[0.06em] text-cream-soft transition-colors hover:text-gold"
-            >
-              {aktion.text}
-            </Link>
-          )}
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-5xl px-6 lg:px-8">{children}</main>
+      <main id="inhalt" tabIndex={-1} className="mx-auto max-w-5xl px-6 outline-none lg:px-8">
+        {children}
+      </main>
 
       <Footer />
     </div>

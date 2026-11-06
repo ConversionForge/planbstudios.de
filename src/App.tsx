@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Routes, Route, useLocation, useNavigationType } from 'react-router-dom'
+import { MotionConfig } from 'motion/react'
 import { Home } from './pages/Home'
 import { Impressum } from './pages/Impressum'
 import { Datenschutz } from './pages/Datenschutz'
@@ -12,6 +13,8 @@ import { WebdesignLuebeck } from './pages/WebdesignLuebeck'
 import { Rundgaenge } from './pages/Rundgaenge'
 import { UeberMich } from './pages/UeberMich'
 import { WebsiteBetreuung } from './pages/WebsiteBetreuung'
+import { Automatisierung } from './pages/Automatisierung'
+import { AkquiseStrecken } from './pages/AkquiseStrecken'
 import { AkquiseCheck } from './pages/AkquiseCheck'
 import { PageCurtain } from './components/PageCurtain'
 import { saveScroll, readScroll } from './lib/scroll'
@@ -28,13 +31,8 @@ function ScrollManager() {
   }, [])
 
   useEffect(() => {
-    // Die Startseite regelt ihre Scroll-Position (Lenis) selbst — in beiden
-    // Sprachfassungen. Der abschliessende Schraegstrich muss weg: Beim direkten
-    // Aufruf von /en/ liefert der Router "/en/", beim Klick auf den Umschalter
-    // "/en". Ohne die Vereinheitlichung liefe hier die Verwaltung fuer
-    // Unterseiten mit und wuerde gegen Lenis arbeiten.
-    const pfad = location.pathname.replace(/\/+$/, '') || '/'
-    if (pfad === '/' || pfad === '/en') return
+    // Die Startseite regelt ihre Scroll-Position (Lenis) selbst.
+    if (location.pathname === '/') return
 
     const key = location.key
     const saved = navType === 'POP' ? readScroll(key, location.pathname) : null
@@ -45,7 +43,18 @@ function ScrollManager() {
       window.scrollTo(0, saved)
       timers.push(window.setTimeout(() => window.scrollTo(0, saved), 60))
       timers.push(window.setTimeout(() => window.scrollTo(0, saved), 220))
-    } else if (!location.hash) {
+    } else if (location.hash) {
+      // Verweis auf einen Abschnitt einer Unterseite, etwa
+      // /automatisierung/#einschaetzung. Der Browser springt bei einem
+      // Seitenwechsel innerhalb der App nicht von selbst dorthin. Kurz warten,
+      // bis die Seite steht; 100 Pixel Abstand fuer die feste Kopfzeile.
+      const springen = () => {
+        const el = document.getElementById(decodeURIComponent(location.hash.slice(1)))
+        if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 100)
+      }
+      timers.push(window.setTimeout(springen, 80))
+      timers.push(window.setTimeout(springen, 400))
+    } else {
       window.scrollTo(0, 0)
     }
 
@@ -63,31 +72,31 @@ function ScrollManager() {
 
 function App() {
   return (
-    <>
+    // reducedMotion="user": Wer in den Systemeinstellungen "Bewegung
+    // reduzieren" gewaehlt hat, bekommt Ein- und Ausblendungen ohne Fahrt und
+    // ohne Skalierung.
+    <MotionConfig reducedMotion="user">
       <ScrollManager />
       <PageCurtain />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* Englische Fassung der Startseite unter eigener Adresse. Beide sind
-            ueber hreflang verknuepft; welche Sprache gilt, entscheidet die
-            Adresse (siehe src/i18n/index.tsx). */}
-        <Route path="/en" element={<Home />} />
         <Route path="/impressum" element={<Impressum />} />
         <Route path="/datenschutz" element={<Datenschutz />} />
         <Route path="/beispiel" element={<HavelGrauSite />} />
         <Route path="/meridian" element={<MeridianSite />} />
         <Route path="/rundgang" element={<PropertyTour />} />
-        <Route path="/makler/mehr-eigentuemeranfragen" element={<MaklerSituation />} />
-        {/* Eigenstaendige Seiten je Suchbegriff. Die Startseite stellt das
-            Studio vor; wer gezielt nach einer Leistung sucht, landet hier. */}
+        {/* Leistungsseiten, in der Reihenfolge ihres Gewichts. */}
+        <Route path="/automatisierung" element={<Automatisierung />} />
+        <Route path="/akquise-strecken" element={<AkquiseStrecken />} />
         <Route path="/webdesign-luebeck" element={<WebdesignLuebeck />} />
-        <Route path="/3d-rundgaenge" element={<Rundgaenge />} />
-        <Route path="/ueber-mich" element={<UeberMich />} />
         <Route path="/website-betreuung" element={<WebsiteBetreuung />} />
+        <Route path="/3d-rundgaenge" element={<Rundgaenge />} />
+        <Route path="/makler/mehr-eigentuemeranfragen" element={<MaklerSituation />} />
+        <Route path="/ueber-mich" element={<UeberMich />} />
         <Route path="/akquise-check" element={<AkquiseCheck />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </MotionConfig>
   )
 }
 

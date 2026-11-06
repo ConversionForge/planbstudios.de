@@ -2,7 +2,7 @@ import { LegalLayout } from './LegalLayout'
 
 export function Datenschutz() {
   return (
-    <LegalLayout title="Datenschutz" updated="Juli 2026">
+    <LegalLayout title="Datenschutz" updated="November 2026">
       <h2>1. Verantwortlicher</h2>
       <p>
         Verantwortlich für die Datenverarbeitung auf dieser Website ist:
@@ -23,12 +23,19 @@ export function Datenschutz() {
         bewusst datensparsam gestaltet: Sie setzt keine Cookies und bindet kein
         Analyse-Tracking ein. Alle Inhalte — auch Schriften, Bilder und Videos —
         werden vom eigenen Server geladen. Eine Kontaktaufnahme ist per E-Mail
-        möglich (Ziffer&nbsp;4) oder über das Formular des Akquise-Checks
-        (Ziffer&nbsp;5). Beteiligte Dienstleister sind ausschließlich der Hoster
-        Cloudflare (Ziffer&nbsp;3, zugleich DNS-Dienst für die Prüfung der
-        Formularangaben), der E-Mail-Anbieter des Postfachs (Ziffer&nbsp;4) sowie
-        Brevo für den Versand und die Verwaltung von Anfragen aus dem Formular
-        (Ziffer&nbsp;5).
+        möglich (Ziffer&nbsp;4) oder über eines der beiden Formulare, den
+        Akquise-Check und die Ablauf-Einschätzung (Ziffer&nbsp;5). Beteiligte
+        Dienstleister sind ausschließlich der Hoster Cloudflare (Ziffer&nbsp;3,
+        zugleich DNS-Dienst für die Prüfung der Formularangaben), der
+        E-Mail-Anbieter des Postfachs (Ziffer&nbsp;4) sowie Brevo für den Versand
+        und die Verwaltung von Anfragen aus den Formularen (Ziffer&nbsp;5).
+      </p>
+      <p>
+        <strong>Terminbuchung:</strong> Die Schaltflächen „Erstgespräch buchen“
+        sind einfache Verweise auf die Buchungsseite des Dienstes Cal.com. Diese
+        Website bindet Cal.com nicht ein und überträgt dabei keine Daten. Erst wenn
+        Sie dem Verweis folgen, verlassen Sie diese Website; für die Buchung gilt
+        dann die Datenschutzerklärung von Cal.com.
       </p>
 
       <h2>3. Hosting: Cloudflare</h2>
@@ -99,9 +106,9 @@ export function Datenschutz() {
         per E-Mail übermittelten Daten sind damit auch Cloudflare und Google.
       </p>
 
-      <h2>5. Akquise-Check (Formular)</h2>
+      <h2>5. Formulare: Akquise-Check und Ablauf-Einschätzung</h2>
       <p>
-        Über den Akquise-Check können Sie mir fünf Angaben zu Ihrer Situation
+        <strong>Akquise-Check:</strong> Über den Akquise-Check können Sie mir fünf Angaben zu Ihrer Situation
         sowie Ihre Kontaktdaten übermitteln. Verarbeitet werden dabei:
       </p>
       <ul>
@@ -124,12 +131,31 @@ export function Datenschutz() {
       <p>
         Die Website-Adresse wird inhaltlich nicht automatisiert ausgewertet; sie
         dient der Vorbereitung eines Gesprächs. Geprüft wird lediglich, ob es die
-        angegebene Adresse technisch gibt (siehe folgender Absatz).
+        angegebene Adresse technisch gibt (siehe unten).
+      </p>
+      <p>
+        <strong>Ablauf-Einschätzung:</strong> Über die Ablauf-Einschätzung können
+        Sie mir in eigenen Worten Abläufe aus Ihrem Betrieb beschreiben, zu denen
+        Sie eine Einschätzung möchten. Verarbeitet werden dabei:
+      </p>
+      <ul>
+        <li>Ihre Beschreibung der Abläufe</li>
+        <li>falls angegeben, Branche oder Name Ihres Betriebs</li>
+        <li>Name und E-Mail-Adresse</li>
+        <li>falls angegeben, Ihre Telefonnummer</li>
+        <li>Ihre Einwilligung sowie der Zeitpunkt des Absendens</li>
+      </ul>
+      <p>
+        Die Beschreibung lese ich selbst; sie wird nicht automatisiert
+        ausgewertet. Bitte tragen Sie dort keine personenbezogenen Daten Dritter
+        ein, etwa Namen Ihrer Kunden. Zweck und Rechtsgrundlage entsprechen dem
+        Akquise-Check (oben). Eine automatische Bestätigungsmail wird bei diesem
+        Formular nicht verschickt.
       </p>
       <p>
         <strong>Prüfung Ihrer Angaben beim Absenden:</strong> Damit ich Sie
-        tatsächlich erreichen kann, prüft der Server beim Absenden, ob die
-        angegebene Postleitzahl mit dem Ort zusammenpasst, ob die Telefonnummer
+        tatsächlich erreichen kann, prüft der Server beim Absenden des
+        Akquise-Checks, ob die angegebene Postleitzahl mit dem Ort zusammenpasst, ob die Telefonnummer
         eine gültige Rufnummer ist und ob die Domain Ihrer E-Mail-Adresse
         überhaupt Post empfangen kann und die Domain Ihrer Website existiert. Für
         die beiden letzten Punkte stellt der Server eine DNS-Anfrage an den
@@ -137,7 +163,9 @@ export function Datenschutz() {
         übermittelt (also etwa <em>beispiel.de</em>), nicht Ihre vollständige
         E-Mail-Adresse und nicht Ihre IP-Adresse. Die Abfrage stellt der Server,
         nicht Ihr Browser. Postleitzahl und Ort werden gegen eine auf dem Server
-        gespeicherte Liste geprüft, ohne dass dabei Daten nach außen gehen.
+        gespeicherte Liste geprüft, ohne dass dabei Daten nach außen gehen. Bei
+        der Ablauf-Einschätzung werden nur die Domain Ihrer E-Mail-Adresse und,
+        falls angegeben, die Telefonnummer auf dieselbe Weise geprüft.
         Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO
         (berechtigtes Interesse an erreichbaren Kontaktdaten und an der Abwehr
         automatisierter Einsendungen).
@@ -157,8 +185,8 @@ export function Datenschutz() {
         Aufbewahrungsfristen.
       </p>
       <p>
-        <strong>Schutz vor automatisierten Einsendungen:</strong> Das Formular
-        enthält ein für Sie unsichtbares Zusatzfeld und misst die Zeit zwischen
+        <strong>Schutz vor automatisierten Einsendungen:</strong> Beide Formulare
+        enthalten ein für Sie unsichtbares Zusatzfeld und messen die Zeit zwischen
         Aufruf und Absenden, um maschinelle Einsendungen zu erkennen. Es werden
         dabei keine zusätzlichen personenbezogenen Daten erhoben und keine
         externen Dienste eingebunden.
@@ -173,11 +201,10 @@ export function Datenschutz() {
       <h2>7. Lokale Speicherung im Browser</h2>
       <p>
         Die Website speichert im Sitzungsspeicher (sessionStorage) Ihres Browsers
-        zwei rein funktionale, sitzungsbezogene Angaben: einen Hinweis, ob die
-        Einstiegs­animation in dieser Sitzung bereits gezeigt wurde, sowie die
-        zuletzt besuchte Scroll-Position, damit die Navigation flüssig bleibt. Diese
-        Angaben enthalten keinen Personenbezug, dienen nicht der Analyse oder
-        Nachverfolgung und werden beim Schließen des Browser-Tabs automatisch
+        eine rein funktionale, sitzungsbezogene Angabe: die zuletzt besuchte
+        Scroll-Position, damit die Navigation flüssig bleibt. Diese Angabe
+        enthält keinen Personenbezug, dient nicht der Analyse oder
+        Nachverfolgung und wird beim Schließen des Browser-Tabs automatisch
         gelöscht. Solange Sie den Akquise-Check (Ziffer&nbsp;5) ausfüllen, wird
         zusätzlich Ihr Zwischenstand dort abgelegt, damit ein versehentliches
         Neuladen Ihre Eingaben nicht löscht. Dieser Zwischenstand verbleibt
@@ -214,7 +241,7 @@ export function Datenschutz() {
 
       <h2>10. Aktualität</h2>
       <p>
-        Diese Datenschutzerklärung ist aktuell gültig und hat den Stand Juli 2026.
+        Diese Datenschutzerklärung ist aktuell gültig und hat den Stand November 2026.
         Durch die Weiterentwicklung der Website oder geänderte gesetzliche Vorgaben
         kann es notwendig werden, diese Erklärung anzupassen.
       </p>

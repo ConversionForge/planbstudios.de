@@ -35,16 +35,50 @@ try {
 }
 
 const ROUTES = {
-  // Englische Fassung der Startseite. Eigene Adresse statt Umschalten unter
-  // derselben — sonst kann eine Suchmaschine nicht entscheiden, welche Sprache
-  // die Seite hat. Verknuepft sind beide ueber die hreflang-Angaben, die schon
-  // in index.html stehen und deshalb in beiden Dateien identisch landen.
-  en: {
-    title: 'Web design & 3D tours for real estate | Plan B Studios',
-    desc: 'Plan B Studios designs websites and walkable 3D tours for real estate — tailor-made for estate agents, property managers and developers in northern Germany.',
-    ogDesc: 'Websites and walkable 3D tours for real estate, from Lübeck. Built, not clicked together.',
-    lang: 'en',
-    locale: 'en_US',
+  // Leistungsseiten, in der Reihenfolge ihres Gewichts (seit November 2026):
+  // Automatisierung und Akquise-Strecken zuerst, Websites danach.
+  automatisierung: {
+    title: 'Automatisierung für Betriebe in Lübeck — Plan B Studios',
+    desc: 'Wiederkehrende Abläufe automatisieren statt von Hand erledigen: Daten übertragen, Dokumente erstellen, erinnern, Anfragen sortieren. Für Betriebe in Lübeck.',
+    krume: 'Automatisierung',
+    prerender: true,
+  },
+  'akquise-strecken': {
+    title: 'Akquise-Strecken für Makler und Betriebe — Plan B Studios',
+    desc: 'Vom ersten Klick bis zum Termin: Seite, Formular, sofortige Antwort, Nachfassen und Messung. Schwerpunkt Eigentümer-Akquise für Immobilienmakler.',
+    krume: 'Akquise-Strecken',
+    prerender: true,
+  },
+  'webdesign-luebeck': {
+    title: 'Webdesign in Lübeck: Websites für Betriebe — Plan B Studios',
+    desc: 'Websites für Betriebe in Lübeck und Schleswig-Holstein, mit Schwerpunkt auf Immobilienmaklern. Einzeln gebaut, ohne Baukasten und ohne Vorlage.',
+    krume: 'Webdesign in Lübeck',
+    prerender: true,
+  },
+  'website-betreuung': {
+    title: 'Website-Betreuung in Lübeck — Plan B Studios',
+    desc: 'Laufende Betreuung für Websites von Betrieben in Lübeck: technische Pflege, Inhalte einpflegen, Änderungen und Messung nach dem Livegang.',
+    krume: 'Website-Betreuung',
+    prerender: true,
+  },
+  '3d-rundgaenge': {
+    title: '3D-Rundgänge für Immobilien — Plan B Studios',
+    desc: 'Objektfilme und Rundgänge für Immobilien aus vorhandenen Fotos, gebaut in Lübeck. Für Makler als Ergänzung zur Akquise-Strecke.',
+    krume: '3D-Rundgänge',
+    prerender: true,
+  },
+  'makler/mehr-eigentuemeranfragen': {
+    title: 'Mehr Eigentümeranfragen: Ratgeber für Makler — Plan B Studios',
+    desc: 'Eigentümer suchen online nach dem Wert ihrer Immobilie, lange bevor sie einen Makler anrufen. Was daraus folgt und wie eine Akquise-Strecke für Makler aussieht.',
+    krume: 'Mehr Eigentümeranfragen',
+    oberBegriff: 'Akquise-Strecken',
+    oberPfad: 'akquise-strecken',
+    prerender: true,
+  },
+  'ueber-mich': {
+    title: 'Bilal Gnielka — Plan B Studios, Lübeck',
+    desc: 'Bilal Gnielka automatisiert Abläufe in Betrieben und baut Akquise-Strecken und Websites. Plan B Studios in Lübeck, angemeldet an seinem 18. Geburtstag im Juli 2026.',
+    krume: 'Über mich',
     prerender: true,
   },
   impressum: {
@@ -57,36 +91,9 @@ const ROUTES = {
     desc: 'Datenschutzerklärung von Plan B Studios.',
     prerender: true,
   },
-  'webdesign-luebeck': {
-    title: 'Webdesign für Immobilien in Lübeck — Plan B Studios',
-    desc: 'Websites für Makler, Hausverwaltungen und Bauträger aus Lübeck. Was eine Webagentur leistet, ohne Agentur zu sein: einzeln gebaut, ohne Baukasten.',
-    prerender: true,
-  },
-  '3d-rundgaenge': {
-    title: '3D-Rundgänge für Immobilien — Plan B Studios',
-    desc: 'Begehbare 3D-Rundgänge und cinematische Objektfilme für Immobilien. Aus vorhandenen Fotos oder als vollständiger Rundgang — gebaut in Lübeck.',
-    prerender: true,
-  },
-  'website-betreuung': {
-    title: 'Website-Betreuung & Automatisierung — Plan B Studios',
-    desc: 'Laufende Betreuung und angebundene Abläufe für Immobilienunternehmen in Lübeck: technische Pflege, Inhalte, Anfragestrecken, Terminbuchung.',
-    krume: 'Website-Betreuung',
-    prerender: true,
-  },
-  'ueber-mich': {
-    title: 'Bilal Gnielka — Plan B Studios, Lübeck',
-    desc: 'Bilal Gnielka baut Websites und begehbare 3D-Rundgänge für Immobilien. Plan B Studios in Lübeck, angemeldet an seinem 18. Geburtstag im Juli 2026.',
-    krume: 'Über mich',
-    prerender: true,
-  },
-  'makler/mehr-eigentuemeranfragen': {
-    title: 'Mehr Eigentümeranfragen — Plan B Studios',
-    desc: 'Eigentümer suchen online nach dem Wert ihrer Immobilie, lange bevor sie einen Makler anrufen. Situationsseiten, Bewertungsstrecke, Follow-up und Messung — aus einer Hand.',
-    prerender: true,
-  },
-  // Formularstrecke und Bestaetigungsseite: echte HTML-Datei fuer HTTP 200,
-  // aber kein Vorrendern (ein Formular hat im statischen HTML keinen Wert) und
-  // bewusst NICHT in der sitemap.xml.
+  // Formularstrecke: echte HTML-Datei fuer HTTP 200, aber kein Vorrendern (ein
+  // Formular hat im statischen HTML keinen Wert) und bewusst NICHT in der
+  // sitemap.xml.
   'akquise-check': {
     title: 'Akquise-Check für Makler — Plan B Studios',
     desc: 'Fünf Fragen zur eigenen Akquise, ohne Anmeldung. Am Ende stehen drei Hinweise, die sich aus den eigenen Antworten ergeben.',
@@ -171,11 +178,8 @@ function withMeta(html, route, cfg) {
     html = swap(html, /<meta\s+property="og:description"[\s\S]*?>/i, `<meta property="og:description" content="${esc(sozial)}" />`, 'og:description', route)
     html = swap(html, /<meta\s+name="twitter:description"[\s\S]*?>/i, `<meta name="twitter:description" content="${esc(sozial)}" />`, 'twitter:description', route)
   }
-  // Breadcrumbs vor dem schliessenden </head> einhaengen. Die englische
-  // Startseite bekommt keine: Sie ist die Wurzel ihrer Sprachfassung.
-  if (route !== 'en') {
-    html = html.replace('</head>', '    ' + breadcrumb(route, cfg) + '\n  </head>')
-  }
+  // Breadcrumbs vor dem schliessenden </head> einhaengen.
+  html = html.replace('</head>', '    ' + breadcrumb(route, cfg) + '\n  </head>')
 
   return html
 }

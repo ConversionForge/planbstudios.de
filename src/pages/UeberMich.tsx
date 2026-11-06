@@ -10,6 +10,7 @@ import {
   einblenden,
 } from '../components/SeitenLayout'
 import { startVariante } from '../lib/ssr'
+import { TERMIN_URL } from '../lib/kontakt'
 
 // Autorenseite. Zwei Zwecke:
 //
@@ -43,10 +44,9 @@ export function UeberMich() {
   return (
     <SeitenLayout
       titel="Bilal Gnielka — Plan B Studios, Lübeck"
-      aktion={{ text: 'Anfragen', zu: '/#kontakt' }}
     >
       {/* Einstieg */}
-      <section className="pb-20 pt-20 md:pb-28 md:pt-28">
+      <section className="pb-20 pt-16 md:pb-28 md:pt-24">
         <motion.div variants={einblenden} initial={startVariante} animate="show">
           <Marke>ÜBER MICH</Marke>
           <h1 className="font-serif text-[clamp(2.4rem,6.5vw,4.5rem)] font-light leading-[1.05] tracking-[-0.01em] text-cream">
@@ -60,9 +60,9 @@ export function UeberMich() {
 
           <div className="mt-10 max-w-2xl">
             <p className="text-base leading-relaxed text-cream-soft md:text-lg">
-              Ich baue Websites und begehbare 3D-Rundgänge für Immobilien. Plan
-              B Studios ist mein Studio in Lübeck, ein Ein-Personen-Unternehmen,
-              und das ist Absicht.
+              Ich automatisiere Abläufe in Betrieben, baue Akquise-Strecken und
+              Websites. Plan B Studios ist mein Studio in Lübeck, ein
+              Ein-Personen-Unternehmen, und das ist Absicht.
             </p>
             <p className="mt-6 text-base leading-relaxed text-stone">
               Bei mir steht nicht erst ein Vertrieb, dann ein Projektleiter und
@@ -166,34 +166,40 @@ export function UeberMich() {
         </Block>
       </section>
 
-      {/* Warum beides */}
+      {/* Warum alles zusammen
+          Bis November 2026 hiess dieser Abschnitt "Warum beides" und
+          begruendete Website plus 3D-Rundgang aus einer Hand. Seit
+          Automatisierung und Akquise die Hauptleistungen sind, traegt dasselbe
+          Argument (einer ist zustaendig, nichts geht bei der Uebergabe
+          verloren) fuer das ganze Angebot. Der Schlussabsatz ist der des
+          Inhabers. */}
       <section className="border-t border-night-line py-20 md:py-28">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:gap-16">
           <Block>
-            <Marke>WARUM BEIDES</Marke>
+            <Marke>WARUM ALLES ZUSAMMEN</Marke>
             <h2 className="font-serif text-[clamp(1.9rem,4.5vw,3rem)] font-light leading-tight text-cream">
-              Eine Immobilie ist mehr
+              Eine Website allein
               <br />
-              als eine Sammlung von <em className="italic text-gold-bright">Bildern</em>.
+              bringt noch keine <em className="italic text-gold-bright">Anfrage</em>.
             </h2>
           </Block>
 
           <Block>
             <p className="text-base leading-relaxed text-cream-soft md:text-lg">
-              Die Website entscheidet, ob jemand bleibt. Sie ist meist der erste
-              Kontakt und bestimmt, welchen Eindruck ein Objekt hinterlässt.
+              Die Website entscheidet, ob jemand bleibt. Ob er anfragt und was
+              danach mit seiner Anfrage passiert, entscheidet sie nicht.
             </p>
             <p className="mt-6 text-base leading-relaxed text-stone">
-              Der Rundgang entscheidet, ob jemand sich das Objekt vorstellen
-              kann. Er lässt Interessenten selbst durch die Räume gehen,
-              Zusammenhänge erfassen und sich eine Meinung bilden, bevor der
-              erste Termin steht.
+              Deshalb baue ich nicht nur die Seite, sondern auch die Strecke
+              dahinter: wie ein Interessent von der Suche bis zum Termin kommt,
+              und welche Arbeit danach automatisch läuft, statt liegen zu
+              bleiben.
             </p>
             <p className="mt-6 text-base leading-relaxed text-stone">
               Getrennt vergeben heißt in der Praxis: Jeder wartet auf den
               anderen, die Übergabe passt nicht, und am Ende ist niemand
-              zuständig. Deshalb mache ich beides. Nicht weil es bequemer ist,
-              sondern weil es sonst nicht zusammengeht.
+              zuständig. Deshalb mache ich alles aus einer Hand. Nicht weil es
+              bequemer ist, sondern weil es sonst nicht zusammengeht.
             </p>
           </Block>
         </div>
@@ -279,8 +285,8 @@ export function UeberMich() {
             mit einem <em className="italic text-gold-bright">Gespräch</em>.
           </h2>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-stone md:text-lg">
-            Vielleicht wollen Sie ein Objekt begehbar machen. Vielleicht braucht
-            Ihre Firma eine Seite, die zeigt, was sie kann. Vielleicht haben Sie
+            Vielleicht läuft in Ihrem Betrieb zu viel von Hand. Vielleicht
+            kommen über Ihre Website zu wenige Anfragen. Vielleicht haben Sie
             eine Idee und noch keinen Weg dorthin.
           </p>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-stone">
@@ -292,7 +298,9 @@ export function UeberMich() {
             mich darauf, zu zeigen, was daraus werden kann.
           </p>
           <div className="mt-10">
-            <Aufruf to="/#kontakt">Projekt anfragen</Aufruf>
+            <Aufruf to={TERMIN_URL} neuesFenster>
+              Erstgespräch buchen
+            </Aufruf>
           </div>
         </Block>
       </section>
@@ -300,31 +308,19 @@ export function UeberMich() {
       <Rueckweg
         text={
           <>
-            <Link
-              to="/webdesign-luebeck/"
-              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
-            >
-              Webdesign in Lübeck
+            <Link to="/automatisierung/" className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold">
+              Automatisierung
             </Link>{' '}
             ·{' '}
-            <Link
-              to="/3d-rundgaenge/"
-              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
-            >
-              3D-Rundgänge
+            <Link to="/akquise-strecken/" className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold">
+              Akquise-Strecken
             </Link>{' '}
             ·{' '}
-            <Link
-              to="/website-betreuung/"
-              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
-            >
-              Betreuung & Automatisierung
+            <Link to="/webdesign-luebeck/" className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold">
+              Websites
             </Link>{' '}
             ·{' '}
-            <Link
-              to="/"
-              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
-            >
+            <Link to="/" className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold">
               Alle Leistungen
             </Link>
           </>

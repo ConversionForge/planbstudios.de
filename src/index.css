@@ -199,6 +199,13 @@ body {
   50% { transform: translate3d(-6vw, -4vh, 0) scale(0.9); }
 }
 
+/* Ein Lichtpunkt, der durch eine Verbindungslinie laeuft (Leistungen,
+   Schaubild Automatisierung). Nur transform, damit es fluessig bleibt. */
+@keyframes fluss {
+  0% { transform: translateX(-110%); }
+  100% { transform: translateX(220%); }
+}
+
 .tour-kenburns img {
   animation: kenburns 20s ease-in-out infinite alternate;
   will-change: transform;

@@ -1,16 +1,12 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
-import { CubeMark } from '../components/Logo'
 import { Magnetic } from '../components/Magnetic'
-import { GrainOverlay } from '../components/GrainOverlay'
-import { Footer } from '../components/Footer'
+import { SeitenLayout } from '../components/SeitenLayout'
 import { startVariante } from '../lib/ssr'
 
-// Situationsseite für die eigene Akquise. Bewusst nur auf Deutsch: Die
-// Zielgruppe sind Makler in Schleswig-Holstein. Bewusst nicht in der
-// Hauptnavigation: Die Seite wird gezielt verlinkt und über die Suche
-// gefunden, die Startseite bleibt davon unberührt.
+// Ratgeber fuer Makler: "Mehr Eigentuemeranfragen". Seit November 2026 einer
+// der kostenlosen Einstiege im Fussbereich und Zielgruppenseite zur Leistung
+// Akquise-Strecken (/akquise-strecken/). Fuehrt zum Akquise-Check.
 
 const reveal = {
   hidden: { opacity: 0, y: 32 },
@@ -63,44 +59,13 @@ const ABLAUF = [
 ]
 
 export function MaklerSituation() {
-  useEffect(() => {
-    document.title = 'Mehr Eigentümeranfragen — Plan B Studios'
-    return () => {
-      document.title = 'Plan B Studios — Webdesign & 3D-Rundgänge'
-    }
-  }, [])
-
   return (
-    <div className="min-h-screen bg-night text-cream">
-      <GrainOverlay />
-
-      {/* Schlanke Kopfzeile statt der Hauptnavigation */}
-      <header className="border-b border-night-line">
-        <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-5 lg:px-8">
-          <Link to="/" className="group flex items-center gap-3">
-            <CubeMark className="h-6 w-6 text-gold transition-colors group-hover:text-gold-bright" />
-            <span className="flex flex-col leading-none">
-              <span className="font-serif text-[15px] tracking-wide text-cream">Plan B</span>
-              <span className="mt-0.5 text-[8px] font-medium uppercase tracking-[0.42em] text-gold">
-                Studios
-              </span>
-            </span>
-          </Link>
-          <a
-            href="#check"
-            className="text-[13px] font-medium tracking-[0.06em] text-cream-soft transition-colors hover:text-gold"
-          >
-            Akquise-Check
-          </a>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-4xl px-6 lg:px-8">
+    <SeitenLayout titel="Mehr Eigentümeranfragen: Ratgeber für Makler — Plan B Studios">
         {/* 1 + 2 — Problem benennen */}
-        <section className="pb-20 pt-20 md:pb-28 md:pt-28">
+        <section className="pb-20 pt-16 md:pb-28 md:pt-24">
           <motion.div variants={reveal} initial={startVariante} animate="show">
             <p className="mb-6 font-mono text-[12px] tracking-[0.3em] text-gold">
-              FÜR MAKLER
+              RATGEBER FÜR MAKLER
             </p>
             <h1 className="font-serif text-[clamp(2.4rem,6.5vw,4.5rem)] font-light leading-[1.05] tracking-[-0.01em] text-cream">
               Eigentümer entscheiden,
@@ -264,19 +229,36 @@ export function MaklerSituation() {
             Sackgasse: Wer hier landet, soll auch die uebrigen Leistungen finden. */}
         <section className="border-t border-night-line py-12">
           <p className="text-[15px] leading-relaxed text-stone">
-            Plan B Studios baut außerdem Websites und begehbare 3D-Rundgänge für
-            Immobilien.{' '}
+            Wie ich eine solche Strecke aufbaue, steht unter{' '}
+            <Link
+              to="/akquise-strecken/"
+              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
+            >
+              Akquise-Strecken
+            </Link>
+            . Außerdem:{' '}
+            <Link
+              to="/automatisierung/"
+              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
+            >
+              Automatisierung
+            </Link>{' '}
+            ·{' '}
+            <Link
+              to="/3d-rundgaenge/"
+              className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
+            >
+              3D-Rundgänge für Makler
+            </Link>{' '}
+            ·{' '}
             <Link
               to="/"
               className="text-cream-soft underline underline-offset-4 transition-colors hover:text-gold"
             >
-              Alle Leistungen ansehen
+              Alle Leistungen
             </Link>
           </p>
         </section>
-      </main>
-
-      <Footer />
-    </div>
+    </SeitenLayout>
   )
 }
