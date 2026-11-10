@@ -11,7 +11,8 @@
     "pruefung-test": "node --experimental-strip-types scripts/pruefung-testen.ts",
     "plz-daten": "node scripts/plz-daten-erzeugen.mjs",
     "endpunkt-test": "node scripts/endpunkt-testen.mjs",
-    "profilbilder": "node scripts/profilbilder-erzeugen.mjs"
+    "profilbilder": "node scripts/profilbilder-erzeugen.mjs",
+    "linkedin-banner": "node scripts/linkedin-banner-erzeugen.mjs .."
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.3.0",
