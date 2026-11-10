@@ -96,7 +96,7 @@ export function Automatisierung() {
   const referenzen = sichtbareReferenzen().filter((r) => r.leistung === 'Automatisierung')
 
   return (
-    <SeitenLayout titel="Automatisierung für Betriebe in Lübeck — Plan B Studios">
+    <SeitenLayout titel="Prozessautomatisierung für Betriebe in Lübeck — Plan B Studios">
       {/* Einstieg */}
       <section className="pb-20 pt-16 md:pb-28 md:pt-24">
         <motion.div variants={einblenden} initial={startVariante} animate="show">
@@ -109,9 +109,9 @@ export function Automatisierung() {
             Woche jemand von Hand machen.
           </p>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-stone md:text-lg">
-            Ich sehe mir an, wie in Ihrem Betrieb gearbeitet wird, finde die
-            Abläufe, die immer nach demselben Muster laufen, und automatisiere
-            die, bei denen es sich lohnt. Wo es geht, mit den Programmen, die Sie
+            Prozessautomatisierung heißt bei mir: Ich sehe mir an, wie in Ihrem
+            Betrieb gearbeitet wird, finde die Abläufe, die immer nach demselben
+            Muster laufen, und automatisiere die, bei denen es sich lohnt. Wo es geht, mit den Programmen, die Sie
             schon nutzen.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">

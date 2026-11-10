@@ -38,8 +38,8 @@ const ROUTES = {
   // Leistungsseiten, in der Reihenfolge ihres Gewichts (seit November 2026):
   // Automatisierung und Akquise-Strecken zuerst, Websites danach.
   automatisierung: {
-    title: 'Automatisierung für Betriebe in Lübeck — Plan B Studios',
-    desc: 'Wiederkehrende Abläufe automatisieren statt von Hand erledigen: Daten übertragen, Dokumente erstellen, erinnern, Anfragen sortieren. Für Betriebe in Lübeck.',
+    title: 'Prozessautomatisierung für Betriebe in Lübeck — Plan B Studios',
+    desc: 'Prozessautomatisierung für Betriebe in Lübeck und Schleswig-Holstein: Daten übertragen, Schreiben auslesen, erinnern, Anfragen sortieren. Mit Beispielen aus Büro und Gastronomie.',
     krume: 'Automatisierung',
     prerender: true,
   },
@@ -76,8 +76,8 @@ const ROUTES = {
     prerender: true,
   },
   'ueber-mich': {
-    title: 'Bilal Gnielka — Plan B Studios, Lübeck',
-    desc: 'Bilal Gnielka automatisiert Abläufe in Betrieben und baut Akquise-Strecken und Websites. Plan B Studios in Lübeck, angemeldet an seinem 18. Geburtstag im Juli 2026.',
+    title: 'Bilal Gnielka, Automatisierungsspezialist in Lübeck — Plan B Studios',
+    desc: 'Bilal Gnielka ist Automatisierungsspezialist in Lübeck: Prozessautomatisierung und Akquise-Strecken für Betriebe, dazu Webdesign. Gründer von Plan B Studios.',
     krume: 'Über mich',
     prerender: true,
   },

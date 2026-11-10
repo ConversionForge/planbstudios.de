@@ -23,6 +23,9 @@ export function UeberMichKurz() {
           <h2 className="font-serif text-[clamp(2.2rem,4.8vw,4rem)] font-light leading-[1.05] tracking-[-0.01em] text-cream">
             Bilal Gnielka
           </h2>
+          <p className="mt-4 text-[15px] font-medium tracking-[0.04em] text-gold">
+            Automatisierungsspezialist und Gründer von Plan B Studios
+          </p>
           <p className="mt-8 max-w-xl text-[17px] leading-relaxed text-cream-soft md:text-lg">
             Plan B Studios bin ich. Sie sprechen mit mir, und ich baue es auch.
             Dazwischen steht kein Vertrieb und kein Projektleiter.

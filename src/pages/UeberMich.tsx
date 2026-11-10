@@ -42,9 +42,22 @@ function Merksatz({ children }: { children: React.ReactNode }) {
 
 export function UeberMich() {
   return (
-    <SeitenLayout
-      titel="Bilal Gnielka — Plan B Studios, Lübeck"
-    >
+    <SeitenLayout titel="Bilal Gnielka, Automatisierungsspezialist in Lübeck — Plan B Studios">
+      {/* Profilseite: verweist auf die Person aus den Daten im Kopf von
+          index.html (@id). So ordnen Suchmaschinen und KI-Dienste diese Seite
+          eindeutig Bilal Gnielka zu. Datenblock, kein Skript: Die CSP greift
+          nicht. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ProfilePage',
+            url: 'https://planbstudios.de/ueber-mich/',
+            mainEntity: { '@id': 'https://planbstudios.de/#bilal-gnielka' },
+          }),
+        }}
+      />
       {/* Einstieg */}
       <section className="pb-20 pt-16 md:pb-28 md:pt-24">
         <motion.div variants={einblenden} initial={startVariante} animate="show">
@@ -52,6 +65,12 @@ export function UeberMich() {
           <h1 className="font-serif text-[clamp(2.4rem,6.5vw,4.5rem)] font-light leading-[1.05] tracking-[-0.01em] text-cream">
             Bilal Gnielka
           </h1>
+          {/* Die Berufsbezeichnung steht sichtbar im Text, nicht nur in den
+              Daten: Suchmaschinen und KI-Dienste gewichten, was auf der Seite
+              steht, und Google wertet Daten ohne sichtbare Entsprechung ab. */}
+          <p className="mt-5 text-[15px] font-medium tracking-[0.04em] text-gold">
+            Automatisierungsspezialist · Gründer von Plan B Studios · Lübeck
+          </p>
 
           <p className="mt-10 max-w-2xl font-serif text-[clamp(1.3rem,2.6vw,1.75rem)] font-light leading-snug text-cream">
             Ich wollte nie einfach nur für andere arbeiten. Ich wollte etwas
