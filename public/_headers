@@ -8,6 +8,15 @@
 # veralten, sobald jemand das Skript aendert, und die Seite wuerde still
 # kaputtgehen.
 
+
+# Textdateien fuer Crawler und KI-Dienste enthalten Umlaute. Ohne Angabe
+# des Zeichensatzes lesen manche Programme sie als Latin-1 und machen aus
+# "Lübeck" Zeichensalat.
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Content-Type-Options: nosniff
