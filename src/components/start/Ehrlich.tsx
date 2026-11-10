@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { Block, Marke, einblenden, gestaffelt } from '../SeitenLayout'
 import { startVariante } from '../../lib/ssr'
@@ -71,15 +70,14 @@ export function Ehrlich() {
 
           <Block className="mt-10">
             <p className="max-w-xl text-[15px] leading-relaxed text-stone">
-              Was ich kann, sehen Sie am schnellsten am{' '}
-              <Link
-                to="/akquise-check/"
+              Was ich kann, zeige ich lieber, als es zu behaupten:{' '}
+              <a
+                href="#arbeitsproben"
                 className="text-cream-soft underline decoration-night-line underline-offset-4 transition-colors hover:text-gold-bright hover:decoration-gold"
               >
-                Akquise-Check
-              </Link>
-              : Er ist selbst eine Akquise-Strecke, mit Formular, Benachrichtigung,
-              Bestätigung und Terminbuchung.
+                zu den Arbeitsproben
+              </a>
+              .
             </p>
           </Block>
         </div>

@@ -13,18 +13,21 @@ export interface NavEintrag {
   zu: string
 }
 
-const ALLE: NavEintrag[] = [
+/**
+ * Nachweis-Eintrag: "Referenzen", sobald es mindestens eine freigegebene
+ * Kundenreferenz gibt, bis dahin "Arbeitsproben". Ein Eintrag "Referenzen"
+ * ohne Referenzen waere ein toter Verweis, und als Referenzen ausgegebene
+ * Beispiele waeren eine irrefuehrende Werbeaussage.
+ */
+const NACHWEIS: NavEintrag =
+  sichtbareReferenzen().length > 0
+    ? { label: 'Referenzen', zu: '/#referenzen' }
+    : { label: 'Arbeitsproben', zu: '/#arbeitsproben' }
+
+export const HAUPTNAVIGATION: NavEintrag[] = [
   { label: 'Automatisierung', zu: '/automatisierung/' },
   { label: 'Akquise-Strecken', zu: '/akquise-strecken/' },
   { label: 'Websites', zu: '/webdesign-luebeck/' },
-  { label: 'Referenzen', zu: '/#referenzen' },
+  NACHWEIS,
   { label: 'Über mich', zu: '/ueber-mich/' },
 ]
-
-/**
- * Der Abschnitt "Referenzen" erscheint nur mit mindestens einer freigegebenen
- * Referenz. Ohne ihn waere der Eintrag ein toter Verweis.
- */
-export const HAUPTNAVIGATION: NavEintrag[] = ALLE.filter(
-  (e) => e.zu !== '/#referenzen' || sichtbareReferenzen().length > 0,
-)

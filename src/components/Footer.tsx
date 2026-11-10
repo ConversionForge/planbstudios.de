@@ -93,7 +93,11 @@ export function Footer() {
             </nav>
             <nav aria-label="Studio">
               <p className="mb-3 text-[11px] uppercase tracking-[0.2em] text-stone/70">Studio</p>
-              {mitReferenzen && <AbschnittVerweis id="referenzen">Referenzen</AbschnittVerweis>}
+              {mitReferenzen ? (
+                <AbschnittVerweis id="referenzen">Referenzen</AbschnittVerweis>
+              ) : (
+                <AbschnittVerweis id="arbeitsproben">Arbeitsproben</AbschnittVerweis>
+              )}
               <Link to="/ueber-mich/" className={verweisKlasse}>
                 Über mich
               </Link>

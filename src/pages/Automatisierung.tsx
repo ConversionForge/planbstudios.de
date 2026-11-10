@@ -11,6 +11,7 @@ import {
   einblenden,
 } from '../components/SeitenLayout'
 import { Einschaetzung } from '../components/Einschaetzung'
+import { GastroBeispiel } from '../components/GastroBeispiel'
 import { sichtbareReferenzen } from '../inhalte/referenzen'
 import { TERMIN_URL } from '../lib/kontakt'
 import { startVariante } from '../lib/ssr'
@@ -150,11 +151,11 @@ export function Automatisierung() {
         </Block>
       </section>
 
-      {/* Ein Beispiel */}
-      <section className="border-t border-night-line py-20 md:py-28">
+      {/* Erstes Beispiel: Assistent neben dem Branchenprogramm */}
+      <section id="beispiel" className="scroll-mt-28 border-t border-night-line py-20 md:py-28">
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:gap-16">
           <Block>
-            <Marke>EIN BEISPIEL</Marke>
+            <Marke>ERSTES BEISPIEL · BÜROARBEIT</Marke>
             <h2 className="font-serif text-[clamp(1.9rem,4.5vw,3rem)] font-light leading-tight text-cream">
               Ein Assistent <em className="italic text-gold-bright">neben</em> Ihrem Programm.
             </h2>
@@ -186,6 +187,9 @@ export function Automatisierung() {
           ))}
         </Block>
       </section>
+
+      {/* Zweites Beispiel: Stammgaeste fuer Restaurants */}
+      <GastroBeispiel />
 
       {/* Wann nicht */}
       <section className="border-t border-night-line py-20 md:py-28">

@@ -5,6 +5,7 @@ import { Nav } from '../components/Nav'
 import { Hero } from '../components/start/Hero'
 import { Leistungen } from '../components/start/Leistungen'
 import { Referenzen } from '../components/start/Referenzen'
+import { Arbeitsproben } from '../components/start/Arbeitsproben'
 import { Makler } from '../components/start/Makler'
 import { Websites } from '../components/start/Websites'
 import { Rundgang } from '../components/start/Rundgang'
@@ -189,6 +190,7 @@ export function Home() {
         <Hero />
         <Leistungen />
         <Referenzen />
+        <Arbeitsproben />
         <Makler />
         <Websites />
         <Rundgang />

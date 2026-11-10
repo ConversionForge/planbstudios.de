@@ -26,7 +26,10 @@ const OBEN: Leistung[] = [
     titel: 'Automatisierung',
     text: 'Was in Ihrem Betrieb jede Woche gleich abläuft, muss nicht jede Woche jemand von Hand machen. Daten von einem Programm ins nächste tragen, Dokumente erstellen, an Termine erinnern, Anfragen sortieren: Ich sehe mir an, wie es bei Ihnen läuft, und automatisiere das, wo es sich lohnt.',
     beispiele: ['Büro und Verwaltung', 'Gastronomie', 'Anfragen und Termine'],
-    verweise: [{ text: 'Mehr zur Automatisierung', zu: '/automatisierung/' }],
+    verweise: [
+      { text: 'Mehr zur Automatisierung', zu: '/automatisierung/' },
+      { text: 'Beispiel für Restaurants', zu: '/automatisierung/#gastronomie' },
+    ],
     bild: 'ablauf',
   },
   {
